@@ -10,7 +10,7 @@ import {targetPriceAdd} from './TargetPrice'
         const url = 'https://finnhub.io/api/v1/quote?symbol=' + symbol + '&token=' + process.env.NEXT_PUBLIC_FINNHUB
 
         // const api_key = finnhub.ApiClient.instance.authentications['api_key'];
-        // api_key.apiKey = "c4pfifqad3ifau3r1kjg" // Replace this
+
         // const finnhubClient = new finnhub.DefaultApi()
         // console.log(symbol, url)
         axios.get (url)

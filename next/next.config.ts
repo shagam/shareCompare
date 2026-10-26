@@ -8,5 +8,5 @@ export default nextConfig;
 
 // next.config.js
 module.exports = {
-  allowedDevOrigins: ['192.168.7.6'],
+  allowedDevOrigins: [process.env.NEXT_PUBLIC_LOCAL_WIN_IP],
 }
