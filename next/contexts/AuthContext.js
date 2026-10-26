@@ -1,7 +1,7 @@
 "use client";
 import React, { useContext, useEffect, useState } from 'react'
 import {auth} from '../firebase'
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail,
+import { /*getAuth,*/ createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail,
    signOut, updatePassword, updateEmail } from "firebase/auth";
 // import { getDefaultNormalizer } from '@testing-library/react';
 

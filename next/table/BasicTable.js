@@ -1154,10 +1154,11 @@ const {chartSymbol, setChartSymbol,
                   </td> 
                 );
               })}
-              <td style={{margin: '1px', padding: '1px'}}> <button style={gainButtonColor(row.values.symbol)} type="button" 
-                  onClick={()=>handleGainClick(row.values.symbol, true, -1, 0)}>Gain</button></td> 
               <td style={{margin: '1px', padding: '1px'}}> <button style={{background:'#ddcccc'}} type="button" 
                   onClick={()=>handleDeleteClick(row.values.symbol)}>del</button></td>
+              <td style={{margin: '1px', padding: '1px'}}> <button style={gainButtonColor(row.values.symbol)} type="button" 
+                  onClick={()=>handleGainClick(row.values.symbol, true, -1, 0)}>Gain</button></td> 
+
             </tr>
           );
         })}

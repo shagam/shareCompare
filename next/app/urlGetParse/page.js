@@ -4,7 +4,7 @@ import {UrlGetParse} from "../../utils/UrlGetParse";   // adjust path if needed
 import memoryStore from "../../components/MemoryStore"; // adjust path if needed
 
 
-export default function UrlGetParsePage(props) {
+export default function UrlGetParsePage() {
 
   return (
     <UrlGetParse
