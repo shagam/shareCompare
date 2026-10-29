@@ -242,7 +242,7 @@ const {chartSymbol, setChartSymbol,
   memoryStore.set('stockChartYValues', stockChartYValues);
   // memoryStore.set('gainObj',gainObj )
   
-  memoryStore.set('errorAdd', errorAdd);
+
   memoryStore.set('daily', daily);
 
   // memoryStore.set('rows', rows);
@@ -311,6 +311,8 @@ const {chartSymbol, setChartSymbol,
   const {localIp, localIpv4, eliHome, city, countryName, countryCode, regionName, ip, os} = IpContext();
   const {userAgent, userAgentMobile, isAndroid, isIPhone, isMobile} = MobileContext();
   
+  memoryStore.set('errorAdd', errorAdd);
+
   memoryStore.set('ip', ip);
   memoryStore.set('city', city);
   memoryStore.set('countryName', countryName);
