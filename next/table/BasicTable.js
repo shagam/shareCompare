@@ -150,11 +150,7 @@ const BasicTable = (children) => {
   const [pageForAi, setPageForAi] = useState();
   const [pageForAiText, setPageForAiText] = useState();
 
-  const LOG_FLAG = logFlags && logFlags.includes('aux');
-  const LOG_API = logFlags && logFlags.includes('api');
-  const LOG_alpha = logFlags && logFlags.includes('alpha');
-
-  // var PORT;
+   // var PORT;
   // if (servSelect === process.env.NEXT_PUBLIC_LOCAL_SERV_IP)
   //   PORT = 5000;
   // else
@@ -186,6 +182,10 @@ const {chartSymbol, setChartSymbol,
 
     } = useShared();
 
+
+  const LOG_FLAG = logFlags && logFlags.includes('aux');
+  const LOG_API = logFlags && logFlags.includes('api');
+  const LOG_alpha = logFlags && logFlags.includes('alpha');
 
 
 
@@ -304,12 +304,11 @@ const {chartSymbol, setChartSymbol,
   memoryStore.set('ssl', ssl);
   memoryStore.set('PORT', PORT);
 
-  memoryStore.set('prepareRow', prepareRow);
-  memoryStore.set('allColumns', allColumns);
+
   memoryStore.set('monthGainData', monthGainData);
 
-  memoryStore.set('alphaCallBack', alphaCallBack);
-  memoryStore.set('ip', ip);
+
+
   memoryStore.set('refreshByToggleColumns', refreshByToggleColumns);
   memoryStore.set('smoothSpikes', smoothSpikes);
   memoryStore.set('setSmoothSpikes', setSmoothSpikes);
@@ -333,12 +332,7 @@ const {chartSymbol, setChartSymbol,
 
   memoryStore.set('pageForAi', pageForAi);
   memoryStore.set('pageForAiText', pageForAiText);
-  memoryStore.set('city', city);
-  memoryStore.set('countryName', countryName);
-  memoryStore.set('countryCode', countryCode);
-  memoryStore.set('regionName', regionName);
-  memoryStore.set('ip', ip);
-  memoryStore.set('os', os);
+
   memoryStore.set('stockInfo', stockInfo);
 
 
@@ -362,6 +356,14 @@ const {chartSymbol, setChartSymbol,
   const { login, currentUser, admin } = useAuth();
   const {localIp, localIpv4, eliHome, city, countryName, countryCode, regionName, ip, os} = IpContext();
   const {userAgent, userAgentMobile, isAndroid, isIPhone, isMobile} = MobileContext();
+  
+  memoryStore.set('ip', ip);
+  memoryStore.set('city', city);
+  memoryStore.set('countryName', countryName);
+  memoryStore.set('countryCode', countryCode);
+  memoryStore.set('regionName', regionName);
+  memoryStore.set('ip', ip);
+  memoryStore.set('os', os);
 
   async function refreshByToggleColumns ()  {
     var ind = allColumns.findIndex((column)=> column.Header === 'sym');
@@ -401,6 +403,7 @@ const {chartSymbol, setChartSymbol,
       console.log ('setState new', key, 'old state', API_KEY) 
     setAPI_KEY (key);
   } 
+  memoryStore.set('alphaCallBack', alphaCallBack);
 
   //const [rows, setRows] = useState (data);
 
@@ -721,7 +724,9 @@ const {chartSymbol, setChartSymbol,
   // }  
   )
   
+  memoryStore.set('prepareRow', prepareRow);
   memoryStore.set('rows', rows);
+  memoryStore.set('allColumns', allColumns);
 
   // first empty call handleGainClick for each: to show chart
   // useEffect (() => { 
