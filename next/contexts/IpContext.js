@@ -197,7 +197,7 @@ function IpContext  () {
     }
 
     var url;
-    url = 'https://ipinfo.io/66.87.125.72/json?token=' + IPINFO_TOKEN
+
     url = 'https://ipinfo.io/json?token=' + IPINFO_TOKEN
 
     try {
@@ -254,7 +254,6 @@ async function getIpInfo (ip, setCity, setRegion, setCountry, setErr) {
   const eliHome_ = ip === ELI_HOME_IP
 
     var url;
-    // url = 'https://ipinfo.io/66.87.125.72/json?token=' + IPINFO_TOKEN
     url = 'https://ipinfo.io/'
     if (ip)
       url += ip + '/';
