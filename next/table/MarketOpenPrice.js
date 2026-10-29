@@ -6,9 +6,39 @@ import "react-datepicker/dist/react-datepicker.css";
 import { toDate } from "date-fns";
 import {format} from "date-fns"
 import {todayDate, dateSplit, monthsBack, daysBack, compareDate, daysFrom1970, searchDateInArray} from '../utils/Date'
-
+import {pageHeader } from './StockInfo'
+import { useShared } from '../contexts/SharedContext';
 
 function MarketOpenPrice (props) {
+
+    const {chartSymbol, setChartSymbol,
+      infoSymbol, setInfoSymbol,
+      gainMap, setGainMap,
+      chartData, setChartData,
+      symbol,
+      stockInfo, setStockInfo,
+      gainRawDividand, setGainRawDividand,
+      gainData, setGainData,
+      
+      daily, setDaily,
+      logFlags, setLogFlags,
+
+      price, setPrice,
+      priceDivHigh, setPriceDivHigh,
+
+      stockChartXValues,
+      stockChartYValues,
+
+      servList,
+      servNameList, 
+      servSelect, setServSelect,
+      ssl, setSsl,
+      PORT, setPORT,
+      HIGH_LIMIT_KEY
+
+    } = useShared();
+
+
 
     var gainObj = {}
     const [dateArray, setDateArray] = useState([])
@@ -31,7 +61,7 @@ function MarketOpenPrice (props) {
         // openDivPrevClose()
         setOpenArr()
         setCloseArr()
-    }, [props.symbol, props.daily]) 
+    }, [symbol, daily]) 
    
     function gainOpen(i) {
         if (dateArray_.length === 0) {
@@ -85,9 +115,9 @@ function MarketOpenPrice (props) {
       const oneDayMili = 1000 * 3600 + 24;
   
       if (LOG_FLAG)
-        console.log(props.symbol, 'gain/chart (symbol)'); 
-      if (props.symbol === '' || props.symbol === undefined) {
-        alert (`bug, chart sym vanished (${props.symbol})`);
+        console.log(symbol, 'gain/chart (symbol)'); 
+      if (symbol === '' || symbol === undefined) {
+        alert (`bug, chart sym vanished (${symbol})`);
         return;
       }
     
@@ -102,17 +132,17 @@ function MarketOpenPrice (props) {
     // const openOrCloseText = openMarketFlag ? '1. open' : '4. close';
     function getGainArray () {
 
-        if (! props.daily)
+        if (! daily)
             setPERCENT_DIFF (colorPercentDiff * 3)  //  weekly expects heigher differences toi be RED
 
-        const dataStr = JSON.stringify(props.chartData);
+        const dataStr = JSON.stringify(chartData);
 
         if (LOG_API) {
-          console.dir (props.chartData)
+          console.dir (chartData)
           // console.log (dataStr.substring(0,150));
         }
         
-        const obj = props.chartData; 
+        const obj = chartData; 
 
         gainObj = obj
         const dateArr = Object.keys(obj);
@@ -148,8 +178,8 @@ function MarketOpenPrice (props) {
         setCloseArr (closeArray)
         setOpenDivPrevClose(openDivPrevClose_)
         const average = Math.pow (openDivCloseMul, (1/openDivCloseCount))
-        console.log (props.symbol, 'open vs prevClose  average=', average, 'openDivCloseCount', openDivCloseCount, 'openDivCloseMul', openDivCloseMul)
-        console.log (props.symbol, 'open vs prevClose  upCnt=' + upCount, 'downCnt=', downCnt)
+        console.log (symbol, 'open vs prevClose  average=', average, 'openDivCloseCount', openDivCloseCount, 'openDivCloseMul', openDivCloseMul)
+        console.log (symbol, 'open vs prevClose  upCnt=' + upCount, 'downCnt=', downCnt)
         setOpenDivPrevCloseAverage(average.toFixed(6))
         
     }
@@ -177,12 +207,14 @@ function MarketOpenPrice (props) {
     return (
         <div style = {{ border: '2px solid blue'}}>
 
-            <div style = {{display: 'flex'}}>
+            {/* <div style = {{display: 'flex'}}>
                 <div  style={{color: 'magenta' }}>  {props.symbol} </div>  &nbsp; &nbsp;
                 <h6 style={{color: 'blue'}}> MarketOpenPrice  </h6> &nbsp; &nbsp;
             </div>
 
-            <h6 style={{color:'#33ee33', fontWeight: 'bold', fontStyle: "italic"}}> Tool for revealing after hour reshuffle (Expenses) of lavarage ETF like TQQQ </h6>
+            <h6 style={{color:'#33ee33', fontWeight: 'bold', fontStyle: "italic"}}> Tool for revealing after hour reshuffle (Expenses) of lavarage ETF like TQQQ </h6> */}
+           {pageHeader (symbol, 'marketOpenPrice', 'Tool for revealing after hour reshuffle (Expenses) of lavarage ETF like TQQQ')}
+
 
             <div>
               <button style={{background: 'aqua'}} onClick={getGainArray} > calcPriceHistory </button>  &nbsp;  &nbsp; 
