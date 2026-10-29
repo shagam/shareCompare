@@ -17,22 +17,7 @@ import { COLUMNS, GROUPED_COLUMNS } from './columns'
 import './table.css'
 import GlobalFilter from '../utils/GlobalFilter'
 import CheckBox from '../utils/CheckBox'
-import Toggle from '../utils/Toggle'
-// import Splits from '../splits/Splits'
 
-import {DropRecoveryButtons} from './DropRecovery'
-import {Peak2PeakGui} from './Peak2Peak'
-import {MarketOpenPrice} from './MarketOpenPrice'
-
-
-import {pageHeader} from './StockInfo'
-import  {StockGain, dividendCalc} from './StockGain'
-
-import {Holdings} from './Holdings'
-import {Ai} from './Ai'
-import {DropsCount} from './DropsCount'
-
-import LogFlags from '../utils/LogFlags'
 
 import searchURL from '../utils/SearchURL'
 import {spikesSmooth, spikesGet} from './Spikes'
@@ -65,45 +50,20 @@ import MobileContext from '../contexts/MobileContext'
 // import '../GlobalVar'
 import { ComboBoxSelect } from '../utils/ComboBoxSelect'
 import {ErrorList, beep, beep2} from '../utils/ErrorList'
-// import CookieConsent from 'react-cookie-consent'
-import  {CommonDatabase} from './CommonDatabase'
-
 
 import {useTable, useSortBy, useGlobalFilter, useRowSelect, useBlockLayout, useFlexLayout, useAbsoluteLayout } from 'react-table'
 
-import Simulate from './Simulate'
-import {MonthGain} from './MonthGain'
-import Tools from './Tools'
-
-import Config from './Config'
-import StockLists from './StockLists'
-
 import MarketStackApi from  './MarketStackApi'
-import {StockOptions} from  './StockOptions'
-
 
 import {polygon} from './Polygon'
 
-import { LeverageETF } from './LeverageETF'
-
 import StockChart from '../Stock-chart';
-import {MovingAverage } from './MovingAverage'
-import {Futures} from './Futures'
-import {PriceAlert, priceAlertCheck} from './PriceAlert'
+
 import {LatestPrice} from './LatestPrice'
 import {Disclaimer} from './Disclaimer'
-import {News} from '../utils/News'
-import { UrlGetParse } from '../utils/UrlGetParse'
 
-import { CandlestickChart, CandleStick} from './CandleStick'
-import { Polymarket } from './Polymarket'
-import Contact from '../auth/Contact'
 import '../utils/styles.css'
 
-import {SymSearch} from './SymSearch'
-import About from '../About'
-import Tutorials from '../Tutorials'
-import AuxilaryLinks from './AuxilaryLinks'
 
 const BasicTable = (children) => {
 
@@ -121,12 +81,6 @@ const BasicTable = (children) => {
         window.history.replaceState(null, "", "/");
       }
   }, []);
-
-  const Signup = lazy(() => import ('../auth/Signup'));
-  const Dashboard = lazy(() => import ('../auth/Dashboard'));
-  const Login = lazy(() => import ('../auth/Login'));
-  const ForgotPassword  = lazy(() => import ('../auth/ForgotPassword'));
-  const UpdateProfile = lazy(() => import ('../auth/UpdateProfile'));
 
 
   const checkList = ["hiddenCols","drop", 'drop_', 'peak2Peak', "verify_1", "splits",
@@ -995,7 +949,6 @@ const {chartSymbol, setChartSymbol,
 
   return (
 
-    <Suspense fallback={<div>Loading ... (from BaseTable)</div>}> 
       <SharedContext.Provider value={{errorAdd, error, setErr, refreshByToggleColumns}}>
       <Container style={{minWidth: "100%", lineHight: '1.2'}}  >         
         {/* <Container  className='d-flex align-items-left justify-content-left' style={{minHeight: "50vh", minWidth: "100%"}}  > */}
@@ -1251,7 +1204,6 @@ const {chartSymbol, setChartSymbol,
       </Container>
 
       </SharedContext.Provider>
-    </Suspense>
 
   )
 }
