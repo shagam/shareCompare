@@ -176,6 +176,9 @@ const {chartSymbol, setChartSymbol,
 
   const tblHightOPtions = ['20vh','30vh', '40vh', '50vh','60vh', '75vh'];
   const [tablHight, setTablHight] = useState(tblHightOPtions[2]);
+  const tblWidthOPtions = ['75%', '100%', '120%', '140%', '160%'];
+  const [tablWidth, setTablWidth] = useState(tblWidthOPtions[1]);
+
   const useData = false;
 
   const cols =      ["symbol", "percent","Exchange","Industry","Sector","Cap","PE","ForwPE","TrailPE","PEG","Div","BETA",
@@ -959,9 +962,9 @@ const {chartSymbol, setChartSymbol,
           <strong style={{color:'#b3be18'}}>Compare</strong> 
           <div style={{fontSize: '15px', paddingTop: '10px'}}>.net  </div> 
           <div style={{fontSize: '15px', paddingTop: '10px'}}>{pathname}</div> &nbsp; &nbsp; &nbsp;
-          <div style={{fontSize: '18px', paddingTop: '10px'}}>(new version for ShareCompare.org) </div>
+          <div style={{fontSize: '18px', paddingTop: '10px'}}> </div>
          </h2> 
-
+        {/* <div>(new version for ShareCompare.org)</div> */}
         {/* <div style={{color: '#bb8899', fontWeight: "bold", fontSize: "1.4em"}}>backend server problem; use test backEnd (slow)</div> */}
         <Disclaimer eliHome={eliHome} logFlags = {logFlags}/>
 
@@ -1022,7 +1025,8 @@ const {chartSymbol, setChartSymbol,
 
           {/* <div style={{display:'flex'}}> <input type="checkbox" checked={columnHideFlag}  onChange={ columnHideFlagChange} 
               title='select which columns are visible and which are hidden'/> &nbsp;column_select  </div>&nbsp; */}
-          <ComboBoxSelect serv={tablHight} nameList={tblHightOPtions} setSelect={setTablHight} title='tableHeight' options={tblHightOPtions} defaultValue={tablHight}/>
+          <ComboBoxSelect serv={tablHight} nameList={tblHightOPtions} setSelect={setTablHight} title='tableHeight' options={tblHightOPtions} defaultValue={tablHight}/> &nbsp;
+          <ComboBoxSelect serv={tablWidth} nameList={tblWidthOPtions} setSelect={setTablWidth} title='tableWidth' options={tblWidthOPtions} defaultValue={tablWidth}/>
           <div></div>
          </div>
 
@@ -1067,7 +1071,7 @@ const {chartSymbol, setChartSymbol,
 
       {/* stock Table */}
 
-      <table style={{marginTop: '4px', maxHeight: tablHight, overflowY: 'auto'}} id="stockTable" {...getTableProps()}>
+      <table style={{marginTop: '4px', maxHeight: tablHight, maxWidth: tablWidth, overflowY: 'auto', overflowX: 'auto'}} id="stockTable" {...getTableProps()}>
       <thead>
         {headerGroups.map((headerGroup) => {
           const { key: headerKey, ...headerRest } = headerGroup.getHeaderGroupProps();
