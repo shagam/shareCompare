@@ -175,9 +175,9 @@ const {chartSymbol, setChartSymbol,
   const [deepStartDate, setDropStartDate] = useState(new Date(2024, 6, 1));  // 2024 jul 1  // new Date(2021, 8, 1 2021 sep 1  
 
   const tblHightOPtions = ['20vh','30vh', '40vh', '50vh','60vh', '75vh'];
-  const [tablHight, setTablHight] = useState(tblHightOPtions[2]);
+  const [tablHight, setTablHight] = useState(() => localStorage.getItem("tblHight") || tblHightOPtions[2]);
   const tblWidthOPtions = ['75%', '100%', '120%', '140%', '160%'];
-  const [tablWidth, setTablWidth] = useState(tblWidthOPtions[1]);
+  const [tablWidth, setTablWidth] = useState(() => localStorage.getItem("tblWidth") || tblWidthOPtions[1]);
 
   const useData = false;
 
@@ -1025,8 +1025,8 @@ const {chartSymbol, setChartSymbol,
 
           {/* <div style={{display:'flex'}}> <input type="checkbox" checked={columnHideFlag}  onChange={ columnHideFlagChange} 
               title='select which columns are visible and which are hidden'/> &nbsp;column_select  </div>&nbsp; */}
-          <ComboBoxSelect serv={tablHight} nameList={tblHightOPtions} setSelect={setTablHight} title='tableHeight' options={tblHightOPtions} defaultValue={tablHight}/> &nbsp;
-          <ComboBoxSelect serv={tablWidth} nameList={tblWidthOPtions} setSelect={setTablWidth} title='tableWidth' options={tblWidthOPtions} defaultValue={tablWidth}/>
+          <ComboBoxSelect serv={tablHight} nameList={tblHightOPtions} setSelect={setTablHight} title='tableHeight' options={tblHightOPtions} defaultValue={tablHight} localStore = "tblHight"/> &nbsp;
+          <ComboBoxSelect serv={tablWidth} nameList={tblWidthOPtions} setSelect={setTablWidth} title='tableWidth' options={tblWidthOPtions} defaultValue={tablWidth} localStore = "tblWidth"/>
           <div></div>
          </div>
 

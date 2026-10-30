@@ -25,7 +25,10 @@ export const ComboBoxSelect = (props) => {
     {props.title}&nbsp;
 
     <select title={props.TITLE}  value={props.serv}  onChange={(e) =>{
-      props.setSelect (forceBoolean(e.target.value))}} >
+      props.setSelect (forceBoolean(e.target.value))
+        {props.localStore && localStorage.setItem (props.localStore, e.target.value)}      
+      }} >
+
       {props.options.map((s, i) => (
           <option key={i} value={s} > {props.nameList[i]} </option> 
       ))}  
