@@ -970,9 +970,10 @@ const {chartSymbol, setChartSymbol,
 
         {/* <News  eliHome={eliHome} corsServer={servSelect} ssl={ssl} PORT={PORT}/> */}
       
-        <div className='w-100 text-left mt-2 d-flex '>   
-          {currentUser && <div><strong>   </strong> {currentUser.email}   &nbsp;  </div> }  
-          {admin && <div> <strong style={{color: 'red'}}>(admin)</strong>  &nbsp; </div>}
+        <div style={{display:'flex'}}>   
+          {currentUser && <div> {currentUser.email}   &nbsp;   &nbsp;   </div> } 
+          {admin && <div> <strong style={{color: 'red'}}>(admin)</strong></div>}
+ 
           {/* <div> <Link to="/dashboard" > Login Dashboard </Link>  </div>  */}
         </div>
         {errors.length > 0 && <ErrorList errorList={errors} setErrors={setErrors}/> }
