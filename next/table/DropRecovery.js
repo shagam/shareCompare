@@ -44,8 +44,7 @@ const {chartSymbol, setChartSymbol,
       servSelect, setServSelect,
       ssl, setSsl,
       PORT, setPORT,
-      HIGH_LIMIT_KEY
-
+  
     } = useShared();
 
 
