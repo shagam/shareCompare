@@ -151,7 +151,7 @@ export async function gain (sym, rows, errorAdd, logFlags, API_KEY, weekly, open
                 //setChartData ('');
                 return;
               }
-              chartData = chartData.data
+
               setChartData(chartData[periodTag]); 
               var stockChartXValuesFunction = [];              
               var stockChartYValuesFunction = [];

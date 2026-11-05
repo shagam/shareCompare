@@ -400,8 +400,6 @@ const {chartSymbol, setChartSymbol,
         )
         .then(
             function (response) {
-              if (response.data)
-                response = response.data
               if (response != null) {
                   
                   const dataStr = JSON.stringify(response);

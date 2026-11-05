@@ -40,9 +40,6 @@ function SymSearch() {
             // console.log (getDate() +  ' msg sent')
             const latency = miliEnd - miliStart
 
-            if (result.data.data) // 
-              result.data = result.data.data
-
             if (result.data && result.data.bestMatches && result.data.bestMatches.length > 0) {
               setKeys(Object.keys(result.data.bestMatches[0]))
             }
