@@ -63,7 +63,7 @@ export async function GET(request) {
   const weekly = searchParams.get('weekly');
   const function_ = searchParams.get("function") || "TIME_SERIES_DAILY_ADJUSTED"; // Default to daily if not provided
   const keywords = searchParams.get("keywords") || ""; // Default to empty string if not provided
-  const log_ = searchParams.get("log") || false; // Default to false if not provided
+  const log = searchParams.get("log") || false; // Default to false if not provided
 
 
   var periodTag 
@@ -98,7 +98,7 @@ export async function GET(request) {
   });
 
   const data = await response.json();
-  if (log_)
+  if (log)
     console.log ("route data:", data);
 
   // Only return the sanitized data to the client, NEVER the key
