@@ -103,7 +103,7 @@ export async function gain (sym, rows, errorAdd, logFlags, API_KEY, weekly, open
   // const openOrCloseText = openMarketFlag ? '1. open' : '4. close';
 
   
-    let API_Call =`/api/alpha?symbol=${sym }&weekly=${weekly}`
+    let API_Call =`/api/alpha?symbol=${sym }&weekly=${weekly}&function=TIME_SERIES` 
     // const response = await fetch(`/api/alpha?symbol=${sym }&weekly=${weekly}`);
     // const result = await response.json();
    // setData(result.data);

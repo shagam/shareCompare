@@ -61,20 +61,27 @@ export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const sym = searchParams.get('symbol');
   const weekly = searchParams.get('weekly');
-  if(weekly === 'true') {
-    periodCapital = 'WEEKLY';
-  }
-  
+  const function_ = searchParams.get("function") || "TIME_SERIES_DAILY_ADJUSTED"; // Default to daily if not provided
+  const keywords = searchParams.get("keywords") || ""; // Default to empty string if not provided
+
+
   var periodTag 
   var API_Call
-     if (weekly === 'true')
-      periodTag = 'TIME_SERIES_WEEKLY_ADJUSTED';
+
+  if (function_ === 'SYMBOL_SEARCH') {
+    API_Call = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH`;
+    API_Call += `&keywords=${keywords}&apikey=${API_KEY}`;
+  }
+
+  else {// TIME_SERIOS_DAILY_ADJUSTED or TIME_SERIES_WEEKLY_ADJUSTED
+    if (weekly === 'true')
+        periodTag = 'TIME_SERIES_WEEKLY_ADJUSTED';
     else
-      periodTag = "TIME_SERIES_DAILY_ADJUSTED" //"Time Series (Daily)"
+        periodTag = "TIME_SERIES_DAILY_ADJUSTED" //"Time Series (Daily)"
 
-  var API_Call = `https://www.alphavantage.co/query?function=${periodTag}`;
-  API_Call += `&symbol=${sym}&outputsize=full&apikey=${API_KEY}`
-
+    var API_Call = `https://www.alphavantage.co/query?function=${periodTag}`;
+    API_Call += `&symbol=${sym}&outputsize=full&apikey=${API_KEY}`
+  }
 
 
   // Example: Using the secret to fetch external data

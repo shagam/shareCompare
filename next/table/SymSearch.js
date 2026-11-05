@@ -6,7 +6,7 @@ import GetInt from '../utils/GetInt'
 
 import {todayDate, getDate_YYYY_mm_dd__, getDate} from '../utils/Date';
 import {beep2} from '../utils/ErrorList'
-import { useShared, SharedContext } from '../contexts/SharedContext';
+
 import { pageHeader } from './StockInfo'
 
 
@@ -15,34 +15,6 @@ function SymSearch() {
     const [searchResults, setSearchResults] = useState([]);
     const [keys, setKeys] = useState([])
 
-    const {chartSymbol, setChartSymbol,
-          infoSymbol, setInfoSymbol,
-          gainMap, setGainMap,
-          chartData, setChartData,
-          stockInfo, setStockInfo,
-          gainRawDividand, setGainRawDividand,
-          gainData, setGainData,
-          
-          daily, setDaily,
-          logFlags, setLogFlags,
-
-          price, setPrice,
-          priceDivHigh, setPriceDivHigh,
-
-          stockChartXValues, setStockChartXValues,
-          stockChartYValues, setStockChartYValues,
-
-          servList,
-          servNameList, 
-          servSelect, setServSelect,
-          ssl, setSsl,
-          PORT, setPORT,
-          HIGH_LIMIT_KEY
-
-        } = useShared();
-
-
-
 
     function searchSymbols (searchStr) {
         if (!searchStr || searchStr.length < 1) {
@@ -50,10 +22,13 @@ function SymSearch() {
         }
 
 
-        const url =
-        'https://www.alphavantage.co/query?function=SYMBOL_SEARCH' +
-        `&keywords=${searchText}&apikey=${HIGH_LIMIT_KEY}`;
+        var url;
+        // url = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH' +
+        // `&keywords=${searchText}&apikey=${HIGH_LIMIT_KEY}`;
+        
         const miliStart =  Date.now()
+
+        url =`/api/alpha?function=SYMBOL_SEARCH&keywords=${searchText}`
 
         axios.get (url)
           // getDate()
@@ -65,10 +40,17 @@ function SymSearch() {
             // console.log (getDate() +  ' msg sent')
             const latency = miliEnd - miliStart
 
-            setSearchResults(result.data)
-            if (result.data.bestMatches && result.data.bestMatches.length > 0)
-              setKeys(Object.keys(result.data.bestMatches[0]))
+            if (result.data.data) // 
+              result.data = result.data.data
 
+            if (result.data && result.data.bestMatches && result.data.bestMatches.length > 0) {
+              setKeys(Object.keys(result.data.bestMatches[0]))
+            }
+            setSearchResults(result.data)
+            console.log (getDate(), 'sym search', searchStr, result.data)
+            if (result.data.bestMatches && result.data.bestMatches.length > 0) {
+              setKeys(Object.keys(result.data.bestMatches[0]))
+            }
             console.log (getDate(), 'sym search', searchStr, result.data, latency)
          
           })
