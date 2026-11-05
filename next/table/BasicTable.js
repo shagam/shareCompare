@@ -376,10 +376,10 @@ const {chartSymbol, setChartSymbol,
       alert (`bug, info sym vanished (${symbol})`); 
       return;
     }
-    const API_KEY = process.env.NEXT_PUBLIC_ALPHAVANTAGE_KEY;
+    // const API_KEY = process.env.NEXT_PUBLIC_ALPHAVANTAGE_KEY;
 
     var API_Call
-    API_Call = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${symbol}&apikey=${API_KEY}` 
+    // API_Call = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${symbol}&apikey=${API_KEY}` 
 
     API_Call =`/api/alpha?symbol=${symbol}&function=OVERVIEW` 
 
