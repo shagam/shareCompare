@@ -2,6 +2,7 @@
   base = "next"
   command = "npm run build"
   publish = ".next"
+  environment = { NPM_FLAGS = "--legacy-peer-deps" }
 [[plugins]]
   package = "@netlify/plugin-nextjs"
   
