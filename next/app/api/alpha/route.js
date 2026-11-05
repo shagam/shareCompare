@@ -60,8 +60,19 @@ export async function GET(request) {
   const API_KEY = process.env.HRRP_API_ALPHAVANTAGE_KEY;
   const { searchParams } = new URL(request.url);
   const sym = searchParams.get('symbol');
-  const weekly = searchParams.get('weekly');  
-  var API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED`;
+  const weekly = searchParams.get('weekly');
+  if(weekly === 'true') {
+    periodCapital = 'WEEKLY';
+  }
+  
+  var periodTag 
+  var API_Call
+     if (weekly === 'true')
+      periodTag = 'TIME_SERIES_WEEKLY_ADJUSTED';
+    else
+      periodTag = "TIME_SERIES_DAILY_ADJUSTED" //"Time Series (Daily)"
+
+  var API_Call = `https://www.alphavantage.co/query?function=${periodTag}`;
   API_Call += `&symbol=${sym}&outputsize=full&apikey=${API_KEY}`
 
 

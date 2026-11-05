@@ -19,7 +19,7 @@ let periodTag;
 
 
 
-export function gain (sym, rows, errorAdd, logFlags, API_KEY, weekly, openMarketFlag, gainRawDividand, setGainData, smoothSpikes,
+export async function gain (sym, rows, errorAdd, logFlags, API_KEY, weekly, openMarketFlag, gainRawDividand, setGainData, smoothSpikes,
     splitsCalcFlag, saveTabl, setStockChartXValues, setStockChartYValues, gainMap, deepStartDate, ssl, PORT, servSelect, saveTable,
      os, ip, city, countryName, countryCode, regionName, setChartData, yearlyPercent, set_QQQ_gain, priceAlertTable,
       refreshByToggleColumns, sequenceNumber, count, setChartSymbol, setPrice, setPriceDivHigh, setPriceDivClose) {
@@ -102,15 +102,11 @@ export function gain (sym, rows, errorAdd, logFlags, API_KEY, weekly, openMarket
 
   // const openOrCloseText = openMarketFlag ? '1. open' : '4. close';
 
-    let API_Call;
-    if (weekly)
-      API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_${periodCapital}_ADJUSTED`;
-    else
-      API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED`;
-
-    API_Call += `&symbol=${sym}&outputsize=full&apikey=${API_KEY}`
-
-    API_Call += `&extended_hours=true`
+  
+    let API_Call =`/api/alpha?symbol=${sym }&weekly=${weekly}`
+    // const response = await fetch(`/api/alpha?symbol=${sym }&weekly=${weekly}`);
+    // const result = await response.json();
+   // setData(result.data);
 
     fetch(API_Call)
         .then(
@@ -155,6 +151,7 @@ export function gain (sym, rows, errorAdd, logFlags, API_KEY, weekly, openMarket
                 //setChartData ('');
                 return;
               }
+              chartData = chartData.data
               setChartData(chartData[periodTag]); 
               var stockChartXValuesFunction = [];              
               var stockChartYValuesFunction = [];
