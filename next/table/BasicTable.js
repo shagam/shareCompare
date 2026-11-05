@@ -144,11 +144,6 @@ const {chartSymbol, setChartSymbol,
 
 
   var aleph = localStorage.getItem('alphaVantage');
-  const [API_KEY, setAPI_KEY] = useState(aleph);
-  if (API_KEY === null)
-    setAPI_KEY(HIGH_LIMIT_KEY)
-  if (LOG_alpha)
-    console.log (API_KEY)
 
   const [priceDivClose, setPriceDivClose] = useState();
   const [splitsCalcFlag, setSplitsCalcFlag] = useState(true);
@@ -275,7 +270,7 @@ const {chartSymbol, setChartSymbol,
   memoryStore.set('yearlyPercent', yearlyPercent);
   memoryStore.set('QQQ_gain', QQQ_gain);
 
-  memoryStore.set('API_KEY', API_KEY);
+
   memoryStore.set('pageForAi', pageForAi);
   memoryStore.set('setPageForAi', setPageForAi);
   memoryStore.set('setPageForAiText', setPageForAiText)
@@ -381,8 +376,12 @@ const {chartSymbol, setChartSymbol,
       alert (`bug, info sym vanished (${symbol})`); 
       return;
     }
-    
-    let API_Call = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${symbol}&apikey=${API_KEY}` 
+    const API_KEY = process.env.NEXT_PUBLIC_ALPHAVANTAGE_KEY;
+
+    var API_Call
+    API_Call = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${symbol}&apikey=${API_KEY}` 
+
+    API_Call =`/api/alpha?symbol=${symbol}&function=OVERVIEW` 
 
     //console.log(`Overview info (${symbol})`);
     if (LOG_API)
@@ -400,11 +399,14 @@ const {chartSymbol, setChartSymbol,
             }
         )
         .then(
-            function (data) {
-              if (data != null) {
-                  const dataStr = JSON.stringify(data);
+            function (response) {
+              if (response.data)
+                response = response.data
+              if (response != null) {
+                  
+                  const dataStr = JSON.stringify(response);
                   if (LOG_API)
-                    console.dir(data)
+                    console.dir(response)
                   if (dataStr === '{}') {
                     const index = rows.findIndex((row)=> row.values.symbol === symbol);
                     rows[index].values.PE = -2  // flag non valid
@@ -430,8 +432,8 @@ const {chartSymbol, setChartSymbol,
                   const updateMili = Date.now();
                   const updateDate = getDate();
                   setInfoSymbol(symbol)
-                  setStockInfo (JSON.stringify(data));
-                  updateTableInfo (symbol, data, updateDate, updateMili);
+                  setStockInfo (JSON.stringify(response));
+                  updateTableInfo (symbol, response, updateDate, updateMili);
                   // if (saveTabl) // skip save for info all
                   //   saveTable(symbol);
                 }

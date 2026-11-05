@@ -73,16 +73,21 @@ export async function GET(request) {
     API_Call += `&keywords=${keywords}&apikey=${API_KEY}`;
   }
 
+  else if (function_ === 'OVERVIEW') {
+    API_Call = `https://www.alphavantage.co/query?function=OVERVIEW`;
+    API_Call += `&symbol=${sym}&apikey=${API_KEY}`;
+  }
+
   else {// TIME_SERIOS_DAILY_ADJUSTED or TIME_SERIES_WEEKLY_ADJUSTED
     if (weekly === 'true')
         periodTag = 'TIME_SERIES_WEEKLY_ADJUSTED';
     else
         periodTag = "TIME_SERIES_DAILY_ADJUSTED" //"Time Series (Daily)"
 
-    var API_Call = `https://www.alphavantage.co/query?function=${periodTag}`;
+    API_Call = `https://www.alphavantage.co/query?function=${periodTag}`;
     API_Call += `&symbol=${sym}&outputsize=full&apikey=${API_KEY}`
   }
-
+  console.log("route:", API_Call);
 
   // Example: Using the secret to fetch external data
   const response = await fetch(API_Call, {
@@ -92,6 +97,7 @@ export async function GET(request) {
   });
 
   const data = await response.json();
+  console.log ("route data:", data);
 
   // Only return the sanitized data to the client, NEVER the key
   return NextResponse.json({ data });
