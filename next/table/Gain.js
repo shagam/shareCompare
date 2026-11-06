@@ -200,7 +200,7 @@ export async function gain (sym, rows, errorAdd, logFlags, API_KEY, weekly, open
 
 
               if (stockChartXValuesFunction.length === 0) {
-                errorAdd ([sym, 'stockChartXValuesFunction  empty'])
+                errorAdd ([sym, 'gain stockChartXValuesFunction  empty, length=', stockChartXValuesFunction.length])
                 return;
               }
               setStockChartXValues (stockChartXValuesFunction);  // save for plotly chart
