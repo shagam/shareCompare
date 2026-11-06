@@ -27,10 +27,10 @@ export default function Page() {
   
   return (
     <div>
-      {eliHome && <button onClick={fetchData}>Fetch Securely</button>}
-      {eliHome && <button onClick={() => fetchData('MSFT', false)}>MSFT Daily</button>}
-      {eliHome && <button onClick={() => fetchData('AAPL', false)}>AAPL Daily</button>}
-      {eliHome && <pre>{JSON.stringify(data, null, 2)}</pre>}
+      {false && eliHome && <button onClick={fetchData}>Fetch Securely</button>}
+      {false && eliHome && <button onClick={() => fetchData('MSFT', false)}>MSFT Daily</button>}
+      {false && eliHome && <button onClick={() => fetchData('AAPL', false)}>AAPL Daily</button>}
+      {eliHome && data && <pre>{JSON.stringify(data, null, 2)}</pre>}
     </div>
   )
 };

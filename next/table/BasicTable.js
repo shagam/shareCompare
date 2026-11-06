@@ -863,36 +863,7 @@ const {chartSymbol, setChartSymbol,
       return 'black'
   }
 
-  const toolEnum = {
-    //** Pans that requires stockChart */
-    None: 'None',
-    DropRecovery: 'DropRecovery',
-    Holdings: 'Holdings',
-    Ai: 'Ai',
-    peak2Peak: 'peak2Peak',
-    StockGainRaw: 'StockGainRaw',
-    StockInfoRaw: 'StockInfoRaw', 
-    Tools: 'Tools',
-    SimulateTrade: 'SimulateTrade',
-    MonthGain: 'MonthGain',
-    marketOpenPrice: 'marketOpenPrice',
-    leveragaETF: 'leveragaETF',
-    MovingAverage: 'movingAverage',
 
-    //** Pand that does not require stockChart */
-    commonDatabase: 'vommonDatabase',
-    config:        'config',
-    stockLists:    'stockLists',
-    futures:       'futures',
-    Polymarket:    'Polymarket',
-    priceAlert:    'priceAlert',
-    urlGetParse:   'urlGetParse',
-    candleStick: 'candleStick',
-    dropCount:    'dropCount',
-    Options:      'Options',
-    symSearch:     'symSearch',
-    contactUs:     'contactUs',
-  };
   // marginLeft: '3px', marginRight: '3px', 
   const [analyzeTool, setAnalyzeTool] = useState('none')
 

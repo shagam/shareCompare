@@ -14,44 +14,7 @@ import { NextResponse } from 'next/server';
 
   // const openOrCloseText = openMarketFlag ? '1. open' : '4. close';
 
-    // let API_Call;
-    // if (weekly)
-    //   API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_${periodCapital}_ADJUSTED`;
-    // else
-    //   API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED`;
-
-    // API_Call += `&symbol=${sym}&outputsize=full&apikey=${API_KEY}`
-
-    // API_Call += `&extended_hours=true`
-
-    // fetch(API_Call)
-    //     .then(
-    //         function(response) {
-    //             const respStr = JSON.stringify (response);
-    //             if (response.status !== 200 || ! response.ok)
-    //                 console.log(response);
-    //             return response.json();
-    //         }
-    //     )
-    //     .then(
-    //         (chartData) => {
-    //           const dataStr = JSON.stringify(chartData);
-    //           if (dataStr === "{}") {
-    //             errorAdd([sym, 'Invalid symbol, or fail to fetch historical data'])
-    //             return;
-    //           }
-    //           if (dataStr && dataStr.includes('Burst pattern detected')) {
-    //             errorAdd([sym, dataStr.substring(0, 130)]);
-    //             console.log (sym, dataStr);
-    //             return;
-    //           }
-    //           if (LOG_API) {
-    //             console.log (API_Call);
-    //             console.dir (chartData)
-    //             // console.log (dataStr.substring(0,150));
-    //           }
-
-
+    
 
 
 //Runs on server, get key from .env.local 
