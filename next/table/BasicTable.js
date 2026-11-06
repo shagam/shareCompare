@@ -962,9 +962,10 @@ const {chartSymbol, setChartSymbol,
           <strong style={{color:'#2caa2c'}}>Share</strong>
           <strong style={{color:'#b3be18'}}>Compare</strong> 
           <div style={{fontSize: '15px', paddingTop: '10px'}}>.net  </div> 
-          <div style={{fontSize: '15px', paddingTop: '10px'}}>{pathname}</div> &nbsp; &nbsp; &nbsp;
-          <div style={{fontSize: '18px', paddingTop: '10px'}}> </div>
-         </h2> 
+          <div style={{fontSize: '15px', paddingTop: '10px'}}>{pathname}</div> &nbsp;
+          <div style={{fontSize: '18px', paddingTop: '10px'}}> (Beta)</div>
+          
+        </h2> 
         {/* <div>(new version for ShareCompare.org)</div> */}
         {/* <div style={{color: '#bb8899', fontWeight: "bold", fontSize: "1.4em"}}>backend server problem; use test backEnd (slow)</div> */}
         <Disclaimer eliHome={eliHome} logFlags = {logFlags}/>
@@ -1009,11 +1010,11 @@ const {chartSymbol, setChartSymbol,
                 errorAdd={errorAdd} stockChartYValues = {stockChartYValues} refreshByToggleColumns = {refreshByToggleColumns} setErr={setErr} allColumns={allColumns} 
                 price={price} setPrice={setPrice} setPriceDivHigh={setPriceDivHigh}/>} 
 
-        <div id="buttons_id" style={{display:'flex'}}>
+        <div id="buttons_id" style={{display:'flex', padding:'5px'}}>
           {/* {admin && <div> <input  type="checkbox" checked={splitsCalcFlag}  onChange={calcChange} /> calc_splits &nbsp;</div>}      */}
 
           {<div> <button style={{backgroundColor: '#bbffbb'}} onClick={gainAll} title='fetch and fill table with gain values' > gainMultiple </button> </div>} &nbsp;&nbsp;
-          <button style={{backgroundColor: '#ffccff', height:'30px'}} onClick={reloadPage} title='clear table, and load default symbols' > Clear </button>&nbsp;                         
+          <button style={{backgroundColor: '#ffccff', height:'20px'}} onClick={reloadPage} title='clear table, and load default symbols' > Clear </button>&nbsp;                         
 
           {/* {columnHideFlag && <div style={{display:'flex'}}> <CheckBox {...getToggleHideAllColumnsProps()} /> ToggleAll </div>} &nbsp; */}
 
