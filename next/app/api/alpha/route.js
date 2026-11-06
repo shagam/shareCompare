@@ -27,7 +27,7 @@ export async function GET(request) {
   const function_ = searchParams.get("function") || "TIME_SERIES_DAILY_ADJUSTED"; // Default to daily if not provided
   const keywords = searchParams.get("keywords") || ""; // Default to empty string if not provided
   const log = searchParams.get("log") || false; // Default to false if not provided
-
+  console.log ('log=', log, 'function_=', function_, 'sym=', sym);
 
   var periodTag 
   var API_Call
@@ -51,7 +51,7 @@ export async function GET(request) {
     API_Call = `https://www.alphavantage.co/query?function=${periodTag}`;
     API_Call += `&symbol=${sym}&outputsize=full&apikey=${API_KEY}`
   }
-  if (log)
+  if (log==='true')
   console.log("route:", API_Call);
 
   // Example: Using the secret to fetch external data
@@ -62,7 +62,7 @@ export async function GET(request) {
   });
 
   const data = await response.json();
-  if (log)
+  if (log === 'true')
     console.log ("route data:", data);
 
   // Only return the sanitized data to the client, NEVER the key
