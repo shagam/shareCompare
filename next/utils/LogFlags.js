@@ -10,6 +10,8 @@ import Link from "next/link";
 
 const LogFlags = (props) => {
 
+  console.log ('props', props)
+
   const flags0 = []
   const flags1 = []
   const flags2 = []

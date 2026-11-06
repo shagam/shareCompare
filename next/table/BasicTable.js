@@ -246,6 +246,7 @@ const {chartSymbol, setChartSymbol,
   // memoryStore.set('rows', rows);
   memoryStore.set('gainMap', gainMap);
   memoryStore.set('logFlags', logFlags);
+  memoryStore.set('setLogFlags', setLogFlags);
 
   memoryStore.set('setBubbleLine', setBubbleLine);
   memoryStore.set('bubbleLine', bubbleLine);
