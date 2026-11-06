@@ -352,7 +352,7 @@ function Holdings (props) {
 
           <div>  
             {<div style={{color: 'blue'}}> {latency}</div>}
-            <button style={{background: 'aqua'}} type="button" onClick={()=>fetchHoldings (0)}>fetch50  ({symbol}) </button> &nbsp; 
+            {eliHome && <button style={{background: 'aqua'}} type="button" onClick={()=>fetchHoldings (0)}>fetch50  ({symbol}) </button>} &nbsp; 
             <button style={{background: 'aqua'}} type="button" onClick={()=>fetchHoldings (1)}>fetch20  ({symbol}) </button> &nbsp;
             {/* {eliHome && <div><button style={{background: 'aqua'}} type="button" onClick={()=>holdingsMarketData ()}>marketData  ({symbol}) </button> &nbsp;</div>} */}
             {/* <button type="button" onClick={()=>fetchHoldings (2)}>fetch10  </button> &nbsp; */}
