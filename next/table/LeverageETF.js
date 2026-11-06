@@ -6,6 +6,8 @@ import DatePicker, {moment} from 'react-datepicker';
 import { searchDateInArray} from '../utils/Date'
 import {IpContext} from '../contexts/IpContext';
 import GetInt from '../utils/GetInt'
+import { useShared } from '../contexts/SharedContext';
+import { pageHeader } from './StockInfo'
 
 function LeverageETF (props) {
     const {localIp, localIpv4, eliHome} = IpContext();
@@ -38,6 +40,15 @@ function LeverageETF (props) {
         setHighLowIndex ({}) 
     }, [props.daily]) 
 
+    const {
+        chartSymbol, setChartSymbol,
+        symbol,
+        infoSymbol, setInfoSymbol,
+        gainMap, setGainMap,
+        chartData, setChartData,
+        stockInfo, setStockInfo,
+        logFlags, setLogFlags,
+    } = useShared();
     
 
     //** git index of heigest value */
@@ -72,7 +83,7 @@ function LeverageETF (props) {
         //     return -1 // not ready yet
         // if (i < 0)
         //     return -1
-        const close = Number(props.gainObj[dateArray[i]]['5. adjusted close']) 
+        const close = Number(gainObj[dateArray[i]]['5. adjusted close']) 
         return close.toFixed(2)
     }
 
@@ -84,8 +95,8 @@ function LeverageETF (props) {
 
         setErr()
         if (log)
-            console.log ('lavarage=', props.gainMap)
-        var symArray_ = Object.keys(props.gainMap)
+            console.log ('lavarage=', gainMap)
+        var symArray_ = Object.keys(gainMap)
         // if (symArray_ === ['QQQ','TQQQ']) {
         //     symArray_ =  ['TQQQ','QQQ']
         // }
@@ -98,14 +109,14 @@ function LeverageETF (props) {
 
         //** compare only last array section  */
         var lengthMin;
-        var yArray = props.gainMap[symArray_[0]].y
+        var yArray = gainMap[symArray_[0]].y
 
         //** Find pivot sym, min history length  */
         lengthMin = yArray.length
         var indexOfPivotSym = 0;
         setPivotSym(symArray_[0]) // default first sym
         for (let i = 0; i < symArray_.length; i++) {
-            yArray = props.gainMap[symArray_[i]].y
+            yArray = gainMap[symArray_[i]].y
             if (yArray.length <= lengthMin) {
                 lengthMin = yArray.length
                 setPivotSymIndex (i)
@@ -122,8 +133,8 @@ function LeverageETF (props) {
             var yearlyGainArr = []
             for (let i = 0; i < lengthMin; i++) {
                 //**  gain between i date to oldest date */
-                gainArr[i] = props.gainMap[symArray_[s]].y[i] / props.gainMap[symArray_[s]].y[lengthMin - 1]
-                const yearsDiff = yearsDifference(props.gainMap[symArray_[s]].x[lengthMin - 1], props.gainMap[symArray_[s]].x[i])
+                gainArr[i] = gainMap[symArray_[s]].y[i] / gainMap[symArray_[s]].y[lengthMin - 1]
+                const yearsDiff = yearsDifference(gainMap[symArray_[s]].x[lengthMin - 1], gainMap[symArray_[s]].x[i])
                 yearlyGainArr[i] = Math.pow (gainArr[i], 1 / yearsDiff)
                 const a = 2 // just for debug breakpoint
             }
@@ -132,15 +143,15 @@ function LeverageETF (props) {
         }
 
         setValArrLen (lengthMin)
-        setDateArray(props.gainMap[symArray_[indexOfPivotSym]].x)
+        setDateArray(gainMap[symArray_[indexOfPivotSym]].x)
 
 
         /** calc drop from high, and add to gainMap */
 
         var highLowText_ = 'High/low indexes '
         for (let s = 0; s < symArray_.length; s++) {
-            const x = props.gainMap[symArray_[s]].x;
-            const y = props.gainMap[symArray_[s]].y;
+            const x = gainMap[symArray_[s]].x;
+            const y = gainMap[symArray_[s]].y;
 
             const startYear = dateAfterDrop.getFullYear();
             const startMon = dateAfterDrop.getMonth() + 1;
@@ -156,18 +167,18 @@ function LeverageETF (props) {
             const historyArrLength = y.length
             const highest_index = getHighestValue (y, startAfterDropIndex, searchRange);
             if (log)
-                console.log (symArray_[s], '  highest ind=' + highest_index, '  date=' + props.gainMap[symArray_[s]].x[highest_index], '  val=' + props.gainMap[symArray_[s]].y[highest_index].toFixed(2))
+                console.log (symArray_[s], '  highest ind=' + highest_index, '  date=' + gainMap[symArray_[s]].x[highest_index], '  val=' + gainMap[symArray_[s]].y[highest_index].toFixed(2))
             const lowest_index =  getLowestAfterHigh (y, highest_index)
             if (log)
-                console.log (symArray_[s], '  lowest ind=' + lowest_index, '  date=' + props.gainMap[symArray_[s]].x[lowest_index], '  val=' + props.gainMap[symArray_[s]].y[lowest_index].toFixed(2))
-            // props.gainMap[symArray_[s]].drop = []
+                console.log (symArray_[s], '  lowest ind=' + lowest_index, '  date=' + gainMap[symArray_[s]].x[lowest_index], '  val=' + gainMap[symArray_[s]].y[lowest_index].toFixed(2))
+            // gainMap[symArray_[s]].drop = []
             var dropFromHigh  = []
             for (let i = 0; i < historyArrLength; i++) {
                 dropFromHigh[i] = (y[i] / y[highest_index]).toFixed(3)
                 // if (dropFromHigh[i] > 1)
                 //     dropFromHigh[i] = '-'
             }
-            props.gainMap[symArray_[s]].dropFromHigh = dropFromHigh
+            gainMap[symArray_[s]].dropFromHigh = dropFromHigh
 
             const indexes = {}
 
@@ -243,16 +254,9 @@ function LeverageETF (props) {
 
     return (
         <div style = {{ border: '2px solid blue'}}>
-            <div style = {{display: 'flex'}}>
-                <div  style={{color: 'magenta' }}>  {props.symbol} </div> &nbsp; &nbsp;
-                <h6  style={{color: 'blue' }}> Lavarage ETF </h6> &nbsp; &nbsp;
-            </div>
-
-            <h6 style={{color:'#33ee33', fontWeight: 'bold', fontStyle: "italic"}}>Support strategy for trading leverage ETF (like TQQQ)  </h6>
-
-
+            {pageHeader (symbol, 'LeverageETF', 'Support strategy for trading leverage ETF (like TQQQ) ' )} 
    
-            <h6 style={{color:'#993333', fontWeight: 'bold', fontStyle: "italic"}}>The tool searches date of highest before the initial date  (like TQQQ)</h6>
+            <h4 style={{color:'#993333', fontWeight: 'bold', fontStyle: "italic"}}>The tool searches date of highest before the initial date  (like TQQQ)</h4>
 
             <div style={{color: 'red'}}> {err} </div>
 
@@ -352,7 +356,7 @@ function LeverageETF (props) {
 
             <div>&nbsp;</div>
 
-            {pivotSym && <div> lineCount={valArrLen} &nbsp;&nbsp; oldestDate={props.gainMap[pivotSym].x[valArrLen - 1]} </div>}
+            {pivotSym && <div> lineCount={valArrLen} &nbsp;&nbsp; oldestDate={gainMap[pivotSym].x[valArrLen - 1]} </div>}
             {valueTblShow && pivotSym && <div style={{height:'300px', width: '550px', overflow:'auto'}}>
                 <table>
                     <thead>
@@ -371,19 +375,19 @@ function LeverageETF (props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {props.gainMap[pivotSym].y.map((date, index) =>{
+                        {gainMap[pivotSym].y.map((date, index) =>{
                             return (
                             <tr key={index}>
                                 <td style={{padding: '1px', margin: '0px'}}>{index}</td>
-                                <td style={{padding: "0px 5px 0px 5px", margin: '0px', width:'100px', color: colorIndex(index,symArray[0])}} >{props.gainMap[pivotSym].x[index]}  </td>
+                                <td style={{padding: "0px 5px 0px 5px", margin: '0px', width:'100px', color: colorIndex(index,symArray[0])}} >{gainMap[pivotSym].x[index]}  </td>
 
                                 {/* <td style={ROW_SPACING}> {props.gainMap[symArray[0]].y[index].toFixed(2)}</td> */}
-                                <td style={ROW_SPACING}> {props.gainMap[symArray[0]].dropFromHigh[index]}</td>
+                                <td style={ROW_SPACING}> {gainMap[symArray[0]].dropFromHigh[index]}</td>
                               
-                                {/* {symArray.length > 1 && <td style={ROW_SPACING}> {props.gainMap[symArray[1]].y[index].toFixed(2)}</td>} */}
-                                {symArray.length > 1 && <td style={ROW_SPACING}> {props.gainMap[symArray[1]].dropFromHigh[index]}</td>}
+                                {/* {symArray.length > 1 && <td style={ROW_SPACING}> {gainMap[symArray[1]].y[index].toFixed(2)}</td>} */}
+                                {symArray.length > 1 && <td style={ROW_SPACING}> {gainMap[symArray[1]].dropFromHigh[index]}</td>}
 
-                                {/* {symArray.length > 1 && <td style={ROW_SPACING}> {(props.gainMap[symArray[0]].dropFromHigh[index] ** 3).toFixed(3)}</td>} */}
+                                {/* {symArray.length > 1 && <td style={ROW_SPACING}> {(gainMap[symArray[0]].dropFromHigh[index] ** 3).toFixed(3)}</td>} */}
 
                                 {/* {<td style={ROW_SPACING}> {steps[index]}</td>} */}
                             </tr>
