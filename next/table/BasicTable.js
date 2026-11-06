@@ -1177,7 +1177,7 @@ const {chartSymbol, setChartSymbol,
 
               {chartSymbol && eliHome &&<div>
                 {eliHome && <Link style={{background: routeColor('/urlGetParse')}} href="/urlGetParse">urlGetParse </Link>} &nbsp; 
-                {eliHome && <Link style={{background: routeColor('/leveragaETF')}} href="/leveragaETF">leveragaETF </Link>} &nbsp; 
+                {eliHome && <Link style={{background: routeColor('/leverageETF')}} href="/leverageETF">leveragaETF </Link>} &nbsp; 
                 {eliHome && <Link style={{background: routeColor('/marketOpenPrice')}} href="/marketOpenPrice">marketOpenPrice </Link>} &nbsp;
               </div>}
 
