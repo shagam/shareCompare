@@ -6,6 +6,7 @@ function pageHeader (symbol, route_, description, err) {
     return (
       <div>
         <strong style = {{display: 'flex', fontSize: '20px', margin: '5px'}}>
+            <div  style={{color: 'magenta' }}> {symbol}</div>&nbsp;&nbsp;
             <div  style={{color: 'blue' }}> {route_}</div> 
         </strong>
 
