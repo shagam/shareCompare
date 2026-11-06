@@ -108,6 +108,17 @@ export async function gain (sym, rows, errorAdd, logFlags, API_KEY, weekly, open
     // const result = await response.json();
    // setData(result.data);
 
+    // if (weekly)
+    //   API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_${periodCapital}_ADJUSTED`;
+    // else
+    //   API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED`;
+
+    // API_Call += `&symbol=${sym}&outputsize=full&apikey=${process.env.NEXT_PUBLIC_ALPHA_VANTAGE_API_KEY}`;
+
+    // API_Call += `&extended_hours=true`
+
+
+
     fetch(API_Call)
         .then(
             function(response) {
