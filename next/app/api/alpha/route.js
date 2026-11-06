@@ -51,6 +51,7 @@ export async function GET(request) {
     API_Call = `https://www.alphavantage.co/query?function=${periodTag}`;
     API_Call += `&symbol=${sym}&outputsize=full&apikey=${API_KEY}`
   }
+  if (log)
   console.log("route:", API_Call);
 
   // Example: Using the secret to fetch external data
