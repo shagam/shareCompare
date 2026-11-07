@@ -27,7 +27,7 @@ function Users (props) {
     const [milisec, setMilisec] = useState (false);
     const [results, setResults] = useState()
     const [infoJson, setInfoJson] = useState({})
-    const [keys, setKeys] = useState([])
+
 
     const {userAgent, userAgentMobile, isAndroid, isIPhone, isMobile} = MobileContext();
 
@@ -142,10 +142,7 @@ function Users (props) {
 
         const latency = Date.now() - mili
         setErr('usrs list done, latency(msec)=' + latency)
-        const keys_ = Object.keys(userArray[0])
-        if (! keys_.includes('next'))
-            keys_.push('next')
-        setKeys(keys_)
+   
     }
     //** top, right, bottom ,right*/
     const ROW_SPACING = {padding: "0px 5px 2px 8px", margin: '0px'}
@@ -160,7 +157,7 @@ function Users (props) {
                 &nbsp;<div> <input type="checkbox" checked={getAll}  onChange={()=> setGetAll(! getAll)}  /> &nbsp;getAll </div> &nbsp;&nbsp;
                 <div> <input type="checkbox" checked={logBackEnd}  onChange={() => setLogBackEnd(! logBackEnd)}  /> &nbsp;LogBackend &nbsp; &nbsp;</div>
                 <div> <input type="checkbox" checked={logExtra}  onChange={()=> setLogExtra(!logExtra)}  /> &nbsp;LogExtra &nbsp; &nbsp;</div>            
-                <div> <input type="checkbox" checked={extra}  onChange={()=> setExtra(! extra)}  /> &nbsp;region,os &nbsp; &nbsp;</div> 
+                <div> <input type="checkbox" checked={extra}  onChange={()=> setExtra(! extra)}  /> &nbsp;region,os,next &nbsp; &nbsp;</div> 
                 <div> <input type="checkbox" checked={milisec}  onChange={()=> setMilisec(! milisec)}  /> &nbsp;milisec </div>
             </div>
 
@@ -182,7 +179,7 @@ function Users (props) {
                     <tr>
                         <th>N</th>
                           {/* loop on attributes  */}
-                        {keys.map ((h, h1) => {  
+                        {Object.keys(userArray[0]).map ((h, h1) => {  
                             return (<th key={h1}>{h}</th>)
                         }) }
                     </tr>
