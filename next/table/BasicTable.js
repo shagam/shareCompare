@@ -934,7 +934,7 @@ const {chartSymbol, setChartSymbol,
           <strong style={{color:'#b3be18'}}>Compare</strong> 
           <div style={{fontSize: '15px', paddingTop: '10px'}}>.net  </div> 
           <div style={{fontSize: '15px', paddingTop: '10px'}}>{pathname}</div> &nbsp;
-          <div style={{fontSize: '18px', paddingTop: '10px'}}> (Beta)</div>
+          <div style={{fontSize: '18px', paddingTop: '10px'}}> (new)</div>
           
         </h2> 
         {/* <div>(new version for ShareCompare.org)</div> */}
@@ -1119,9 +1119,7 @@ const {chartSymbol, setChartSymbol,
                 <Link style={{background: routeColor('/options')}} href="/options">options</Link> &nbsp; 
                 <Link style={{background: routeColor('/dropsCount')}} href="/dropsCount">dropsCount </Link> &nbsp; 
                 <Link style={{background: routeColor('/monthGain')}} href="/monthGain">monthGain </Link> &nbsp; 
-              </div>}
 
-              {chartSymbol && <div>
                 <Link style={{background: routeColor('/movingAverage')}} href="/movingAverage">movingAverage </Link> &nbsp;
                 <Link style={{background: routeColor('/ai')}} href="/ai">ai</Link> &nbsp; 
                 <Link style={{background: routeColor('/simulateTrade')}} href="/simulateTrade">simulateTrade </Link> &nbsp; 
@@ -1130,9 +1128,7 @@ const {chartSymbol, setChartSymbol,
                 <Link style={{background: routeColor('/gainRaw')}} href="/gainRaw">gainRaw </Link> &nbsp; 
                 <Link style={{background: routeColor('/infoRaw')}} href="/infoRaw">infoRaw </Link> &nbsp; 
                 <Link style={{background: routeColor('/tools')}} href="/tools">tools </Link> &nbsp; 
-              </div>}
 
-              {chartSymbol && eliHome &&<div>
                 {eliHome && <Link style={{background: routeColor('/urlGetParse')}} href="/urlGetParse">urlGetParse </Link>} &nbsp; 
                 {eliHome && <Link style={{background: routeColor('/leverageETF')}} href="/leverageETF">leveragaETF </Link>} &nbsp; 
                 {eliHome && <Link style={{background: routeColor('/marketOpenPrice')}} href="/marketOpenPrice">marketOpenPrice </Link>} &nbsp;
@@ -1140,6 +1136,7 @@ const {chartSymbol, setChartSymbol,
 
               <hr/>
               <div>
+                <div>General routes </div>
                 <Link style={{background: routeColor('/config'), color: '#9932CC'}} href="/config">config </Link> &nbsp;
                 <Link style={{background: routeColor('/commonDatabase'), color: '#9932CC'}} href="/commonDatabase">commonDatabase </Link> &nbsp; 
                 <Link style={{background: routeColor('/stockLists'), color: '#9932CC'}} href="/stockLists">stockLists </Link> &nbsp;
