@@ -1145,19 +1145,18 @@ const {chartSymbol, setChartSymbol,
                 <Link style={{background: routeColor('/stockLists'), color: '#9932CC'}} href="/stockLists">stockLists </Link> &nbsp;
                 <Link style={{background: routeColor('/symSearch'), color: '#9932CC'}} href="/symSearch">symSearch </Link> &nbsp;
                 <Link style={{background: routeColor('/contactUs'), fontWeight: "bold", color: '#32cc84'}} href="/contactUs">contactUs </Link> &nbsp;
+           
+                <Link style={{background: routeColor('/tutorials'), fontWeight: "bold"}} href="/tutorials">Tutorials</Link> &nbsp; 
+                {/* <Link style={{background: routeColor('/about')}} href="/about">About</Link>&nbsp;  */}
+                {/* <Link href="/manual">Manual</Link> &nbsp; &nbsp; */}
+
+                {eliHome && <Link style={{background: routeColor('/logFlags'), color: '#9932CC'}} href="/logFlags">console-log-flags</Link>} &nbsp;
+
+                {<Link style={{background: routeColor('/auxilaryLinks'), color: '#9932CC'}} href="/auxilaryLinks">Auxilary-links</Link>} &nbsp;
+
+                {eliHome && <Link style={{background: routeColor('/futures'), color: '#9932CC'}} href="/futures">futures </Link>} &nbsp;
+                {eliHome && <Link style={{background: routeColor('/polymarket'), color: '#9932CC'}} href="/polymarket">polymarket </Link>} &nbsp;
               </div>
-              
-              <Link style={{background: routeColor('/tutorials'), fontWeight: "bold"}} href="/tutorials">Tutorials</Link> &nbsp; 
-              {/* <Link style={{background: routeColor('/about')}} href="/about">About</Link>&nbsp;  */}
-              {/* <Link href="/manual">Manual</Link> &nbsp; &nbsp; */}
-
-              {eliHome && <Link style={{background: routeColor('/logFlags'), color: '#9932CC'}} href="/logFlags">console-log-flags</Link>} &nbsp;
-
-              {<Link style={{background: routeColor('/auxilaryLinks'), color: '#9932CC'}} href="/auxilaryLinks">Auxilary-links</Link>} &nbsp;
-
-              {eliHome && <Link style={{background: routeColor('/futures'), color: '#9932CC'}} href="/futures">futures </Link>} &nbsp;
-              {eliHome && <Link style={{background: routeColor('/polymarket'), color: '#9932CC'}} href="/polymarket">polymarket </Link>} &nbsp;
-
               <hr/>
         </div>}
       
