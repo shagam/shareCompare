@@ -953,28 +953,15 @@ const {chartSymbol, setChartSymbol,
         <div style={{color: 'red'}}>{error}</div>
         {/* <div>&nbsp;</div> */}
         <div id="buttons_id" style={{display:'flex'}}> 
-          {/* {  <CustomSelect options={corsServerOptions} label='server' onChange={corsServerChange } defaultValue={corsServerOptions[0]} />} */}
-          {/* {admin && <div> &nbsp; <input  type="checkbox" checked={marketwatch}  onChange={marketwatchToggle} />  marketwatchVerify &nbsp;</div>} */}
-          {/* {admin && <GlobalFilter className="stock_button_class" filter={verifyDateOffset} setFilter={setVerifyDateOffset} name='VerifyDateOffset'  />} */}
-
-          {/* {admin && <div> &nbsp; <button onClick={polygonCompare} > polygonCompare </button> &nbsp; </div>} */}
-
-          {/* {admin && <div> &nbsp; <input  type="checkbox" checked={ssl}  onChange={sslToggle} /> ssl &nbsp;&nbsp;</div>} */}
-     
-          {/* {admin && <div style={{display:'flex'}}> <ServerSelect serv={tblHight} setServSelect={setTblHight} title='tblHight' options={tblHightList} defaultValue={tblHight}/> </div>} */}
-
-          {/* {eliHome && <div> &nbsp; <button onClick={test} > test </button> &nbsp; </div>} */}
         </div>
         {/* {eliHome && <ServerSelect />} */}
         <div style={{display:'flex'}}>
           <div style={{display:'flex'}}>
             <ComboBoxSelect serv={servSelect} nameList={servNameList} setSelect={setServSelect} title='backEnd' options={servList} defaultValue={servSelect}/> &nbsp;&nbsp; 
-            {/* <div style={{color: '#bb8899', fontWeight: "bold"}}>Choose backEnd (production or test</div> */}
           </div> 
-          {eliHome && !showUrl && <div style={{display:'flex'}}> <ComboBoxSelect serv={PORT} nameList={portArray} setSelect={setPORT} title='' options={portArray} defaultValue={PORT}/> &nbsp;&nbsp;</div>} 
-          {/* {eliHome && !isMobile && <div>&nbsp;<input  type="checkbox" checked={showUrl}  onChange={()=> setShowUrl(! showUrl)} />URL&nbsp;</div>} &nbsp; */}
-          {/* {showUrl &&  <h5 style={{'color':'green', fontWeight: "bold"}}>stocks-compare.netlify.app</h5>} */}
-          {/* {eliHome && <div> <button style={{backgroundColor: '#bbffbb'}} onClick={test} title='test' > test </button> </div>} &nbsp;&nbsp; */}
+          {eliHome && !showUrl && <div style={{display:'flex'}}> <ComboBoxSelect serv={PORT} nameList={portArray} setSelect={setPORT} title='' options={portArray} defaultValue={PORT}/> &nbsp;&nbsp;</div>} &nbsp; &nbsp;
+          <ComboBoxSelect serv={tablHight} nameList={tblHightOPtions} setSelect={setTablHight} title='Table:_height' options={tblHightOPtions} defaultValue={tablHight} localStore = "tblHight"/> &nbsp;
+          <ComboBoxSelect serv={tablWidth} nameList={tblWidthOPtions} setSelect={setTablWidth} title='width' options={tblWidthOPtions} defaultValue={tablWidth} localStore = "tblWidth"/>
         </div>
 
         {chartSymbol && <LatestPrice symbol = {chartSymbol} rows={rows} logFlags={logFlags} servSelect={servSelect} ssl={ssl} PORT={PORT}  eliHome={eliHome} 
@@ -999,8 +986,6 @@ const {chartSymbol, setChartSymbol,
 
           {/* <div style={{display:'flex'}}> <input type="checkbox" checked={columnHideFlag}  onChange={ columnHideFlagChange} 
               title='select which columns are visible and which are hidden'/> &nbsp;column_select  </div>&nbsp; */}
-          <ComboBoxSelect serv={tablHight} nameList={tblHightOPtions} setSelect={setTablHight} title='tableHeight' options={tblHightOPtions} defaultValue={tablHight} localStore = "tblHight"/> &nbsp;
-          <ComboBoxSelect serv={tablWidth} nameList={tblWidthOPtions} setSelect={setTablWidth} title='tableWidth' options={tblWidthOPtions} defaultValue={tablWidth} localStore = "tblWidth"/>
           <div></div>
          </div>
 
@@ -1166,7 +1151,7 @@ const {chartSymbol, setChartSymbol,
               {/* <Link style={{background: routeColor('/about')}} href="/about">About</Link>&nbsp;  */}
               {/* <Link href="/manual">Manual</Link> &nbsp; &nbsp; */}
 
-              {! isMobile && eliHome && <Link style={{background: routeColor('/logFlags'), color: '#9932CC'}} href="/logFlags">console-log-flags</Link>} &nbsp;
+              {eliHome && <Link style={{background: routeColor('/logFlags'), color: '#9932CC'}} href="/logFlags">console-log-flags</Link>} &nbsp;
 
               {<Link style={{background: routeColor('/auxilaryLinks'), color: '#9932CC'}} href="/auxilaryLinks">Auxilary-links</Link>} &nbsp;
 
