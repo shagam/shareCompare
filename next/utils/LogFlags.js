@@ -3,6 +3,8 @@ import React, {useState, useMemo, useEffect} from 'react'
 
 import Link from "next/link";
 
+import memoryStore from "../components/MemoryStore";
+
 // import "./logFlagaStyles.css";
 // https://contactmentor.com/checkbox-list-react-js-example/
 
@@ -10,7 +12,34 @@ import Link from "next/link";
 
 const LogFlags = (props) => {
 
-  console.log ('props', props)
+  console.log ('props', props, props.logFlags)
+
+const {chartSymbol, setChartSymbol,
+      infoSymbol, setInfoSymbol,
+      gainMap, setGainMap,
+      chartData, setChartData,
+      stockInfo, setStockInfo,
+      gainRawDividand, setGainRawDividand,
+      gainData, setGainData,
+      
+      daily, setDaily,
+      logFlags, setLogFlags,
+
+      price, setPrice,
+      priceDivHigh, setPriceDivHigh,
+
+      stockChartXValues, setStockChartXValues,
+      stockChartYValues, setStockChartYValues,
+
+      servList,
+      servNameList, 
+      servSelect, setServSelect,
+      ssl, setSsl,
+      PORT, setPORT,
+      HIGH_LIMIT_KEY
+
+    } = useShared();
+
 
   const flags0 = []
   const flags1 = []
@@ -20,6 +49,7 @@ const LogFlags = (props) => {
   // React.useEffect (() => {
  
   // }, [props.checkList])
+  // const setLogFlags = memoryStore.get('setLogFlags')
 
   props.checkList.forEach((f) => {
     if (cnt < (props.checkList.length)/3)
@@ -34,6 +64,9 @@ const LogFlags = (props) => {
 
    // State with list of all checked item
    var logFlagsRaw = localStorage.getItem('logFlags')
+    setLogFlags(logFlagsRaw)
+    console.log ('LogFlags logFlagsRaw=', logFlagsRaw, 'logFlags=', logFlags)
+
    if (! logFlagsRaw)
     logFlagsRaw = "[]";
    const [checked, setChecked] = useState(JSON.parse(logFlagsRaw));
@@ -49,7 +82,8 @@ const LogFlags = (props) => {
        updatedList.splice(checked.indexOf(event.target.value), 1);
      }
      setChecked(updatedList);
-     props.setLogFlags(updatedList)
+     setLogFlags(updatedList)
+     console.log('LogFlags handleCheck updatedList=', updatedList)
      localStorage.setItem('logFlags', JSON.stringify(updatedList));
    };
  
