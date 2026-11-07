@@ -1013,19 +1013,24 @@ const {chartSymbol, setChartSymbol,
       </div>
 
       {columnHideFlag && 
-        <div id="columnToggle" style={{width: '550px'}}>
-          {
-          allColumns.map(column => (
-            <div key={column.id}>
-              <label id="column_Label_id" style={{'color': getCheckBoxColor(column.Header) }} title={title(column.id)}>
-                <input   type='checkbox' {...column.getToggleHiddenProps()}  />
-                &nbsp;{column.Header}   &nbsp; &nbsp;
-              </label>
-            </div>
-          ))
-          }
-          {hiddenColumnsSave()}
-        </div>
+     <div id="columnToggle" style={{display: 'flex', flexWrap: 'wrap',gap: '8px 16px',
+        width: '100%' // or omit if parent controls width
+          }}
+>
+        {allColumns.map(column => (
+          <label key={column.id} id="column_Label_id"
+            style={{color: getCheckBoxColor(column.Header), whiteSpace: 'nowrap' }}
+            title={title(column.id)}>
+            <input
+              type="checkbox"
+              {...column.getToggleHiddenProps()}
+            />
+            {' '}
+            {column.Header}
+          </label>
+        ))}
+        {hiddenColumnsSave()}
+      </div>
       }
 
       {/* stock Table */}
