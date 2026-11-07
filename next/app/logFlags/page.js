@@ -9,6 +9,8 @@ export default function LogFlagsPage() {
     <LogFlags
       setLogFlags={memoryStore.get('setLogFlags')}
       checkList={memoryStore.get('checkList')}
+      checkedItems={memoryStore.get('checkedItems')}
+      logFlags={memoryStore.get('logFlags')}
     />
   );
 }
