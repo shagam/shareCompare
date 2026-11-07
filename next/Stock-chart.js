@@ -452,47 +452,48 @@ const StockChart = (props) => {
 
       {chartFlag && <div>
 
-        <div style={{color: 'black', display:'flex',}}  > 
 
+        <div>
           <div style={{display:'flex'}} > StartDate:&nbsp; <DatePicker style={{ margin: '0px', size:"lg"}} 
-          dateFormat="yyyy-LLL-dd" selected={chartDate} onChange={(date) => setChartDate_(date)} /> &nbsp; &nbsp; </div>
+              dateFormat="yyyy-LLL-dd" selected={chartDate} onChange={(date) => setChartDate_(date)} /> &nbsp; &nbsp; </div>
+          <div style={{display:'flex'}} > EndDate:&nbsp;&nbsp; <DatePicker style={{ margin: '0px', size:"lg"}} 
+              dateFormat="yyyy-LLL-dd" selected={endDate} onChange={(date) => setEndDate(date)} /> &nbsp; &nbsp;
+      </div>
+
 
           <input style={{marginLeft: '3px', width: '20px'}}  type="radio" name="mon" value='1' id='1' checked={months==='1'} onChange={onOptionChange}/>
-            <label style={{marginRight:'10px', paddingRight: '1px'}}> mon</label>         
+            <label style={{marginRight:'10px', paddingRight: '1px'}}>mon</label>         
           <input style={{marginLeft: '3px', width: '20px'}}  type="radio" name="mon" value='3' id='3' checked={months==='3'} onChange={onOptionChange}/>
-            <label style={{marginRight:'10px', paddingRight: '1px'}}> 3_mon</label>
+            <label style={{marginRight:'10px', paddingRight: '1px'}}>3_mon</label>
           <input style={{marginRight: '3px', width: '20px'}}  type="radio" name="mon" value='6' id='6' checked={months==='6'} onChange={onOptionChange}/>
-            <label style={{marginRight:'10px', paddingRight: '1px'}}> 6_mon</label>
+            <label style={{marginRight:'10px', paddingRight: '1px'}}>6_mon</label>
           <input style={{marginRight: '2px', width: '20px'}}  type="radio" name="mon" value='ytd' id='ytd' checked={months==='ytd'} onChange={onOptionChange}/>
-            <label style={{marginRight:'10px', paddingRight: '1px'}}> YTD</label>
+            <label style={{marginRight:'10px', paddingRight: '1px'}}>YTD</label>
           <input style={{marginRight: '2px', width: '20px'}}  type="radio" name="mon" value='12' id='12' checked={months==='12'} onChange={onOptionChange}/>
             <label style={{marginRight:'10px', paddingRight: '1px'}}> 1_Year</label>
-        </div>
-        
-        {/* Buttons first */}
-        <div style={{display:'flex'}} > EndDate:&nbsp;&nbsp; <DatePicker style={{ margin: '0px', size:"lg"}} 
-            dateFormat="yyyy-LLL-dd" selected={endDate} onChange={(date) => setEndDate(date)} /> &nbsp; &nbsp;
+
+
              {/* some drop recovery ranges  month 0-11 */}
           <input style={{marginRight: '2px', width: '20px'}} type="radio" name="mon" value='24' id='24' checked={months==='24'} onChange={onOptionChange}/>
-            <label style={{marginRight:'10px', paddingRight: '1px'}}> 2_year </label> 
+            <label style={{marginRight:'10px', paddingRight: '1px'}}>2_year </label> 
           <input style={{marginRight: '2px', width: '20px'}} type="radio" name="mon" value='60' id='60' checked={months==='60'} onChange={onOptionChange}/> 
-            <label style={{marginRight:'10px', paddingRight: '1px'}}> 5_year </label> 
+            <label style={{marginRight:'10px', paddingRight: '1px'}}>5_year </label> 
           <input style={{marginRight: '2px', width: '20px'}} type="radio" name="mon" value='120' id='120' checked={months==='120'}onChange={onOptionChange} />
-             <label style={{marginRight:'10px', paddingRight: '1px'}}> 10_year </label>
+             <label style={{marginRight:'10px', paddingRight: '1px'}}>10_year </label>
           <input style={{marginRight: '2px', width: '20px'}} type="radio" name="mon" value='264' id='264' checked={months==='264'} onChange={onOptionChange}/>
-             <label style={{marginRight:'10px', paddingRight: '25px'}}> 22_Year </label>
+             <label style={{marginRight:'10px', paddingRight: '25px'}}>22_Year </label>
         </div>
   
         {/* Buttonf second */}
         <div style={{display:'flex'}}>
-          <div> <input  type="checkbox" checked={multi}  onChange={() => setMulti (! multi)} />  multi </div>
-          <div> &nbsp;&nbsp;&nbsp; <input  type="checkbox" checked={logarithmic}  onChange={() => setLogarithmic (! logarithmic)} />  Logarithemic &nbsp;&nbsp;  </div>
-          {gainChart.length > 1 && <div>  <input  type="checkbox" checked={scaleFlag}  onChange={() => setScaleFlag (! scaleFlag)} /> scale &nbsp; </div>}  &nbsp; 
-          <input  type="checkbox" checked={static_}  onChange={() => setStatic (! static_)} />&nbsp;frozen &nbsp;&nbsp;
-          <input  type="checkbox" checked={totalGain}  onChange={() => setTotalGain (! totalGain)} />&nbsp;totalGain &nbsp;&nbsp;
-          <input  type="checkbox" checked={showRanges}  onChange={() => setShowRanges (! showRanges)} /> &nbsp;ranges  &nbsp;
-          <button onClick={() => adjustStart()    }> adjustStart</button>&nbsp;
-
+          <div style={{display:'flex'}}> <input type="checkbox" checked={multi}  onChange={() => setMulti (! multi)} />  multi </div>
+          <div style={{display:'flex'}}> &nbsp;&nbsp;&nbsp; <input style={{display:'flex'}} type="checkbox" checked={logarithmic}  onChange={() => setLogarithmic (! logarithmic)} />  Logarithemic &nbsp;&nbsp;  </div>
+          {gainChart.length > 1 && <div>  <input type="checkbox" checked={scaleFlag}  onChange={() => setScaleFlag (! scaleFlag)} /> scale &nbsp; </div>}  &nbsp; 
+          <div style={{display:'flex'}}><input type="checkbox" checked={static_}  onChange={() => setStatic (! static_)} />&nbsp;frozen  </div> &nbsp;&nbsp;
+          <div style={{display:'flex'}}><input type="checkbox" checked={totalGain}  onChange={() => setTotalGain (! totalGain)} />&nbsp;totalGain </div>&nbsp;&nbsp;
+          <div style={{display:'flex'}}><input  type="checkbox" checked={showRanges}  onChange={() => setShowRanges (! showRanges)} /> &nbsp;ranges </div> &nbsp;
+          {/* <button onClick={() => adjustStart()    }> adjustStart</button>&nbsp; */}
+        </div>
           {showRanges && <div>
             &nbsp; &nbsp;
             <button onClick={() => setDateRange(new Date(1999,0,1), new Date(2008,0,1))}> 1999-2008</button>&nbsp;
@@ -504,7 +505,7 @@ const StockChart = (props) => {
             <button onClick={() => setDateRange(new Date(2024,0,1), new Date(2025,0,1))}> 2024</button>&nbsp;
             <button onClick={() => setDateRange(new Date(2025,0,1), new Date())}> 2025</button>&nbsp;
           </div>}
-        </div>
+
 
         {/* Correlation of 2 symbol values */}
         {Object.keys(props.gainMap).length === 2 && <div style={{display:'flex'}}>
