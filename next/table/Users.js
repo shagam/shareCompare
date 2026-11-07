@@ -27,6 +27,7 @@ function Users (props) {
     const [milisec, setMilisec] = useState (false);
     const [results, setResults] = useState()
     const [infoJson, setInfoJson] = useState({})
+    const [keys, setKeys] = useState([])
 
     const {userAgent, userAgentMobile, isAndroid, isIPhone, isMobile} = MobileContext();
 
@@ -139,10 +140,12 @@ function Users (props) {
         //     console.log(getDate(), 'backEnd users', err.message)
         // }) 
 
-    const latency = Date.now() - mili
-    setErr('usrs list done, latency(msec)=' + latency)
-
-  
+        const latency = Date.now() - mili
+        setErr('usrs list done, latency(msec)=' + latency)
+        const keys_ = Object.keys(userArray[0])
+        if (! keys_.includes('next'))
+            keys_.push('next')
+        setKeys(keys_)
     }
     //** top, right, bottom ,right*/
     const ROW_SPACING = {padding: "0px 5px 2px 8px", margin: '0px'}
@@ -179,7 +182,7 @@ function Users (props) {
                     <tr>
                         <th>N</th>
                           {/* loop on attributes  */}
-                        {Object.keys(userArray[0]).map ((h, h1) => {  
+                        {keys.map ((h, h1) => {  
                             return (<th key={h1}>{h}</th>)
                         }) }
                     </tr>
