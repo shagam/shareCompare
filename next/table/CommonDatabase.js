@@ -111,6 +111,7 @@ function GainWrite (sym, rows, setError, corsServer, PORT, ssl, logFlags, os, ip
     // if (countryCode)
     //     corsUrl += '&countryCode=' + countryCode;
     corsUrl += '&os=' + os
+    corsUrl += '&next=true'
 
     if (LOG)
         console.log (sym, 'gainWrite', corsUrl)

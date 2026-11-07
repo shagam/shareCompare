@@ -105,9 +105,11 @@ function Users (props) {
                     }
                     if (extra) {
                         obj.os = inf[ipList[i]].os
+                        obj.next = inf[ipList[i]].next
                         obj.sym = inf[ipList[i]].sym
                     }
-
+                    if (logBackEnd   && inf[ipList[i]].next)
+                        console.log ('next', inf[ipList[i]].next)
                     arr_unsort.push (obj)
                 }
 
@@ -198,6 +200,8 @@ function Users (props) {
                     </tbody>
                 </table>        
             </div>}
+
+            {logExtra && <pre> {JSON.stringify(userArray, null,  2)} </pre>}
         </div>
     )
     
