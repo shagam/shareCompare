@@ -1,7 +1,7 @@
 User-agent: Googlebot
 Allow: /
 
+ 
+Sitemap: https://sharecompare.net/sitemap.xml
 
-Sitemap: https://sharecompare.net/sitemap.xml:
-#Sitemap: https://localhost:3000/sitemap.xml
 
