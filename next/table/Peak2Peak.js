@@ -311,7 +311,8 @@ const Peak2PeakGui = (props) => {
   return (
     <div style = {{border: '2px solid blue', background: '#f0f0e0', padding: '5px', margin: '5px'}} id='deepRecovery_id' >
         <div> 
-            {pageHeader (symbol, 'bubbleLine', 'Exponential line that passes through stock prices of last major bubbles (2008, 2021) (long term gain)' )}
+            {pageHeader (symbol, 'bubbleLine', 'Exponential line that passes through stock prices of last major bubbles (2008, 2021) (long term gain)',
+               null, 'https://youtube.com/shorts/29TnD1h8ZPs' )}
       
             <div style={{color: 'red'}}>{err}</div>
 
