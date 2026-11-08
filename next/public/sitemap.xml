@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url><loc>https://sharecompare.net/</loc></url>
     <url><loc>https://sharecompare.net/tools</loc></url>
-    <url><loc>https://sharecompare.net/dashBoard</loc></url>
-    <url><loc>https://sharecompare.net/stockTable</loc></url>
-    <url><loc>https://sharecompare.net/chart</loc></url>
+    <url><loc>https://sharecompare.net/dashboard</loc></url>
+<!-- <url><loc>https://sharecompare.net/stockTable</loc></url> -->
+<!-- <url><loc>https://sharecompare.net/chart</loc></url> -->
     <url><loc>https://sharecompare.net/tutorials</loc></url>
     <url><loc>https://sharecompare.net/bubbleLine</loc></url>
     <url><loc>https://sharecompare.net/dropRecovery</loc></url>
-    <url><loc>https://sharecompare.net/holdings</loc></url>
+ <!-- <url><loc>https://sharecompare.net/holdings</loc></url> -->
     <url><loc>https://sharecompare.net/options</loc></url>
     <url><loc>https://sharecompare.net/dropsCount</loc></url>
     <url><loc>https://sharecompare.net/monthGain</loc></url>
@@ -17,7 +17,7 @@
     <url><loc>https://sharecompare.net/candleStick</loc></url>
     <url><loc>https://sharecompare.net/priceAlert</loc></url>
     <url><loc>https://sharecompare.net/symSearch</loc></url>
-    <url><loc>https://sharecompare.net/stockList</loc></url>
+    <url><loc>https://sharecompare.net/stockLists</loc></url>
     <url><loc>https://sharecompare.net/ai</loc></url>
     <url><loc>https://sharecompare.net/contactUs</loc></url>
     <url><loc>https://sharecompare.net/auxilaryLinks</loc></url>
