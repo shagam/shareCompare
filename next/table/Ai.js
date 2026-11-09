@@ -9,7 +9,8 @@ import { ComboBoxSelect } from '../utils/ComboBoxSelect'
 import {beep2} from '../utils/ErrorList'
 import {getDate} from '../utils/Date'
 // import { OpenAI } from 'openai/client.js';
-
+import {pageHeader } from './StockInfo'
+import { useShared } from '../contexts/SharedContext';
 // import ChatGPT from './ChatGPT';
 
 
@@ -341,15 +342,9 @@ function Ai  (props) {
 
  return (
     <div style = {{border: '2px solid blue'}} >
-      <div style = {{display: 'flex'}}>
-        <div  style={{color: 'magenta' }}>  {props.chartSymbol} </div>  &nbsp; &nbsp;
-        <h6 style={{color: 'blue'}}> Ai API  </h6>  &nbsp; &nbsp;
-        <div style={{color: 'green'}} > User tokens used, &nbsp; openAi: {openAiTokenCount} &nbsp; deepSeek: {deepseekTokenCount} &nbsp; </div>
-      </div>
-      {err !== '' && <div style={{color: 'red'}}>err: {err}</div>}
+      {pageHeader (props.chartSymbol, 'ai', '', err)}
 
-
-      <div  style = {{display: 'flex'}}><h3>AI API  </h3>  &nbsp; &nbsp; (under development) </div>
+      {/* <div  style = {{display: 'flex'}}><h3>AI API  </h3>  &nbsp; &nbsp; (under development) </div> */}
       <hr style={{ border: '3px solid #000000'}}/>  
 
       {/* token usage get button */}
