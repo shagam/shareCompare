@@ -183,9 +183,11 @@ function Splits (props) {
 
 return (
   <div>
-    <h5>Stock splits</h5>
+    {/* <h5>Stock splits</h5>
     <h6  style={{color:'#33ee33', fontWeight: 'bold', fontStyle: "italic"}}>  &nbsp; {props.symbol}:  &nbsp; Stock split history  &nbsp; </h6>
-    {err && <div style={{color: 'red'}}> {err} </div>}
+    {err && <div style={{color: 'red'}}> {err} </div>} */}
+    {pageHeader (props.symbol, 'stockSplits', 'Stock split history', err )}
+
     {LOG_FLAG && <div>{corsUrl}</div>}
     {LOG_FLAG && <div>{url}</div>}
     <div style={{display: 'flex'}}>

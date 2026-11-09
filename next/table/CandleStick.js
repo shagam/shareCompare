@@ -12,6 +12,8 @@ import GetInt from '../utils/GetInt'
 import {beep2} from '../utils/ErrorList'
 import MobileContext from '../contexts/MobileContext'
 import { ComboBoxSelect } from '../utils/ComboBoxSelect'
+import {pageHeader } from './StockInfo'
+import { useShared } from '../contexts/SharedContext';
 
 // import yfinance from 'yahoo-finance2'
 // const df = yfinance.download('AAPL', '2021-01-01', '2021-12-31')
@@ -395,10 +397,13 @@ const CandlestickChart = (props) => {
 
   return (
     <div style = {{ border: '2px solid green', background: '#f0f0e0', padding: '5px', margin: '5px'}} id='deepRecovery_id' >
-        <h6 style={{color: 'blue'}}>candleStick  &nbsp;  </h6>
+        {/* <h6 style={{color: 'blue'}}>candleStick  &nbsp;  </h6>
         <h6  style={{color:'#33ee33', fontWeight: 'bold', fontStyle: "italic"}}> &nbsp; Under development (Experimental) &nbsp; </h6>
         <div  style={{color: 'magenta' }}>  {props.symbol} </div> 
-        {err && <div style={{color:'red'}}>{err}</div>}
+        {err && <div style={{color:'red'}}>{err}</div>} */}
+
+        {pageHeader (props.symbol, 'candleStick', 'triggers still missing', err )}
+
 
         <div>  &nbsp; 
           <div style={{display:'flex'}}>
