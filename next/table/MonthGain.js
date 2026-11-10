@@ -131,7 +131,7 @@ function MonthGain (props) {
     if (gainMap.bubbleLine) {
       setStatus('error, can not calc monthGain for bubleLine, Pls clear_table and start again')
       beep2()
-      return;
+      delete gainMap.bubbleLine
     }
 
 
