@@ -987,7 +987,8 @@ function CommonDatabase (props) {
   return (
     <div style = {{ border: '2px solid green', backgroundColor: '#f0f0f0', padding: '5px', margin: '5px'}}>
       {<div>
-        {pageHeader ('', 'CommonDatabase', 'Get stocks symbols with better gain than QQQ, from common backEnd')}
+        {pageHeader ('', 'CommonDatabase', 'Get stocks symbols with better gain than QQQ, from common backEnd',
+             null, 'https://youtube.com/shorts/hjxdWTGohAc')}
 
         <div  style={{color: 'magenta' }}>  {symbol} </div>  &nbsp;  &nbsp; 
         {err && <div style={{color:'red'}}>{err}</div>}

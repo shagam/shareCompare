@@ -1289,7 +1289,8 @@ const {
 
   return (
     <div style = {{ border: '2px solid blue', backgroundColor: '#f0f0e0'}} >
-        {pageHeader (symbol, 'options', 'Calc expected option gain, based on average yearly gain, and expected stock price', err )}
+        {pageHeader (symbol, 'options', 'Calc expected option gain, based on average yearly gain, and expected stock price',
+           err, 'https://youtube.com/shorts/YnNDCs4sUyA' )}
         <strong style={{color: 'red'}}>(Please consult other sources, before taking a decision) </strong> 
 
         <div style = {{display: 'flex', fontWeight: 'bold'}}> stockPrice={price} &nbsp; &nbsp; price/High={priceDivHigh}  &nbsp; &nbsp; {! isNaN(belowBubble) &&<div>price/bubblePrice={belowBubble.toFixed(3)}</div>}  </div>

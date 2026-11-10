@@ -114,7 +114,7 @@ const StockGain = (props) => {
   return (
     <div style={{border:'2px solid blue', background: '#f0f0e0', padding: '5px', margin: '5px'}} id='deepRecovery_id' >
       <div> 
-        {pageHeader (symbol, 'gainRaw', 'Raw price history' )}
+        {pageHeader (symbol, 'gainRaw', 'Raw price history', null, 'https://youtube.com/shorts/BpC7wK7Psvw')} 
           
         <div style={{color:'green'}}>dividend/price average={yearly_div_ratio.toFixed(5)}   &nbsp; &nbsp;  {(yearly_div_ratio *100).toFixed(3)}%</div>
       </div>

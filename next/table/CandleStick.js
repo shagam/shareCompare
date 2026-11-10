@@ -402,7 +402,7 @@ const CandlestickChart = (props) => {
         <div  style={{color: 'magenta' }}>  {props.symbol} </div> 
         {err && <div style={{color:'red'}}>{err}</div>} */}
 
-        {pageHeader (props.symbol, 'candleStick', 'triggers still missing', err )}
+        {pageHeader (props.symbol, 'candleStick', 'triggers still missing', err, 'https://youtube.com/shorts/jSlOyfLPMZc' )}
 
 
         <div>  &nbsp; 

@@ -359,7 +359,7 @@ function DropsCount (props) {
         {/* <div> */}
     {/* <hr/>  */}
 
-        {pageHeader (symbol, 'dropsCount', 'Count drops and rises', err )}
+        {pageHeader (symbol, 'dropsCount', 'Count drops and rises per period', err, 'https://youtube.com/shorts/UOtcApd5XOY' )}
 
         {props.eliHome && <div style={{display:'flex'}}>
             {/* <ComboBoxSelect serv={searchMode} nameList={['range','threshold',]} setSelect={setSearchMode} title='' options={[false, true]} defaultValue={true}/> &nbsp; &nbsp;  &nbsp; */}

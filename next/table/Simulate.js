@@ -16,6 +16,9 @@ import {ErrorList, errorAdd, beep, beep2} from '../utils/ErrorList'
 import {MonthGain, weekOfYearGet} from './MonthGain'
 // import Plot from 'react-plotly.js';
 import dynamic from 'next/dynamic';
+import { pageHeader } from './StockInfo'
+
+
 
 const Plot = dynamic(
   () => import('react-plotly.js'),
@@ -945,12 +948,8 @@ const Simulate = (props) => {
  
     return (
         <div style = {{border: '2px solid blue'}} id='deepRecovery_id' >
-            <div style = {{display: 'flex'}}>
-              <div  style={{color: 'magenta' }}>  {props.symbol} </div> &nbsp; &nbsp;
-              <h5 style={{color: 'blue'}}> Simulate-trade &nbsp;  </h5> &nbsp; &nbsp;
-            </div>
-            <h6 style={{color:'#33ee33', fontWeight: 'bold', fontStyle: "italic"}}> Simulate optimized trade according to distance from bubbleLine </h6>
-            <div style={{color: 'red'}}> {err} </div>
+             {pageHeader (props.symbol, 'Simulate-trade', 'Simulate optimized trade according to distance from bubbleLine ',
+               err, 'https://youtube.com/shorts/ziRLU3XPJRY?feature=share' )}
             <div> &nbsp;</div>
 
             {bubbleLine && <div style={{display: 'flex', background: 'antiqueWhite'}}> 

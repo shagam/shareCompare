@@ -127,7 +127,7 @@ function MovingAverage (props) {
     return (
         <div style={{border:'2px solid blue', background: '#f0f0e0', padding: '5px', margin: '5px'}} id='deepRecovery_id' >
 
-            {pageHeader (symbol, 'movingAverage', '', err )}
+            {pageHeader (symbol, 'movingAverage', '', err, 'https://youtube.com/shorts/h2sE1njL4iw' )}
 
             <div> &nbsp;</div>
             <div style={{color: 'red'}}>{err}</div>
