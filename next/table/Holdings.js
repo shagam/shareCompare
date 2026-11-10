@@ -67,14 +67,6 @@ function Holdings (props) {
     // props.saveTable()
   }
 
-
-  const row_index = props.rows.findIndex((row)=> row.values.symbol === symbol);
-  if (row_index === -1) {
-
-    setErr ('stock missing (Holdings): ' + symbol)
-    return;
-  }
-
   function holdingsMarketData () {
     const url = 'https://api.marketdata.app/v1/etf/holdings?symbol=' + symbol + '&token=' + TOKEN
       axios.get (url)
