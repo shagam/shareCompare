@@ -4,7 +4,7 @@ import {getDate} from '../utils/Date'
 
 // 
 const Disclaimer = (props) => {
-    const log = props.logFlags.includes('aux')
+    const log = props.logFlags && props.logFlags.includes('aux')
     var disclaimer  = useMemo(() => localStorage.getItem('disclaimer'), []);
     const [close, setClose] = React.useState(false)
 
