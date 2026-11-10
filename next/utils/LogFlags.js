@@ -2,6 +2,7 @@
 import React, {useState, useMemo, useEffect} from 'react'
 
 import Link from "next/link";
+import { useShared } from '../contexts/SharedContext';
 
 import memoryStore from "../components/MemoryStore";
 
@@ -64,7 +65,7 @@ const {chartSymbol, setChartSymbol,
 
    // State with list of all checked item
    var logFlagsRaw = localStorage.getItem('logFlags')
-    setLogFlags(logFlagsRaw)
+    // setLogFlags(logFlagsRaw)
     console.log ('LogFlags logFlagsRaw=', logFlagsRaw, 'logFlags=', logFlags)
 
    if (! logFlagsRaw)
