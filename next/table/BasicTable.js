@@ -1159,7 +1159,7 @@ const {chartSymbol, setChartSymbol,
 
                 {eliHome && <Link style={{background: routeColor('/futures'), color: '#9932CC'}} href="/futures">futures </Link>} &nbsp;
                 {eliHome && <Link style={{background: routeColor('/polymarket'), color: '#9932CC'}} href="/polymarket">polymarket </Link>} &nbsp;
-                {eliHome && <Link style={{background: routeColor('/investorRelations'), color: '#9932CC'}} href="/investorRelations">Investor Relations </Link>} &nbsp;
+                {eliHome && <Link style={{background: routeColor('/investorRelations'), color: '#9932CC'}} href="/investorRelations">Investor-Relations </Link>} &nbsp;
 
                 
               </div>
