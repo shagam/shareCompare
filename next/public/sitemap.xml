@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url><loc>https://sharecompare.net/</loc></url>
-    <url><loc>https://sharecompare.net/tools</loc></url>
+   <!--  <url><loc>https://sharecompare.net/tools</loc></url> -->
     <url><loc>https://sharecompare.net/dashboard</loc></url>
     <url><loc>https://sharecompare.net/stocksTable</loc></url>
     <url><loc>https://sharecompare.net/chart</loc></url>
@@ -20,7 +20,7 @@
     <url><loc>https://sharecompare.net/stockLists</loc></url>
     <url><loc>https://sharecompare.net/config</loc></url>
     <url><loc>https://sharecompare.net/commonDatabase</loc></url>
-    <url><loc>https://sharecompare.net/ai</loc></url>
+ <!--  <url><loc>https://sharecompare.net/ai</loc></url> -->
     <url><loc>https://sharecompare.net/contactUs</loc></url>
     <url><loc>https://sharecompare.net/auxilaryLinks</loc></url>
 </urlset>

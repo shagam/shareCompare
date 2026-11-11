@@ -1126,13 +1126,13 @@ const {chartSymbol, setChartSymbol,
                 <Link style={{background: routeColor('/monthGain')}} href="/monthGain">monthGain </Link> &nbsp; 
 
                 <Link style={{background: routeColor('/movingAverage')}} href="/movingAverage">movingAverage </Link> &nbsp;
-                <Link style={{background: routeColor('/ai')}} href="/ai">ai</Link> &nbsp; 
+                {eliHome && <Link style={{background: routeColor('/ai')}} href="/ai">ai</Link>}} &nbsp; 
                 <Link style={{background: routeColor('/simulateTrade')}} href="/simulateTrade">simulateTrade </Link> &nbsp; 
                 <Link style={{background: routeColor('/candleStick')}} href="/candleStick">candleStick </Link> &nbsp; 
                 <Link style={{background: routeColor('/priceAlert')}} href="/priceAlert">priceAlert </Link> &nbsp; 
                 <Link style={{background: routeColor('/gainRaw')}} href="/gainRaw">gainRaw </Link> &nbsp; 
                 <Link style={{background: routeColor('/infoRaw')}} href="/infoRaw">infoRaw </Link> &nbsp; 
-                <Link style={{background: routeColor('/tools')}} href="/tools">tools </Link> &nbsp; 
+                {eliHome && <Link style={{background: routeColor('/tools')}} href="/tools">tools </Link>} &nbsp; 
 
                 {eliHome && <Link style={{background: routeColor('/urlGetParse')}} href="/urlGetParse">urlGetParse </Link>} &nbsp; 
                 {eliHome && <Link style={{background: routeColor('/leverageETF')}} href="/leverageETF">leveragaETF </Link>} &nbsp; 
