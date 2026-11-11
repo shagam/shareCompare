@@ -83,12 +83,12 @@ const investorRelationsArray = [
         ticker:       'SKHY',
         // description:  'Stock market bubble. Can we predict future crash? ',
     },
-
-
-
-
-
-
+    // {
+    //     link:         'https://www.astrazeneca.com/investor-relations.html',
+    //     name:         'AstraZeneca Investor Relations',
+    //     ticker:       'AZN',
+    //     // description:  'Stock market bubble. Can we predict future crash? ',
+    // },
 
 ]
 

@@ -19,7 +19,7 @@ let periodTag;
 
 
 
-export async function gain (sym, rows, errorAdd, logFlags, API_KEY, weekly, openMarketFlag, gainRawDividand, setGainData, smoothSpikes,
+export async function gain (sym, rows, errorAdd, logFlags, weekly, openMarketFlag, gainRawDividand, setGainData, smoothSpikes,
     splitsCalcFlag, saveTabl, setStockChartXValues, setStockChartYValues, gainMap, deepStartDate, ssl, PORT, servSelect, saveTable,
      os, ip, city, countryName, countryCode, regionName, setChartData, yearlyPercent, set_QQQ_gain, priceAlertTable,
       refreshByToggleColumns, sequenceNumber, count, setChartSymbol, setPrice, setPriceDivHigh, setPriceDivClose) {
@@ -526,7 +526,7 @@ export async function gain (sym, rows, errorAdd, logFlags, API_KEY, weekly, open
         setTimeout(() => {
           // console.log ('gain nextSym:', nextSym, 'sequenceNumber:', sequenceNumber, 'count:', count)
 
-          gain (nextSym, rows, errorAdd, logFlags, API_KEY, weekly, openMarketFlag, gainRawDividand, setGainData, smoothSpikes,
+          gain (nextSym, rows, errorAdd, logFlags, weekly, openMarketFlag, gainRawDividand, setGainData, smoothSpikes,
           splitsCalcFlag, saveTabl, setStockChartXValues, setStockChartYValues, gainMap, deepStartDate, ssl, PORT, servSelect, saveTable,
            os, ip, city, countryName, countryCode, regionName, setChartData, yearlyPercent, set_QQQ_gain, priceAlertTable, refreshByToggleColumns, sequenceNumber, count - 1, setChartSymbol) 
         }, 300);

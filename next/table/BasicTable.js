@@ -133,7 +133,6 @@ const {chartSymbol, setChartSymbol,
       servSelect, setServSelect,
       ssl, setSsl,
       PORT, setPORT,
-      HIGH_LIMIT_KEY
 
     } = useShared();
 
@@ -549,7 +548,7 @@ const {chartSymbol, setChartSymbol,
       delete gainMap['bubbleLine']
     }
 
-    gain (sym, rows, errorAdd, logFlags, HIGH_LIMIT_KEY, !daily, openMarketFlag, gainRawDividand, setGainData, smoothSpikes,
+    gain (sym, rows, errorAdd, logFlags, !daily, openMarketFlag, gainRawDividand, setGainData, smoothSpikes,
       splitsCalcFlag, singleSym, setStockChartXValues, setStockChartYValues, gainMap, deepStartDate, ssl, PORT, servSelect,
       saveTable, os, ip, city, countryName, countryCode, regionName, setChartData, yearlyPercent, set_QQQ_gain,
        priceAlertTable, refreshByToggleColumns, tableSequence, count, setChartSymbol, setPrice, setPriceDivHigh, setPriceDivClose)
