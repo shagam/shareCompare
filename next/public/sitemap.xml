@@ -3,8 +3,8 @@
     <url><loc>https://sharecompare.net/</loc></url>
     <url><loc>https://sharecompare.net/tools</loc></url>
     <url><loc>https://sharecompare.net/dashboard</loc></url>
-<!-- <url><loc>https://sharecompare.net/stockTable</loc></url> -->
-<!-- <url><loc>https://sharecompare.net/chart</loc></url> -->
+    <url><loc>https://sharecompare.net/stocksTable</loc></url>
+    <url><loc>https://sharecompare.net/chart</loc></url>
     <url><loc>https://sharecompare.net/tutorials</loc></url>
     <url><loc>https://sharecompare.net/bubbleLine</loc></url>
     <url><loc>https://sharecompare.net/dropRecovery</loc></url>

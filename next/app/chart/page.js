@@ -1,6 +1,6 @@
 export const metadata = {
   title: 'Stock Charts | Stock Analytics Platform',
-  description: 'Interactive stock charts with technical indicators and historical data.',
+  description: 'Compare historical price for several stock.',
   url: "https://shareCompare.org/chart",
 };
 
