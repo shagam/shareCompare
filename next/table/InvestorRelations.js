@@ -107,14 +107,12 @@ function InvestorRelations () {
 
     <div style = {{ border: '2px solid blue', background: '#f0f0e0', padding: '5px', margin: '5px'}} >
 
-        {pageHeader (null, 'Investor Relations', 'Information for investors and shareholders', null,null)}
+        {pageHeader (null, 'Investor Relations links', 'Information for investors and shareholders. Quaterly and yearly', null,null)}
 
         <hr style={{ border: '3px solid #000000'}}/> 
 
 
         <div className='w-100 text-left mt-2' style={{color:'magenta'}}>
-
-
 
             {/* {eliHome && <div style={{display:'flex'}}> <ComboBoxSelect serv={language} nameList={languageList} setSelect={setLanguage} title='backEnd' options={languageList} defaultValue={language}/> &nbsp;&nbsp;</div>}  */}
             <div style={{display: 'flex'}}>              
@@ -132,11 +130,12 @@ function InvestorRelations () {
                         item.description.toLowerCase().includes(searchText.toLowerCase()))               
                     ) && 
                         <tr key={index} >
-                            <td>{item.ticker}</td>
+  
                             <td>
-                                { <a href={item.link}><b>{item.name}</b> </a>}
+                                { <a href={item.link}><b>{item.ticker}</b> </a>}
                             </td>
-                            <td>{item.description}</td>
+                            <td>{item.name}</td>
+                            {/* <td>{item.description}</td> */}
                         </tr>
                       })}
                 </tbody>
