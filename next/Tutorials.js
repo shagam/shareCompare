@@ -6,7 +6,8 @@ import MobileContext from './contexts/MobileContext'
 import { ComboBoxSelect } from './utils/ComboBoxSelect'
 import {IpContext, getIpInfo} from './contexts/IpContext';
 import GetInt from './utils/GetInt'
-
+import { useShared } from './contexts/SharedContext';
+import { pageHeader } from './table/StockInfo'
 
 const language = false
 const tutorialArray = [
@@ -243,8 +244,11 @@ function Tutorials () {
         <div className='w-100 text-left mt-2'>
             <Link href="/" > Home </Link>
         </div>
-        <hr style={{ border: '3px solid #000000'}}/> 
-        <h4 style={{color:'Green'}}>Tutorials</h4>
+        <hr style={{ border: '3px solid #000000'}}/>
+
+        {pageHeader (null, 'tutorials', 'list of tutorials ',null, null )} 
+
+
 
         <div className='w-100 text-left mt-2' style={{color:'magenta'}}>
            {/* <h5> &nbsp; Start with The first tutorial. (lasts 2.5 minutes.) </h5> */}
