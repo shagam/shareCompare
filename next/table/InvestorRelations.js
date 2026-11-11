@@ -10,6 +10,13 @@ import { useShared } from '../contexts/SharedContext';
 import { pageHeader } from '../table/StockInfo'
 
 const investorRelationsArray = [
+
+    
+    {
+        link:         'https://abc.xyz/investor/',
+        name:         'Alphabet Investor Relations',
+        // description:  'Stock market bubble. Can we predict future crash? ',
+    },
     {
         link:         'https://investor.lilly.com/investor-relations?mobile=1',
         name:         'Eli Lily Investor Relations',
