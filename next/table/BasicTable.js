@@ -61,6 +61,7 @@ import StockChart from '../Stock-chart';
 
 import {LatestPrice} from './LatestPrice'
 import {Disclaimer} from './Disclaimer'
+import InvestorRelations from './InvestorRelations'
 
 import '../utils/styles.css'
 
@@ -1126,7 +1127,7 @@ const {chartSymbol, setChartSymbol,
                 <Link style={{background: routeColor('/monthGain')}} href="/monthGain">monthGain </Link> &nbsp; 
 
                 <Link style={{background: routeColor('/movingAverage')}} href="/movingAverage">movingAverage </Link> &nbsp;
-                {eliHome && <Link style={{background: routeColor('/ai')}} href="/ai">ai</Link>}} &nbsp; 
+                {eliHome && <Link style={{background: routeColor('/ai')}} href="/ai">ai</Link>} &nbsp; 
                 <Link style={{background: routeColor('/simulateTrade')}} href="/simulateTrade">simulateTrade </Link> &nbsp; 
                 <Link style={{background: routeColor('/candleStick')}} href="/candleStick">candleStick </Link> &nbsp; 
                 <Link style={{background: routeColor('/priceAlert')}} href="/priceAlert">priceAlert </Link> &nbsp; 
@@ -1158,6 +1159,9 @@ const {chartSymbol, setChartSymbol,
 
                 {eliHome && <Link style={{background: routeColor('/futures'), color: '#9932CC'}} href="/futures">futures </Link>} &nbsp;
                 {eliHome && <Link style={{background: routeColor('/polymarket'), color: '#9932CC'}} href="/polymarket">polymarket </Link>} &nbsp;
+                {eliHome && <Link style={{background: routeColor('/investorRelations'), color: '#9932CC'}} href="/investorRelations">Investor Relations </Link>} &nbsp;
+
+                
               </div>
               <hr/>
         </div>}
