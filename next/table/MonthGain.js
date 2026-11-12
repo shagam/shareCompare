@@ -62,7 +62,8 @@ function MonthGain (props) {
         // gainMap, setGainMap,
         chartData, setChartData,
         gainData, setGainData,
-        daily, setDaily
+        daily, setDaily,
+        errorAdd, 
       } = useShared();
   
   const {userAgent, userAgentMobile, isAndroid, isIPhone, isMobile} = MobileContext();
@@ -130,6 +131,7 @@ function MonthGain (props) {
     }
     if (gainMap.bubbleLine) {
       setStatus('error, can not calc monthGain for bubleLine, Pls clear_table and start again')
+      props.errorAdd([symbol, 'error, can not calc monthGain for bubleLine, Pls clear_table and start again'])
       beep2()
       delete gainMap.bubbleLine
     }
