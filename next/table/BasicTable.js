@@ -998,17 +998,18 @@ const {chartSymbol, setChartSymbol,
             placeholder="stock symbol"
             onChange={handleAddFormChange}
           />
-          <button style={{backgroundColor: 'rgba(85, 255, 227, 0.27)', whiteSpace:'nowrap', height:'27px'}} type="submit">Add  ({rows.length})  </button>
+          <button style={{backgroundColor: 'rgba(85, 255, 227, 0.27)', whiteSpace:'nowrap', height:'27px', paddingTop: '5px'}} type="submit">Add  ({rows.length})  </button>
         </form>&nbsp;&nbsp;
 
-        <div style={{display:'flex', paddingTop: '20px'}}>
+        <div style={{display:'flex', paddingTop: '10px'}}>
           <input type="checkbox" checked={columnHideFlag}  onChange={ columnHideFlagChange} 
               title='select which columns are visible and which are hidden'/> 
-          </div>&nbsp;
-        <div style={{paddingTop: '20px'}}>column_select </div> &nbsp; 
+          <div style={{paddingTop: '6px'}}>column_select </div> &nbsp; 
+        </div>&nbsp;
+  
         <div style={{height: '27px', marginTop: '16px'}}><button type="button" onClick={()=>hiddenColsSetDefault()}>columns_default</button></div> &nbsp;&nbsp;
         <GlobalFilter style={{marginTop: '10px', height: '20px'}} className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter} name='Search/Filter' isMobile={isMobile} marginTop={'17px'}/>
-    </div>
+      </div>
 
       {columnHideFlag && 
      <div id="columnToggle" style={{display: 'flex', flexWrap: 'wrap',gap: '8px 16px',
