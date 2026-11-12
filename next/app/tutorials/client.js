@@ -1,6 +1,6 @@
 "use client";
 
-import Tutorials from "../../Tutorials";   // adjust path if needed
+import Tutorials from "../../table/Tutorials";   // adjust path if needed
 
 // tutorials
 
