@@ -171,7 +171,7 @@ const {chartSymbol, setChartSymbol,
 
   const tblHightOPtions = ['20vh','30vh', '40vh', '50vh','60vh', '75vh'];
   const [tablHight, setTablHight] = useState(() => localStorage.getItem("tblHight") || tblHightOPtions[2]);
-  const tblWidthOPtions = ['75%', '100%', '120%', '140%', '160%'];
+  const tblWidthOPtions = ['75vw', '100vw', '120vw', '140vw', '160vw'];
   const [tablWidth, setTablWidth] = useState(() => localStorage.getItem("tblWidth") || tblWidthOPtions[1]);
 
   const useData = false;
@@ -1034,7 +1034,7 @@ const {chartSymbol, setChartSymbol,
 
       {/* stock Table */}
 
-      <table style={{marginTop: '4px', maxHeight: tablHight, maxWidth: tablWidth, overflowY: 'auto', overflowX: 'auto'}} id="stockTable" {...getTableProps()}>
+      <table style={{marginTop: '4px', maxHeight: tablHight, width: tablWidth, overflowY: 'auto', overflowX: 'auto'}} id="stockTable" {...getTableProps()}>
       <thead>
         {headerGroups.map((headerGroup) => {
           const { key: headerKey, ...headerRest } = headerGroup.getHeaderGroupProps();
