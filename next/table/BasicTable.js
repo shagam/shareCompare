@@ -553,7 +553,6 @@ const {chartSymbol, setChartSymbol,
       saveTable, os, ip, city, countryName, countryCode, regionName, setChartData, yearlyPercent, set_QQQ_gain,
        priceAlertTable, refreshByToggleColumns, tableSequence, count, setChartSymbol, setPrice, setPriceDivHigh, setPriceDivClose)
 
-
      if (singleSym)
       saveTable(sym);
     searchURL (logFlags)
@@ -1159,6 +1158,9 @@ const {chartSymbol, setChartSymbol,
                 {eliHome && <Link style={{background: routeColor('/futures'), color: '#9932CC'}} href="/futures">futures </Link>} &nbsp;
                 {eliHome && <Link style={{background: routeColor('/polymarket'), color: '#9932CC'}} href="/polymarket">polymarket </Link>} &nbsp;
                 {eliHome && <Link style={{background: routeColor('/investorRelations'), color: '#9932CC'}} href="/investorRelations">Investor-Relations </Link>} &nbsp;
+
+               {eliHome && <Link style={{background: routeColor('/chart'), color: '#9932CC'}} href="/chart">chart </Link>} &nbsp;
+               {eliHome && <Link style={{background: routeColor('/stocksTable'), color: '#9932CC'}} href="/stocksTable">stocksTable </Link>} &nbsp;
 
                 
               </div>
