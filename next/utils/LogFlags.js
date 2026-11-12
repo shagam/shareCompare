@@ -14,6 +14,8 @@ import memoryStore from "../components/MemoryStore";
 const LogFlags = (props) => {
 
   console.log ('props', props, props.logFlags)
+// const logFlags = memoryStore.get('logFlags')
+// const setLogFlags = memoryStore.get('setLogFlags')
 
 const {chartSymbol, setChartSymbol,
       infoSymbol, setInfoSymbol,
@@ -37,7 +39,7 @@ const {chartSymbol, setChartSymbol,
       servSelect, setServSelect,
       ssl, setSsl,
       PORT, setPORT,
-      HIGH_LIMIT_KEY
+
 
     } = useShared();
 

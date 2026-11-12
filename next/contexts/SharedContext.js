@@ -16,7 +16,11 @@ export function SharedProvider({ children }) {
   const [daily, setDaily] = useState (true);
   const [eliHome, setEliHome] = useState(false);
   const [logFlags, setLogFlags] = useState([]);
-
+  if (logFlags.length === 0) {
+    const logFlags_ = localStorage.getItem('logFlags')
+    if (logFlags_)
+      setLogFlags(logFlags_)
+  }
   const [price, setPrice] = useState();
   const [priceDivHigh, setPriceDivHigh] = useState();
 
