@@ -2,12 +2,12 @@
 import React, {useState} from 'react';
 
 import Link from "next/link";
-import MobileContext from './contexts/MobileContext'
-import { ComboBoxSelect } from './utils/ComboBoxSelect'
-import {IpContext, getIpInfo} from './contexts/IpContext';
-import GetInt from './utils/GetInt'
-import { useShared } from './contexts/SharedContext';
-import { pageHeader } from './table/StockInfo'
+import MobileContext from '../contexts/MobileContext'
+import { ComboBoxSelect } from '../utils/ComboBoxSelect'
+import {IpContext, getIpInfo} from '../contexts/IpContext';
+import GetInt from '../utils/GetInt'
+import { useShared } from '../contexts/SharedContext';
+import { pageHeader } from './StockInfo'
 
 const language = false
 const tutorialArray = [
