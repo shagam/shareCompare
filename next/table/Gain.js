@@ -102,10 +102,15 @@ export async function gain (sym, rows, errorAdd, logFlags, weekly, openMarketFla
 
   // const openOrCloseText = openMarketFlag ? '1. open' : '4. close';
 
-    const log = logFlags && logFlags.includes('log');
+    const log = logFlags && logFlags.includes('gain') && logFlags.includes('backEnd');
+    const logBackend = logFlags && logFlags.includes('backEnd');
     console.log('log=', log);
     
-    let API_Call =`/api/alpha?symbol=${sym}&weekly=${weekly}&function=TIME_SERIES&log=${log}`; 
+    let API_Call =`/api/alpha?symbol=${sym}&weekly=${weekly}&function=TIME_SERIES`;
+    if (log)
+      API_Call += '&log=' + log      
+    if (logBackend)
+      API_Call += '&logBackend=' + logBackend 
     // const response = await fetch(`/api/alpha?symbol=${sym }&weekly=${weekly}`);
     // const result = await response.json();
    // setData(result.data);
