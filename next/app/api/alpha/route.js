@@ -35,12 +35,12 @@ export async function GET(request) {
 
   if (function_ === 'SYMBOL_SEARCH') {
     API_Call = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH`;
-    API_Call += `&keywords=${keywords}&apikey=${API_KEY}`;
+    API_Call += `&keywords=${keywords}`;
   }
 
   else if (function_ === 'OVERVIEW') {
     API_Call = `https://www.alphavantage.co/query?function=OVERVIEW`;
-    API_Call += `&symbol=${sym}&apikey=${API_KEY}`;
+    API_Call += `&symbol=${sym}`;
   }
 
   else {// TIME_SERIOS_DAILY_ADJUSTED or TIME_SERIES_WEEKLY_ADJUSTED
@@ -50,12 +50,15 @@ export async function GET(request) {
         periodTag = "TIME_SERIES_DAILY_ADJUSTED" //"Time Series (Daily)"
 
     API_Call = `https://www.alphavantage.co/query?function=${periodTag}`;
-    API_Call += `&symbol=${sym}&outputsize=full&apikey=${API_KEY}`
+    API_Call += `&symbol=${sym}&outputsize=full`
   }
 
-
   if (logBackend==='true')
-  console.log("route:", API_Call);
+    console.log("route:", API_Call);
+
+  // add API_KEY after log
+  API_Call += `&apikey=${API_KEY}`
+
 
   // Example: Using the secret to fetch external data
   const response = await fetch(API_Call, {
