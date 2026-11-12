@@ -57,7 +57,6 @@ import MarketStackApi from  './MarketStackApi'
 
 import {polygon} from './Polygon'
 
-import StockChart from '../Stock-chart';
 
 import {LatestPrice} from './LatestPrice'
 import {Disclaimer} from './Disclaimer'
