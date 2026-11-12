@@ -33,7 +33,7 @@ const investorRelationsArray = [
     {
         link:         'https://investor.tsmc.com/english/quarterly-results/2026/q3',
         name:         'Taiwan Semiconductor and manufecturing',
-        ticker:       'TSMC',
+        ticker:       'TSM',
     },
     {
         link:         'https://ir.appliedmaterials.com/static-files/425ac634-4ee7-4c41-a07f-fa9e3c42b797',
