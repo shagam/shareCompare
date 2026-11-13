@@ -505,6 +505,7 @@ const StockChart = (props) => {
         <div id = 'chart_id_'>
         {/* yaxis={'title': 'x-axis','fixedrange':True, 'autorange': false},
        yaxis={'title': 'y-axis','fixedrange':True}) */}
+       <div>&nbsp; </div>
           {(props.isMobile || static_) && <Plot  data={gainChart} 
             layout={{ width: 650, height: 350, title: title, staticPlot: true, yaxis: {fixedrange: false}  }}
              config={{staticPlot: true, 'modeBarButtonsToRemove': ['zoom','zoomOut','zoomIn','pan']}} />}
