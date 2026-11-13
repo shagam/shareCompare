@@ -57,6 +57,7 @@ import MarketStackApi from  './MarketStackApi'
 
 import {polygon} from './Polygon'
 
+import StockChart from './Stock-chart';
 
 import {LatestPrice} from './LatestPrice'
 import {Disclaimer} from './Disclaimer'
@@ -111,6 +112,7 @@ const BasicTable = (children) => {
   //   PORT = 5000
 
 const {chartSymbol, setChartSymbol,
+      symbol,
       infoSymbol, setInfoSymbol,
       gainMap, setGainMap,
       chartData, setChartData,
@@ -1092,7 +1094,7 @@ const {chartSymbol, setChartSymbol,
     </table>
 
     {/* Machanizms not for spacific sym */}
-    {! chartSymbol && <div style={{fontSize:'20px'}}> press <div style={{color: 'red', fontSize:'25px', fontStyle: "italic", fontWeight: "bold",  margin:'2px'}} 
+    {! chartSymbol && chartSymbol != '' && <div style={{fontSize:'20px'}}> press <div style={{color: 'red', fontSize:'25px', fontStyle: "italic", fontWeight: "bold",  margin:'2px'}} 
         className="wobble-text">gain</div>   &nbsp; for one or more symbols</div>}  
     
     <div id='trailer_id'>

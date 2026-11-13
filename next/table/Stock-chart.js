@@ -8,9 +8,9 @@ import "react-datepicker/dist/react-datepicker.css";
 // import "./StockChart.css";
 
 import {todaySplit, todayDate, todayDateSplit, dateSplit, monthsBack, daysBack, compareDate, daysFrom1970, 
-  searchDateInArray, monthsBackTest, daysBackTest, getDate, getDateSec, dateStr, year2Date} from './utils/Date';
+  searchDateInArray, monthsBackTest, daysBackTest, getDate, getDateSec, dateStr, year2Date} from '../utils/Date';
 
-import {IpContext, getIpInfo} from './contexts/IpContext';
+import {IpContext, getIpInfo} from '../contexts/IpContext';
 // import Plot from 'react-plotly.js';
 import dynamic from 'next/dynamic';
 
