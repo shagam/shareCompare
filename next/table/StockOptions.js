@@ -1425,24 +1425,16 @@ const {
 
           {/*   get-option-premium   */}
           {<div>
-            <button style={{background: 'aqua'}} type="button" onClick={()=>getOptionsInfoFromServer()}>  get-option-premium   </button> &nbsp;&nbsp;
+            <button style={{background: 'aqua'}} type="button" onClick={()=>getOptionsInfoFromServer()}>  get-options  </button> &nbsp;&nbsp;
             {/* {props.eliHome && optionQuote.expiration && <button style={{background: 'lightblue'}} type="button" onClick={()=>irregularPremium()}>  verify-descending-premium   </button>} &nbsp;&nbsp; */}
             {/* {dat && Object.keys(dat).length > 0 && <div>options from corsServer: {JSON.stringify(dat)} </div> } */}
             {/* <hr/>  */}
           </div>}
 
 
-          {/* select columns */}
-          <div style = {{display: 'flex'}}> <input type="checkbox" checked={columnHideFlag} 
-                onChange={()=>setColumnHideFlag (! columnHideFlag)}  />&nbsp;<strong>column-select</strong>  &nbsp; &nbsp; &nbsp; &nbsp; 
-             <button type="button" onClick={()=>columnsSetDefault ()}>default-columns </button> 
-          </div>  
-          {/* {config.strikeNum !== -1 && <div style = {{display: 'flex'}}>
-
-          </div>} */}
-
+      
           {columnHideFlag && <div >    
-            <hr style={{ border: '3px solid #000000'}}/> 
+            {/* <hr style={{ border: '3px solid #000000'}}/>  */}
             {/* columnShow  */}
             {/* <div style={{hight: '400px', color:'#119933', fontWeight: 'bold', fontStyle: "italic"}}> column-select  </div> */}
 
@@ -1487,8 +1479,16 @@ const {
           </div>}
 
           {/* premium quote table */}
-          {optionKeys.length > 0 && <h6 style={{color: 'blue'}}> Option Premium Table (click row to select for AI analysis) </h6>}
-     
+          {optionKeys.length > 0 && <h3 style={{color: 'blue'}}> Option Premium Table (click row to select to focus) </h3>}
+
+          {/* select columns */}
+          {optionKeys.length > 0 && <div style = {{display: 'flex'}}> 
+            <input type="checkbox" checked={columnHideFlag} 
+                onChange={()=>setColumnHideFlag (! columnHideFlag)}  />&nbsp;<strong>column-select</strong>  &nbsp; &nbsp; &nbsp; &nbsp; 
+            <button type="button" onClick={()=>columnsSetDefault ()}>default-columns </button> 
+          </div>}  
+
+
           {optionKeys.length > 0 && <div style={{maxHeight:'500px', maxWidth: '1400px', overflow:'auto'}}>
             <table>
                 <thead>
@@ -1544,7 +1544,7 @@ const {
           </div>}
       
           {/* ai page table */}
-          {AIGroupKeys.length > 0 && AIGroupShow && <h6 style={{color: 'blue'}}> AI Group from Option Premium Table </h6>}
+          {AIGroupKeys.length > 0 && AIGroupShow && <h4 style={{color: 'blue'}}> Option Focus Table </h4>}
           {AIGroupKeys.length > 0 && AIGroupShow && <div style={{height:'100px', maxWidth: '1400px', overflow:'auto'}}>
             <table>
                 <thead>
@@ -1583,11 +1583,12 @@ const {
 
         {/* selected row info  */}
         {premiumSelected !== -1 && <div>
-          <div style={{color: 'magenta'}}>Selected option premium row: {premiumSelected} </div>
+          {/* <div style={{color: 'magenta'}}>Selected option premium row: {premiumSelected} </div> */}
           <GetInt title='check premium' placeHolder={premium} init={premium} value={premium} pattern={undefined}
             type='Real' callBack={setPremium} width = '15%'/> &nbsp;&nbsp;
 
-          updatedPremium() {optionQuote && optionQuote.expiration && optionQuote.expiration[premiumSelected]
+          {/* updatedPremium()  */}
+          {optionQuote && optionQuote.expiration && optionQuote.expiration[premiumSelected]
            ? optionQuote.expiration[premiumSelected] : 'N/A'} &nbsp; &nbsp;
 
         </div>}
@@ -1595,12 +1596,11 @@ const {
 
 
         {/* OptionHistory button    */}
-        {premiumSelected !== -1 && <div>
-          
+        {premiumSelected !== -1 && <div>  
           <hr style={{ border: '3px solid #000000'}}/> 
           <button style={{background: 'aqua'}} type="button" onClick={()=>historecalOptionQuote (premiumSelected)}>
-            historical option primium </button> &nbsp; &nbsp;
-          </div>} 
+            historical option table </button> &nbsp; &nbsp; {symbol}
+        </div>} 
 
         {/* OptionHistiory table */}
          {optionHistoryKeys.length > 0 && <div style={{maxHeight:'500px', maxWidth: '780px', overflow:'auto'}}>
