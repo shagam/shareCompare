@@ -32,7 +32,7 @@ const StockChart = (props) => {
   const {ip, localIp, localIpv4, eliHome, city, countryName, regionName, userAgent, os} = IpContext();
   const [chartFlag, setChartFlag] = useState(first); // hide / show page
   const [multi, setMulti] = useState(true);
-  const [showRanges, setShowRanges] = useState();
+  const [showRanges, setShowRanges] = useState(false);
   const [static_, setStatic] = useState(props.isMobile);
 
   const [logarithmic, setLogarithmic] = useState(false);
