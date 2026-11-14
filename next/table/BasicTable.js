@@ -989,30 +989,27 @@ const {chartSymbol, setChartSymbol,
           <div></div>
          </div>
 
-      {/* insert sym, filter */}
-      <div style={{display:'flex'}} id="add_stock_id">
-        <form style={{display: 'flex'}} className='w-00 text-left mt-2 d-flex ' onSubmit = {handleAddFormSubmit}>
-          <input style={{width:'85px', height:'27px'}}
-            type="text"
-            name="symbol"
-            required="required"
-            placeholder="stock symbol"
-            onChange={handleAddFormChange}
-          />
-          <button style={{backgroundColor: 'rgba(85, 255, 227, 0.27)', whiteSpace:'nowrap', height:'27px', paddingTop: '5px'}} type="submit">Add  ({rows.length})  </button>
-        </form>&nbsp;&nbsp;
+      {/* insert sym, filter column_select   */}
+    <div id="add_stock_id" style={{display:'flex',alignItems:'center',gap:'5px'}}>
 
-        <div style={{display:'flex', paddingTop: '10px'}}>
-          <input type="checkbox" checked={columnHideFlag}  onChange={ columnHideFlagChange} 
-              title='select which columns are visible and which are hidden'/> 
-          <div style={{paddingTop: '6px'}}>column_select </div> &nbsp; 
-        </div>&nbsp;
-  
-        <div style={{height: '27px', marginTop: '16px'}}><button type="button" onClick={()=>hiddenColsSetDefault()}>columns_default</button></div> &nbsp;&nbsp;
-        <GlobalFilter style={{marginTop: '10px', height: '20px'}} className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter} name='Search/Filter' isMobile={isMobile} marginTop={'17px'}/>
+      <form className="w-00 text-left mt-2 d-flex" onSubmit={handleAddFormSubmit} style={{display:'flex',alignItems:'center',gap:'4px'}}>
+        <input type="text" name="symbol" required placeholder="stock symbol" onChange={handleAddFormChange} style={{width:'85px',height:'27px'}} />
+        <button type="submit" style={{backgroundColor:'rgba(85,255,227,0.27)',whiteSpace:'nowrap',height:'27px'}}>Add ({rows.length})</button>
+      </form>
+
+      <div style={{display:'flex',alignItems:'center',gap:'4px'}}>
+        <input type="checkbox" checked={columnHideFlag} onChange={columnHideFlagChange} title="select which columns are visible and which are hidden" />
+        <span>column_select</span>
       </div>
 
-      {columnHideFlag && 
+      <button type="button" onClick={hiddenColsSetDefault} style={{height:'27px'}}>
+        columns_default
+      </button>
+
+      <GlobalFilter className="stock_button_class" filter={globalFilter} setFilter={setGlobalFilter} name="Search/Filter" isMobile={isMobile}/>
+    </div>
+
+    {columnHideFlag && 
      <div id="columnToggle" style={{display: 'flex', flexWrap: 'wrap',gap: '8px 16px',
         width: '100%' // or omit if parent controls width
           }}
