@@ -1459,15 +1459,28 @@ const {
           <hr style={{ border: '3px solid #000000'}}/> 
 
           {optionQuote && optionQuote.expiration && <div>
-              <div style={{display: 'flex', fontWeight: 'bold'}}>
-                <div style={{color: 'magenta'}}>{chartSymbol} </div> &nbsp; &nbsp; 
-                stockPrice={price} &nbsp; &nbsp; price/High={priceDivHigh}  &nbsp; &nbsp; {! isNaN(belowBubble) &&<div>price/bubblePrice={belowBubble.toFixed(3)}</div>} &nbsp; &nbsp;
-              </div>
-              <div style={{display: 'flex', fontWeight: 'bold'}}>
-                count={optionQuote.expiration.length} &nbsp; &nbsp; bestYieldIndex={bestYearlyYieldIndex}  &nbsp; &nbsp;
-                <div style={{backgroundColor: CALCULATED_COLUMNS_COLOR}}> CALCULATED  </div> <div> &nbsp; &nbsp; yield := (expectedPrice - breakEven) / mid * 100 </div>
-              </div>
+          <div style={{display:'flex',flexDirection:'column',gap:'4px',fontWeight:'bold'}}>
 
+            <div style={{display:'flex',alignItems:'center',gap:'20px'}}>
+              <div style={{color:'magenta',minWidth:'70px'}}>{chartSymbol}</div>
+
+              <div>stockPrice={price}</div>
+
+              <div>price/High={priceDivHigh}</div>
+
+              {!isNaN(belowBubble) &&<div>price/bubblePrice={belowBubble.toFixed(3)}</div>}
+            </div>
+
+            <div style={{display:'flex',alignItems:'center',gap:'20px'}}>
+              <div>count={optionQuote.expiration.length}</div>
+
+              <div>bestYieldIndex={bestYearlyYieldIndex}</div>
+
+              <div style={{backgroundColor:CALCULATED_COLUMNS_COLOR,padding:'2px 6px'}}>   CALCULATED</div>
+            </div>
+              {/* <div>yield := (expectedPrice - breakEven) / mid * 100</div> */}
+
+          </div>
             {/* <div><input type="checkbox" checked={definitionsShow}  onChange={()=>setDefinitionsShow (! definitionsShow)}  />&nbsp;show-definitions </div> */}
             {definitionsShow && 
               <div>
