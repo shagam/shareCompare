@@ -5,12 +5,10 @@ import React, { useEffect, useState, useMemo } from 'react';
 
 
 function useStockOptionsMine () {
-    const [optionArray, setOptionArray] = useState({})
-    // const keys_ = Object.keys(optionArray)
-    // console.log ('keys=' + keys_, keys_[0])
-    // console.log ('optionArray=', optionArray)
-
-    // const keys__ = Object.keys(keys_)
+    const [optionArray, setOptionArray] = useState(() => {
+        return JSON.parse(localStorage.getItem("optionsMine")) || {};
+    });
+    const [selectedSymbol, setSelectedSymbol] = useState(null)
 
     function add(optionQuote, premiumSelected) {
         const i = premiumSelected;
@@ -26,13 +24,16 @@ function useStockOptionsMine () {
         };
 
         // Make a NEW copy, don't change the old one directly
-        setOptionArray((prev) => ({ ...prev, [optionSymbol]: option }));
+   
+        const updated = { ...optionArray, [optionSymbol]: option }; // 1. new object, not mutation
+        setOptionArray(updated);
+        localStorage.setItem("optionsMine", JSON.stringify(updated)); // 2. save the WHOLE updated object 
     }
 
-   function del(optionSymbol) {
+   function del(symbol) {
         setOptionArray((prev) => {
             const copy = { ...prev };
-            delete copy[optionSymbol];
+            delete copy[symbol];
             return copy;
         });
     }
@@ -55,7 +56,8 @@ function useStockOptionsMine () {
             return key.replace('_', '').replace(/([A-Z])/g, ' $1').replace(/^./, (c) => c.toUpperCase());
         }
 
-    return (
+    return ( <div> selected={selectedSymbol} 
+          &nbsp; <button type="button" onClick={()=> del(selectedSymbol)}>del-selected </button>
         <table style={{ borderCollapse: 'collapse', width: '100%' }}>
             <thead>
                 <tr>
@@ -66,7 +68,9 @@ function useStockOptionsMine () {
             </thead>
             <tbody>
                 {rows.map((option) => (
-                    <tr key={option.optionSymbol}>
+                    <tr key={option.optionSymbol}
+                     onClick={() => setSelectedSymbol(option.optionSymbol)}
+                         style={{ cursor: 'pointer', background: selectedSymbol === option.optionSymbol ? '#e0f0ff' : 'transparent' }}>
                         {columns.map((key) => (
                             <td  key={key} style={{...ROW_SPACING, border: '1px solid #ccc', }}>{option[key]}</td>
                         ))}
@@ -74,6 +78,9 @@ function useStockOptionsMine () {
                 ))}
             </tbody>
         </table>
+        <pre> {JSON.stringify(optionArray, null, 2)}</pre>
+
+        </div>
     );
     }
 

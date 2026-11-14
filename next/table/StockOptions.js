@@ -1565,7 +1565,7 @@ const {
           </div>}
       
           {/* ai page table */}
-          {AIGroupKeys.length > 0 && AIGroupShow && <h4 style={{color: 'blue'}}> Option Focus Table </h4>}
+          {AIGroupKeys.length > 0 && AIGroupShow && <h4 style={{color: 'blue'}}> Option Focus</h4>}
           {AIGroupKeys.length > 0 && AIGroupShow && <div style={{height:'100px', maxWidth: '1400px', overflow:'auto'}}>
             <table>
                 <thead>
