@@ -15,7 +15,6 @@ export default function Client() {
       // priceDivHigh={memoryStore.get('priceDivHigh')}
       errorAdd={memoryStore.get('errorAdd')}
       // daily={memoryStore.get('daily')}
-      eliHome={memoryStore.get('eliHome')}
       // corsServer={memoryStore.get('servSelect')}
       // ssl={memoryStore.get('ssl')}
       // PORT={memoryStore.get('PORT')}

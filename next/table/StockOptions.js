@@ -16,7 +16,7 @@ import { FaCog } from 'react-icons/fa';
 import { Helmet } from "react-helmet";
 import { useShared } from '../contexts/SharedContext';
 import { pageHeader } from './StockInfo'
-import {stocksOptionsMine} from './StockOptionsMine'
+import {useStockOptionsMine} from './StockOptionsMine'
 import {IpContext} from '../contexts/IpContext';
 
     // {pageHeader (chartSymbol, 'options', 'Calc expected option gain, based on average yearly gain, and expected stock price', err )}
@@ -29,7 +29,7 @@ import {IpContext} from '../contexts/IpContext';
 
 
 function StockOptions (props) {
-  console.log("StockOptions props:",  props);
+  // console.log("StockOptions props:",  props);
   const {eliHome} = IpContext();
   // const [quote, setQuote] = useState(null);
   // const optionSymbol = 'AAPL'+'250817C00' + '150000'; // Jan 2025 $150 AAPL Call
@@ -85,7 +85,7 @@ function StockOptions (props) {
   // const [priceDivHigh, setPriceDivHigh] = useState(-1); // price divided by 52 week high, for yield calculation
   const EXPECTED_PRICE_ADJUSTMENT = 0.25; //  priceDivHigh ** 0.2 is used to adjust the expected price, to avoid too high expected price for long term options, e.g. 1 year or more
 
-
+  const optionsMine = useStockOptionsMine();
   const [premium, setPremium] = useState(-1); // for display only, premium of selected option
   // const [arr, setArr] = useState([]);
   const [dat, setDat] = useState({});
@@ -1506,7 +1506,7 @@ const {
           {optionKeys.length > 0 && <div style = {{display: 'flex'}}> 
             <input type="checkbox" checked={columnHideFlag} 
                 onChange={()=>setColumnHideFlag (! columnHideFlag)}  />&nbsp;<strong>column-select</strong>  &nbsp; &nbsp; &nbsp; &nbsp; 
-            <button type="button" onClick={()=>columnsSetDefault ()}>default-columns </button> 
+            <button type="button" onClick={()=>columnsSetDefault ()}>default-columns </button>  &nbsp; &nbsp; selected-row={premiumSelected} 
           </div>}  
 
 
@@ -1543,8 +1543,8 @@ const {
                   })}
                 </tbody>
             </table>
+             <hr/> 
           </div>}
-          {premiumSelected !== -1 && <div>selected-row={premiumSelected} <hr/> </div>}
 
 
           {/* {premiumSelected !== -1 && <div  > StartDate:&nbsp; <DatePicker style={{ margin: '0px', size:"lg"}} 
@@ -1621,8 +1621,9 @@ const {
           <hr style={{ border: '3px solid #000000'}}/> 
           {symbol} <button style={{background: 'aqua'}} type="button" onClick={()=>historecalOptionQuote (premiumSelected)}>
             historical option table </button> &nbsp; &nbsp; 
-          {eliHome && <button style={{background: 'aqua'}} type="button" onClick={()=>stocksOptionsMine.add (premiumSelected, premiumSelected)}>
+          {eliHome && <button style={{background: 'aqua'}} type="button" onClick={()=>optionsMine.add(optionQuote, 0).add  (optionQuote, premiumSelected)}>
             optionMineAdd </button>} &nbsp; &nbsp; 
+          {<div> <optionsMine.List/> </div>}
         </div>} 
 
         {/* OptionHistiory table */}
