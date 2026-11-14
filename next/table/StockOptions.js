@@ -1621,7 +1621,7 @@ const {
           <hr style={{ border: '3px solid #000000'}}/> 
           {symbol} <button style={{background: 'aqua'}} type="button" onClick={()=>historecalOptionQuote (premiumSelected)}>
             historical option table </button> &nbsp; &nbsp; 
-          {eliHome && <button style={{background: 'aqua'}} type="button" onClick={()=>optionsMine.add(optionQuote, 0).add  (optionQuote, premiumSelected)}>
+          {eliHome && <button style={{background: 'aqua'}} type="button" onClick={()=>optionsMine.add (optionQuote, premiumSelected)}>
             optionMineAdd </button>} &nbsp; &nbsp; 
           {<div> <optionsMine.List/> </div>}
         </div>} 
