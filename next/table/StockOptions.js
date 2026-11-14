@@ -16,6 +16,9 @@ import { FaCog } from 'react-icons/fa';
 import { Helmet } from "react-helmet";
 import { useShared } from '../contexts/SharedContext';
 import { pageHeader } from './StockInfo'
+import {stocksOptionsMine} from './StockOptionsMine'
+import {IpContext} from '../contexts/IpContext';
+
     // {pageHeader (chartSymbol, 'options', 'Calc expected option gain, based on average yearly gain, and expected stock price', err )}
 // 
 // Zuberi Moshe
@@ -27,7 +30,7 @@ import { pageHeader } from './StockInfo'
 
 function StockOptions (props) {
   console.log("StockOptions props:",  props);
-
+  const {eliHome} = IpContext();
   // const [quote, setQuote] = useState(null);
   // const optionSymbol = 'AAPL'+'250817C00' + '150000'; // Jan 2025 $150 AAPL Call
   const TOKEN = process.env.NEXT_PUBLIC_MARKETDATA;
@@ -109,7 +112,6 @@ const {
       
       daily, setDaily,
       logFlags, setLogFlags,
-      eliHome, setEliHome,
       
       price, setPrice,
       priceDivHigh, setPriceDivHigh,
@@ -872,6 +874,12 @@ const {
       return;
     }
 
+    if (! symbol || symbol === '') {
+      setErr('Missing symbol. Click gain on any stock')
+      beep2()
+      return;
+    }
+
     if (isNaN(estimatedYearlyGain)){
       props.errorAdd ([chartSymbol, 'warning. config.YearlyGain is required for calculationg expected yield'])
       beep2()
@@ -1291,13 +1299,13 @@ const {
     <div style = {{ border: '2px solid blue', backgroundColor: '#f0f0e0'}} >
         {pageHeader (symbol, 'options', 'Calc expected option gain, based on average yearly gain, and expected stock price',
            err, 'https://youtube.com/shorts/YnNDCs4sUyA' )}
-        <strong style={{color: 'red'}}>(Please consult other sources, before taking a decision) </strong> 
+        <strong style={{color: 'purple'}}>(Please consult other sources, before taking a decision) </strong> 
 
         <div style = {{display: 'flex', fontWeight: 'bold'}}> stockPrice={price} &nbsp; &nbsp; price/High={priceDivHigh}  &nbsp; &nbsp; {! isNaN(belowBubble) &&<div>price/bubblePrice={belowBubble.toFixed(3)}</div>}  </div>
 
         {config.action === 'sell' && <h6  style={{color: '#c760ff'}}>  &nbsp;  Zero sum game. <strong style={{color: 'red'}}>Selling options</strong>, has unlimited potitial loss </h6>}
         {config.side === 'put' && <h6  style={{color: '#c760ff'}}>  &nbsp;  <strong style={{color: 'red'}}>put options, not supported. and never tested</strong> </h6>}
-        {err && <div style={{color: 'red'}}> {err} </div>}
+
         {/* flags checkboxes */}
         {props.eliHome && <div style = {{display: 'flex'}}>
           <div style = {{display: 'flex'}}> <input type="checkbox" checked={log}  onChange={()=>setLog (! log)}  />&nbsp;log &nbsp; &nbsp; </div>
@@ -1425,7 +1433,7 @@ const {
 
           {/*   get-option-premium   */}
           {<div>
-            <button style={{background: 'aqua'}} type="button" onClick={()=>getOptionsInfoFromServer()}>  get-options  </button> &nbsp;&nbsp;
+            <button style={{background: 'aqua'}} type="button" onClick={()=>getOptionsInfoFromServer()}>  options-get  </button> &nbsp;&nbsp;
             {/* {props.eliHome && optionQuote.expiration && <button style={{background: 'lightblue'}} type="button" onClick={()=>irregularPremium()}>  verify-descending-premium   </button>} &nbsp;&nbsp; */}
             {/* {dat && Object.keys(dat).length > 0 && <div>options from corsServer: {JSON.stringify(dat)} </div> } */}
             {/* <hr/>  */}
@@ -1456,7 +1464,7 @@ const {
              {/* {log && <p>Selected: {optionKeys.join(", ")}</p>}   */}
             </div>}
 
-          <hr style={{ border: '3px solid #000000'}}/> 
+          {/* <hr style={{ border: '3px solid #000000'}}/>  */}
 
           {optionQuote && optionQuote.expiration && <div>
           <div style={{display:'flex',flexDirection:'column',gap:'4px',fontWeight:'bold'}}>
@@ -1546,12 +1554,12 @@ const {
           {/* <hr/>  */}
       
           {optionKeys.length > 0 && <div><input type="checkbox" checked={calculated_Attributes} 
-                onChange={()=>setCalculated_Attributes (! calculated_Attributes)}  />&nbsp;AIGroup: includes calculated_Attributes&nbsp; &nbsp; </div>}
+                onChange={()=>setCalculated_Attributes (! calculated_Attributes)}  />&nbsp;focusGroup: includes calculated_Attributes&nbsp; &nbsp; </div>}
 
           {AIGroupKeys.length > 0 &&
           <div style = {{display: 'flex'}}>
             <input type="checkbox" checked={AIGroupShow} 
-                onChange={()=>setAIGroupShow (! AIGroupShow)}  />&nbsp;AIGroupShow &nbsp; &nbsp; count={AIGroupKeys.length}  &nbsp;  &nbsp; &nbsp;  &nbsp;
+                onChange={()=>setAIGroupShow (! AIGroupShow)}  />&nbsp;focusGroupShow &nbsp; &nbsp; count={AIGroupKeys.length}  &nbsp;  &nbsp; &nbsp;  &nbsp;
               <input type="checkbox" checked={optionSymbolShow} 
                 onChange={()=>setOptionSymbolShow (! optionSymbolShow)}  />&nbsp;optionSymbolShow &nbsp; &nbsp; 
           </div>}
@@ -1611,8 +1619,10 @@ const {
         {/* OptionHistory button    */}
         {premiumSelected !== -1 && <div>  
           <hr style={{ border: '3px solid #000000'}}/> 
-          <button style={{background: 'aqua'}} type="button" onClick={()=>historecalOptionQuote (premiumSelected)}>
-            historical option table </button> &nbsp; &nbsp; {symbol}
+          {symbol} <button style={{background: 'aqua'}} type="button" onClick={()=>historecalOptionQuote (premiumSelected)}>
+            historical option table </button> &nbsp; &nbsp; 
+          {eliHome && <button style={{background: 'aqua'}} type="button" onClick={()=>stocksOptionsMine.add (premiumSelected, premiumSelected)}>
+            optionMineAdd </button>} &nbsp; &nbsp; 
         </div>} 
 
         {/* OptionHistiory table */}
@@ -1650,6 +1660,7 @@ const {
                 </tbody>
             </table>
           </div>}
+
     </div>
   )
 }

@@ -12,7 +12,7 @@ function pageHeader (symbol, route_, description, err, tutorialLink) {
 
         <h4  style={{padding: '0px', margin: '0px', color:'#3374ee', fontWeight: 'bold', fontStyle: "italic"}}> {description}  </h4>        
         {tutorialLink && <a  href={tutorialLink}><b>{route_} </b>  <span style={{color: '#219c57'}}>tutorial link</span>  </a>}
-        {err && <div style={{color: 'red'}}>err</div>}
+        {err && <div style={{color: 'red'}}>{err}</div>}
         <hr/> 
         {/* <div> &nbsp;</div> */}
       </div>)       
