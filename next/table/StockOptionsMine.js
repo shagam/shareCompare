@@ -78,7 +78,7 @@ function useStockOptionsMine () {
                 ))}
             </tbody>
         </table>
-        <pre> {JSON.stringify(optionArray, null, 2)}</pre>
+        {/* <pre> {JSON.stringify(optionArray, null, 2)}</pre> */}
 
         </div>
     );
