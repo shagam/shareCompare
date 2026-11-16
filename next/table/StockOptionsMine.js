@@ -41,8 +41,11 @@ function useStockOptionsMine () {
     function get () {
         return optionArray;
     }
-    //  top, right, bottom, left 
-    const ROW_SPACING = {padding: "0px 7px 0px 7px", margin: 0}
+
+    function clear () {
+        setOptionArray({})
+        localStorage.removeItem("optionsMine")
+    }
 
     function List() {
         const rows = Object.values(optionArray);
@@ -56,8 +59,12 @@ function useStockOptionsMine () {
             return key.replace('_', '').replace(/([A-Z])/g, ' $1').replace(/^./, (c) => c.toUpperCase());
         }
 
-    return ( <div> selected={selectedSymbol} 
-          &nbsp; <button type="button" onClick={()=> del(selectedSymbol)}>del-selected </button>
+    //  top, right, bottom, left 
+    const ROW_SPACING = {padding: "0px 7px 0px 7px", margin: 0}
+    return (
+         <div>
+            {selectedSymbol != null && <div> selected={selectedSymbol} </div>}
+          &nbsp; <button style={{background: 'aqua'}} type="button" onClick={()=> del(selectedSymbol)}>del-selected </button>
         <table style={{ borderCollapse: 'collapse', width: '100%' }}>
             <thead>
                 <tr>
@@ -84,7 +91,7 @@ function useStockOptionsMine () {
     );
     }
 
-    return { optionArray, add, del, get, List };
+    return { optionArray, add, del, get, List, clear };
 }
 
 export {useStockOptionsMine};

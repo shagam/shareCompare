@@ -1657,10 +1657,12 @@ const {
             </table>
           </div>}
 
-        {premiumSelected !== -1 && <div>  
+        {eliHome && premiumSelected !== -1 && <div>  
           <hr style={{ border: '3px solid #000000'}}/>             
-          {eliHome && <button style={{background: 'aqua'}} type="button" onClick={()=>optionsMine.add (optionQuote, premiumSelected)}>
-            optionMineAdd </button>} &nbsp; &nbsp; 
+          <button style={{background: 'aqua'}} type="button" onClick={()=>optionsMine.add (optionQuote, premiumSelected)}>
+            optionMineAdd </button> &nbsp; &nbsp; 
+          <button style={{background: 'aqua'}} type="button" onClick={()=>optionsMine.clear()}>
+            optionMineClear </button> &nbsp; &nbsp; 
           {<div> <optionsMine.List/> </div>}
         </div>} 
 
