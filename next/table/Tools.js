@@ -43,7 +43,7 @@ function Tools (props) {
     } = useShared();
      
     return (
-        <div style = {{border: '2px solid blue', background: '#f0f0e0', padding: '5px', margin: '5px'}} >
+        <div >
              
             {pageHeader (symbol, 'tools', '', '')}
 

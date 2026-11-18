@@ -108,7 +108,7 @@ export default function ContactUs (props)  {
 
 // style = {{ border: '2px solid blue', backgroundColor: '#f0f0e0'}}
   return (
-    <div style = {{width:'600px', fontSize: '18px', border: '2px solid maroon', background: '#f0f0e0', padding: '5px', margin: '5px'}} >
+    <div >
 
   
       {/* <h2 className='text-center mb-4'>Contact Us</h2> */}

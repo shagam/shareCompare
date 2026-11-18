@@ -15,8 +15,9 @@ export default function RootLayout({ children, }: {
         <AuthProvider>
           <SharedProvider>
             <BasicTable/>
-              {children }
-          {/* </BasicTable> */}
+              <div  style={{border: '2px solid blue',background: '#f0f0e0', padding: '6px',}}>
+                {children }
+              </div>
           </SharedProvider>
         </AuthProvider>
       </body>

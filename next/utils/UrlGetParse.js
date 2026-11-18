@@ -128,7 +128,7 @@ function UrlGetParse (props) {
   }
 
   return (
-    <div style = {{ border: '2px solid green'}}>
+    <div >
       <div style={{display:'flex'}}>
         <h6 style={{color: 'blue'}}> UrlGetParse &nbsp;  </h6>
         <h6  style={{color:'#33ee33', fontWeight: 'bold', fontStyle: "italic"}}> &nbsp; url get and parse (under development)&nbsp; </h6>

@@ -947,7 +947,7 @@ const Simulate = (props) => {
 
  
     return (
-        <div style = {{border: '2px solid blue'}} id='deepRecovery_id' >
+        <div>
              {pageHeader (props.symbol, 'Simulate-trade', 'Simulate optimized trade according to distance from bubbleLine ',
                err, 'https://youtube.com/shorts/ziRLU3XPJRY?feature=share' )}
             <div> &nbsp;</div>

@@ -6,7 +6,7 @@ import {formatDate} from '../utils/Date';
 import {getDate} from '../utils/Date'
 import {IpContext} from '../contexts/IpContext';
 import {useAuth} from '../contexts/AuthContext';
-
+import { pageHeader } from './StockInfo'
 
 // https://62.0.92.49:5000/splits?stock=MSFT
 // https://dinagold.org:5000/splits?stock=MSFT

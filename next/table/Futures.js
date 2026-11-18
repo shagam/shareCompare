@@ -222,7 +222,7 @@ function Futures (props) {
     //** top, right, bottom, left*/
 
     return (
-        <div style = {{ border: '2px solid green'}}>
+        <div>
           
             {/* <hr/>  */}
 

@@ -309,7 +309,7 @@ const Peak2PeakGui = (props) => {
   const ROW_SPACING = {padding: '2px', margin: '2px'}
 
   return (
-    <div style = {{border: '2px solid blue', background: '#f0f0e0', padding: '5px', margin: '5px'}} id='deepRecovery_id' >
+    <div >
         <div> 
             {pageHeader (symbol, 'bubbleLine', 'Exponential line that passes through stock prices of last major bubbles (2008, 2021) (long term gain)',
                null, 'https://youtube.com/shorts/29TnD1h8ZPs' )}

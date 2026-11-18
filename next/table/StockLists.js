@@ -388,7 +388,7 @@ function StockLists (props) {
 
 
     return (
-        <div style={{border:'2px solid blue', background: '#f0f0e0', padding: '5px', margin: '5px'}} id='deepRecovery_id' >
+        <div>
             {pageHeader ('', 'stockLists', 'Stock lists.  Save and Share lists', null, 'https://youtube.com/shorts/S_eBgij72Zk')}
             {<div>
 

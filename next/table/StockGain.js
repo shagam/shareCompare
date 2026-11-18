@@ -112,7 +112,7 @@ const StockGain = (props) => {
   //  top, right, bottom, left 
 
   return (
-    <div style={{border:'2px solid blue', background: '#f0f0e0', padding: '5px', margin: '5px'}} id='deepRecovery_id' >
+    <div>
       <div> 
         {pageHeader (symbol, 'gainRaw', 'Raw price history', null, 'https://youtube.com/shorts/BpC7wK7Psvw')} 
           

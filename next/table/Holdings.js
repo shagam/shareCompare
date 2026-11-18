@@ -315,7 +315,7 @@ function Holdings (props) {
 
 
   return (
-    <div style={{ border: '2px solid blue', background: '#f0f0e0', padding: '5px', margin: '5px'}}> 
+    <div > 
 
       {pageHeader (symbol, 'holdings', 'Get holdings of an ETF. (Allow to insert holdings into stock-table) ',
          null, 'https://youtube.com/shorts/jlFlJfKPGrE' )} 

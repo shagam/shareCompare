@@ -55,7 +55,7 @@ const StockInfo = (props) => {
 
   
   return (
-    <div style = {{ border: '2px solid blue', background: '#f0f0e0', padding: '5px', margin: '5px'}} >
+    <div>
       <div> 
       {/* {! stockInfo && <h6 style={{color: 'red'}}> No info (probably an ETF)  </h6>} */}
       

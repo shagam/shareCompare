@@ -134,7 +134,7 @@ function InvestorRelations () {
 
     return (
 
-    <div style = {{ border: '2px solid blue', background: '#f0f0e0', padding: '5px', margin: '5px'}} >
+    <div >
 
         {pageHeader (null, 'Investor Relations links', 'Financial Information for investors and shareholders. Quaterly and yearly', null,null)}
 

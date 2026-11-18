@@ -205,7 +205,7 @@ function MarketOpenPrice (props) {
 
 
     return (
-        <div style = {{ border: '2px solid blue'}}>
+        <div>
 
             {/* <div style = {{display: 'flex'}}>
                 <div  style={{color: 'magenta' }}>  {props.symbol} </div>  &nbsp; &nbsp;

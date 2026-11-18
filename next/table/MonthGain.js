@@ -402,7 +402,7 @@ function MonthGain (props) {
   const ROW_SPACING = {padding: '2px', margin: '2px'}
 
   return (
-    <div style={{border:'2px solid blue', background: '#f0f0e0', padding: '5px', margin: '5px'}} id='deepRecovery_id_' >
+    <div >
         {pageHeader (symbol, 'monthGain', 'Average monthly & weekly gain, over many years', null, 'https://youtube.com/shorts/zQdRjpuYkjA')}
 
 

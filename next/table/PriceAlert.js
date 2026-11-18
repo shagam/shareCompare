@@ -147,7 +147,7 @@ function PriceAlert (props) {
     const drop_or_rise = above ?  'above' : 'below'
 
     return (
-        <div style={{ border: '2px solid blue', background: '#f0f0e0', padding: '5px', margin: '5px'}} id='deepRecovery_id' >
+        <div>
 
             {/* ====== Header titles */} 
             {pageHeader (symbol, 'priceAlert', 'Price alert setting ', null, 'https://youtube.com/shorts/AK38qRao-TE')}

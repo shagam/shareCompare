@@ -253,7 +253,7 @@ function LeverageETF (props) {
     //** top, right, bottom, left*/
 
     return (
-        <div style = {{ border: '2px solid blue'}}>
+        <div>
             {pageHeader (symbol, 'LeverageETF', 'Support strategy for trading leverage ETF (like TQQQ) ' )} 
    
             <h4 style={{color:'#993333', fontWeight: 'bold', fontStyle: "italic"}}>The tool searches date of highest before the initial date  (like TQQQ)</h4>

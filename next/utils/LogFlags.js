@@ -104,7 +104,7 @@ const {chartSymbol, setChartSymbol,
      checked.includes(item) ? "checked-item" : "not-checked-item";
  
     return (
-      <div style={{ border: '2px solid magenta', padding: '0px', background: '#f0f0e0', margin: '5px'}} >
+      <div>
         <hr/> 
         <div>
             <Link href="/" > Home </Link>

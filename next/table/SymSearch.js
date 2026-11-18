@@ -67,7 +67,7 @@ function SymSearch() {
         const ROW_SPACING = {padding: "5px 5px 2px 8px", margin: '0px'}
 
     return (
-        <div  style = {{ border: '2px solid green', backgroundColor: '#f0f0f0', padding: '5px', margin: '5px'}} >
+        <div  >
             {pageHeader ('', 'symSearch', 'Search pattern (symbol) in AlphaVantage repository')}
 
             <div style={{display: 'flex', alignItems: 'left'}}>

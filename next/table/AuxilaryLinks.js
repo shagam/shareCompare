@@ -18,7 +18,7 @@ function AuxilaryLinks () {
     // https://www.w3schools.com/cssref/pr_class_display.php
     return (
     
-    <div style = {{ border: '2px solid blue', background: '#f0f0e0', padding: '5px', margin: '5px'}} >
+    <div>
         <div className='w-100 text-left mt-2'>
             <Link href="/" > Home </Link>
         </div>

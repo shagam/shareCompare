@@ -341,7 +341,7 @@ function Ai  (props) {
 
 
  return (
-    <div style = {{border: '2px solid blue'}} >
+    <div>
       {pageHeader (props.chartSymbol, 'ai', '', err)}
 
       {/* <div  style = {{display: 'flex'}}><h3>AI API  </h3>  &nbsp; &nbsp; (under development) </div> */}

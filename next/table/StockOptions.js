@@ -1296,7 +1296,7 @@ const {
   const ROW_SPACING = {padding: "0px 7px 0px 7px", margin: 0}
 
   return (
-    <div style = {{ border: '2px solid blue', backgroundColor: '#f0f0e0'}} >
+    <div>
         {pageHeader (symbol, 'options', 'Calc expected option gain, based on average yearly gain, and expected stock price',
            err, 'https://youtube.com/shorts/YnNDCs4sUyA' )}
         <strong style={{color: 'purple'}}>(Please consult other sources, before taking a decision) </strong> 

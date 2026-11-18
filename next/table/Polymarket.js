@@ -182,7 +182,7 @@ const QQQ_MARKET_ID = "0x1234567890abcdef1234567890abcdef12345678";
   const ROW_SPACING = {padding: "0px 7px 0px 7px", margin: 0}
  
   return (
-    <div style={{border: '2px solid green'  }}>
+    <div>
         <h6 style={{color: 'blue'}}> polymarket &nbsp;  </h6>
         <h6  style={{color:'#33ee33', fontWeight: 'bold', fontStyle: "italic"}}> &nbsp; polymarket &nbsp; </h6>
         {error && <div style={{color:'red'}}> {error} </div>}
