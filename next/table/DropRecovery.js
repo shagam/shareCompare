@@ -21,7 +21,7 @@ import { pageHeader } from './StockInfo'
 // visible part
 const DropRecoveryButtons = (props) => {
 
-const {chartSymbol, setChartSymbol,
+const {
       infoSymbol, setInfoSymbol,
       gainMap, setGainMap,
       chartData, setChartData,
@@ -47,8 +47,6 @@ const {chartSymbol, setChartSymbol,
   
     } = useShared();
 
-
-  // props.StockSymbol
   // props.rows
   // props.allColumhs
   // props.deepStartDate
@@ -85,7 +83,7 @@ const {chartSymbol, setChartSymbol,
     setDateOfEqualVal()
     setDropRecoveryInfo()
     setErr()
-  }, [props.StockSymbol, dropStartDate,props.daily]) 
+  }, [symbol, dropStartDate,props.daily]) 
 
 
 
@@ -407,9 +405,9 @@ function dropRecovery (rows, StockSymbol, stockChartXValues, stockChartYValues, 
    //  2007, 11, 1  2008 deep
 
    function swap_period_2001() {
-    var startBeforeDropIndex = searchDateInArray (props.stockChartXValues, [2000, 0, 1], props.StockSymbol, props.logFlags, setErr)  
+    var startBeforeDropIndex = searchDateInArray (props.stockChartXValues, [2000, 0, 1], symbol, props.logFlags, setErr)  
     if (startBeforeDropIndex === -1 || props.stockChartYValues.length <= startBeforeDropIndex) {
-      props.errorAdd([props.StockSymbol, '[2000, 0, 1]', 'Date before available data'])
+      props.errorAdd([symbol, '[2000, 0, 1]', 'Date before available data'])
       return;
     }
 
@@ -418,9 +416,9 @@ function dropRecovery (rows, StockSymbol, stockChartXValues, stockChartYValues, 
   }
 
   // function swap_period_2008() {
-  //   var startBeforeDropIndex = searchDateInArray (props.stockChartXValues, [2008, 0, 1], props.StockSymbol, props.logFlags, setErr)  
+  //   var startBeforeDropIndex = searchDateInArray (props.stockChartXValues, [2008, 0, 1], symbol, props.logFlags, setErr)  
   //   if (startBeforeDropIndex === -1 || props.stockChartYValues.length <= startBeforeDropIndex) {
-  //     props.errorAdd([props.StockSymbol, '[2008, 0, 1]', 'Date before available data'])
+  //     props.errorAdd([symbol, '[2008, 0, 1]', 'Date before available data'])
   //     return;
   //   }
 
@@ -429,9 +427,9 @@ function dropRecovery (rows, StockSymbol, stockChartXValues, stockChartYValues, 
   // }
 
   // function swap_period_2020() {
-  //   var startBeforeDropIndex = searchDateInArray (props.stockChartXValues, [2020, 0, 1], props.StockSymbol, props.logFlags, setErr)  
+  //   var startBeforeDropIndex = searchDateInArray (props.stockChartXValues, [2020, 0, 1], symbol, props.logFlags, setErr)  
   //   if (startBeforeDropIndex === -1 || props.stockChartYValues.length <= startBeforeDropIndex) {
-  //     props.errorAdd([props.StockSymbol, '[2020, 0, 1]', 'Date before available data'])
+  //     props.errorAdd([symbol, '[2020, 0, 1]', 'Date before available data'])
   //     return;
   //   }
   //   setDropStartDate (new Date(2020, 0, 1));  // 2020 jan 1
@@ -486,7 +484,7 @@ function dropRecovery (rows, StockSymbol, stockChartXValues, stockChartYValues, 
   }
 
   //  skip analysis if no symbol
-  const row_index = props.rows.findIndex((row)=> row.values.symbol === props.StockSymbol);
+  const row_index = props.rows.findIndex((row)=> row.values.symbol === symbol);
 
 
 
@@ -509,7 +507,7 @@ function dropRecovery (rows, StockSymbol, stockChartXValues, stockChartYValues, 
       return true;
     else {
       console.log ('date mismatch. need to gain click', 'deepDate', deepDate, 'startDate', startDate)
-      // errorAdd ([props.StockSymbol, 'big date diff, deepDate' + deepDate + 'startDate'+ startDate])
+      // errorAdd ([symbol, 'big date diff, deepDate' + deepDate + 'startDate'+ startDate])
       return false;
     }
   }
@@ -537,7 +535,7 @@ function dropRecovery (rows, StockSymbol, stockChartXValues, stockChartYValues, 
   }
 
   function colorButton (title) {
-    // console.log ('colorButton', title, dropStartDate, props.StockSymbol)
+    // console.log ('colorButton', title, dropStartDate, symbol)
     const year = dropStartDate.getFullYear()
     if (year === title) {
         return 'lightGreen';
@@ -574,7 +572,7 @@ function dropRecovery (rows, StockSymbol, stockChartXValues, stockChartYValues, 
           </div>
      {/* */}
 
-          <button style={{background: 'aqua'}} type="button" onClick={()=>dropRecovery(props.rows, props.StockSymbol, props.stockChartXValues, props.stockChartYValues, 
+          <button style={{background: 'aqua'}} type="button" onClick={()=>dropRecovery(props.rows, symbol, props.stockChartXValues, props.stockChartYValues, 
             dropStartDate, props.logFlags, ! props.daily, chartData, props.errorAdd)}>  DropRecoveryCalc    </button> &nbsp;
           {dropRecoveryInfo && <button type="button" onClick={()=>toggleDropRecoveryColumns()}>Drop_recovery_columns  </button>}
           
@@ -585,7 +583,7 @@ function dropRecovery (rows, StockSymbol, stockChartXValues, stockChartYValues, 
 
           <hr style={{ border: '3px solid #000000'}}/> 
           {dropRecoveryInfo && <div style={{width: '300px'}}>
-            <h5> DropRecovery Result for {props.StockSymbol} </h5>
+            <h5> DropRecovery Result for {symbol} </h5>
             <table border="1" >
               <tbody>
                 {Object.entries(dropRecoveryInfo).map(([key, value]) => (   
@@ -604,7 +602,7 @@ function dropRecovery (rows, StockSymbol, stockChartXValues, stockChartYValues, 
           {/* {summeryShow && <pre>{JSON.stringify(dropRecoveryInfoExtra, null, 2)}</pre>} */}
 
           {summeryShow && dropRecoveryInfoExtra && <div style={{width: '300px'}}>
-          <h5> Extra info for {props.StockSymbol} </h5>
+          <h5> Extra info for {symbol} </h5>
           <table border="1" >
               <tbody>
                 {Object.entries(dropRecoveryInfoExtra).map(([key, value]) => (   
