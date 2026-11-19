@@ -1,8 +1,7 @@
 "use client";
 import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
-import DatePicker, {moment} from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
+
 // import {IpContext} from '../contexts/IpContext';
 import GetInt from '../utils/GetInt'
 import {format, set} from "date-fns"

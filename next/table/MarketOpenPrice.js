@@ -1,8 +1,6 @@
 "use client";
 import React, {useState, useEffect} from 'react'
 // import Picker from 'react-month-picker'
-import DatePicker, {moment} from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
 import { toDate } from "date-fns";
 import {format} from "date-fns"
 import {todayDate, dateSplit, monthsBack, daysBack, compareDate, daysFrom1970, searchDateInArray} from '../utils/Date'
