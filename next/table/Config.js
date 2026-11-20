@@ -1,5 +1,5 @@
 "use client";
-import React, {useState} from 'react';
+import React, {useState, useMemo, useEffect} from 'react';
 
 import AlphaVantage from '../AlphaVantage'
 
@@ -11,9 +11,38 @@ import {beep2, beep} from '../utils/ErrorList'
 import {disclaimerPurge, getDisclaimerDate} from './Disclaimer'
 import { useShared } from '../contexts/SharedContext';
 import { pageHeader } from './StockInfo'
-
+import { ComboBoxSelect } from '../utils/ComboBoxSelect'
+import {todaySplit, todayDate, todayDateSplit, dateSplit, monthsBack, daysBack, compareDate, daysFrom1970, 
+  searchDateInArray, monthsBackTest, daysBackTest, getDate, getDateSec, dateStr, isDailyXArray} from '../utils/Date'
+import memoryStore from "../components/MemoryStore";
 
 const  Config = (props) => { 
+
+const {chartSymbol, setChartSymbol,
+      symbol,
+      infoSymbol, setInfoSymbol,
+      gainMap, setGainMap,
+      chartData, setChartData,
+      stockInfo, setStockInfo,
+      gainRawDividand, setGainRawDividand,
+      gainData, setGainData,
+      
+      daily, setDaily,
+      logFlags, setLogFlags,
+
+      price, setPrice,
+      priceDivHigh, setPriceDivHigh,
+
+      stockChartXValues, setStockChartXValues,
+      stockChartYValues, setStockChartYValues,
+
+      servList,
+      servNameList, 
+      servSelect, setServSelect,
+      ssl, setSsl,
+      PORT, setPORT,
+
+    } = useShared();
 
   const [configFlag, setConfigFlag] = useState (false);
   //console.log(`AlphaVantage localStorage ${alpha}`); 
@@ -25,6 +54,74 @@ const  Config = (props) => {
   const [disclaimerDate, setDisclaimerDate] = useState('')
 
   const configFlagChange = () => {setConfigFlag (! configFlag)}
+
+
+  const portArray = [5000, 5001]
+
+  const tblHightOPtions = ['20vh','30vh', '40vh', '50vh','60vh', '75vh'];
+  const [tablHight, setTablHight] = useState(() => localStorage.getItem("tblHight") || tblHightOPtions[2]);
+  const tblWidthOPtions = ['75vw', '100vw', '120vw', '140vw', '160vw'];
+  const [tablWidth, setTablWidth] = useState(() => localStorage.getItem("tblWidth") || tblWidthOPtions[1]);
+
+
+  var  yearlyPercent_temp = useMemo(() => (localStorage.getItem('yearlyPercent')), []);
+  var yearlyPercent;
+  if (yearlyPercent_temp)
+    yearlyPercent = true
+  else
+    yearlyPercent = false
+
+  useEffect (() => { 
+    // setGainMap([]);
+    // setChartSymbol()
+          }, [daily]) 
+  memoryStore.set('yearlyPercent', yearlyPercent);
+  memoryStore.set('tablHight', tablHight);
+  memoryStore.set('tablWidth', tablWidth);
+
+  const rows = memoryStore.get('rows');
+  const saveTable = memoryStore.get('saveTable');
+
+  function purgeRestoreStockTable () {
+    const keys = Object.keys(rows);
+    // empty table 
+    for (let i = keys.length -1; i >= 0; i--) {
+      delete rows[i].values.mon
+      delete rows[i].values.mon3
+      delete rows[i].values.mon6
+      delete rows[i].values.year
+      delete rows[i].values.year2
+      delete rows[i].values.year5
+      delete rows[i].values.year10
+      delete rows[i].values.year20
+    }
+    setGainMap([]);
+    setChartSymbol()
+    saveTable();
+    window.location.reload(false);
+  }
+
+  function setYearlyPercent_wrapper () {
+    // setYearlyPercent(! yearlyPercent)
+    yearlyPercent = ! yearlyPercent
+    purgeRestoreStockTable ()
+    if (yearlyPercent)
+      localStorage.setItem('yearlyPercent',yearlyPercent)
+    else
+      localStorage.removeItem('yearlyPercent')
+  }
+
+  function setYearlyPercent_wrapper () {
+    // setYearlyPercent(! yearlyPercent)
+    yearlyPercent = ! yearlyPercent
+    purgeRestoreStockTable ()
+    if (yearlyPercent)
+      localStorage.setItem('yearlyPercent',yearlyPercent)
+    else
+      localStorage.removeItem('yearlyPercent')
+  }
+
+
 
   function purgeTableLoadDefault () {
     purgeStockTable ()
@@ -98,6 +195,37 @@ const  Config = (props) => {
           <hr style={{ border: '3px solid #000000'}}/> 
           <div style={{display: 'flex'}}>Url:  &nbsp;  <div style={{color: '#0077ff'}}> {window.location.href} </div> </div>
 
+
+
+          {/* from BasicTable */}
+          <hr style={{ border: '3px solid #000000'}}/> 
+          {/* <div>Lauout</div> */}
+          <div style={{display:'flex'}}>
+
+
+            <div style={{display:'flex'}}>
+              <ComboBoxSelect serv={servSelect} nameList={servNameList} setSelect={setServSelect} title='backEnd' options={servList} defaultValue={servSelect}/> &nbsp;&nbsp; 
+            </div> 
+            {eliHome && <div style={{display:'flex'}}> <ComboBoxSelect serv={PORT} nameList={portArray} setSelect={setPORT} title='' options={portArray} defaultValue={PORT}/> &nbsp;&nbsp;</div>} &nbsp; &nbsp;       
+          </div>       
+
+          <div style={{display:'flex'}}>
+            <ComboBoxSelect serv={daily} nameList={['weekly','daily',]} setSelect={setDaily} title='' TITLE='data resultion. weekly or daily ' options={[false,true]} defaultValue={false} /> &nbsp;
+              {stockChartYValues.length > 0 && isDailyXArray(stockChartXValues) !== daily && <div style={{color:'red'}}>mode missmatch, press gain</div>}
+              
+            {eliHome && <ComboBoxSelect serv={yearlyPercent} nameList={['gain_factor','year_percent',]} setSelect={setYearlyPercent_wrapper} 
+                TITLE={'table entries: yearly-percent gain vs gain-factor (1.5 means 50% gain)'} options={[false,true]} defaultValue={false} />} &nbsp; &nbsp;
+          </div>  
+
+
+          <div style={{display:'flex'}}>
+            <ComboBoxSelect serv={tablHight} nameList={tblHightOPtions} setSelect={setTablHight} title='Table:_height' options={tblHightOPtions} defaultValue={tablHight} localStore = "tblHight"/> &nbsp;
+            <ComboBoxSelect serv={tablWidth} nameList={tblWidthOPtions} setSelect={setTablWidth} title='width' options={tblWidthOPtions} defaultValue={tablWidth} localStore = "tblWidth"/>
+          </div>      
+
+
+          {/* Service info */}
+          <hr style={{ border: '3px solid #000000'}}/> 
           {eliHome && <div><input  type="checkbox" checked={serviceInfo}  onChange={() => setServiceInfo(! serviceInfo)} />  service-info </div>}
 
           {serviceInfo && <div>
