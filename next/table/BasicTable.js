@@ -1148,12 +1148,11 @@ const {chartSymbol, setChartSymbol,
                 <Link style={{background: routeColor('/tutorials'), fontWeight: "bold"}} href="/tutorials">Tutorials</Link> &nbsp; 
                 {/* <Link style={{background: routeColor('/about')}} href="/about">About</Link>&nbsp;  */}
                 {/* <Link href="/manual">Manual</Link> &nbsp; &nbsp; */}
-
-                {<Link style={{background: routeColor('/auxilaryLinks'), color: '#9932CC'}} href="/auxilaryLinks">Auxilary-links</Link>} &nbsp;
-                {eliHome && <Link style={{background: routeColor('/investorRelations'), color: '#9932CC'}} href="/investorRelations">Investor-Relations </Link>} &nbsp;
-                </div>
+                <Link style={{background: routeColor('/investorRelations'), color: '#9932CC'}} href="/investorRelations">Investor-Relations </Link> &nbsp;
+                <Link style={{background: routeColor('/auxilaryLinks'), color: '#9932CC'}} href="/auxilaryLinks">Auxilary-links</Link> &nbsp;
+              </div>
                 
-                <div>
+              <div>
                 {eliHome && <Link style={{background: routeColor('/logFlags'), color: '#9932CC'}} href="/logFlags">console-log-flags</Link>} &nbsp;
 
                 {eliHome && <Link style={{background: routeColor('/futures'), color: '#9932CC'}} href="/futures">futures </Link>} &nbsp;
