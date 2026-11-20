@@ -911,7 +911,7 @@ const {chartSymbol, setChartSymbol,
         <div id="buttons_id" style={{display:'flex'}}> 
         </div>
         {/* {eliHome && <ServerSelect />} */}
-         
+
 
         <div id="buttons_id" style={{display:'flex', padding:'5px'}}>
           {/* {admin && <div> <input  type="checkbox" checked={splitsCalcFlag}  onChange={calcChange} /> calc_splits &nbsp;</div>}      */}
@@ -937,8 +937,8 @@ const {chartSymbol, setChartSymbol,
       {/* insert sym, filter column_select   */}
     <div id="add_stock_id" style={{display:'flex',alignItems:'center',gap:'5px'}}>
 
-      <form className="w-00 text-left mt-2 d-flex" onSubmit={handleAddFormSubmit} style={{display:'flex',alignItems:'center',gap:'4px', marginTop: '6px'}}>
-        <input type="text" name="symbol" required placeholder="stock symbol" onChange={handleAddFormChange} style={{width:'85px',height:'27px'}} />
+      <form className="w-00 text-left mt-2 d-flex" onSubmit={handleAddFormSubmit} style={{display:'flex',alignItems:'center',gap:'4px', marginTop: '8px'}}>
+        <input type="text" name="symbol" required placeholder="stock symbol" onChange={handleAddFormChange} style={{width:'85px',height:'22px'}} />
         <button type="submit" style={{backgroundColor:'rgba(85,255,227,0.27)',whiteSpace:'nowrap',height:'27px'}}>Add ({rows.length})</button>
       </form>
 
