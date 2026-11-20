@@ -21,8 +21,8 @@ const  Config = (props) => {
   const {userAgent, userAgentMobile, isAndroid, isIPhone, isMobile} = MobileContext();
   const { resetPassword, currentUser, admin } = useAuth(); //, currentUser
 
-  const [serviceInfo, setServiceInfo] = useState()
-  const [disclaimerDate, setDisclaimerDate] = useState()
+  const [serviceInfo, setServiceInfo] = useState('')
+  const [disclaimerDate, setDisclaimerDate] = useState('')
 
   const configFlagChange = () => {setConfigFlag (! configFlag)}
 
