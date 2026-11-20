@@ -507,10 +507,13 @@ const StockChart = (props) => {
        yaxis={'title': 'y-axis','fixedrange':True}) */}
        <div>&nbsp; </div>
           {(props.isMobile || static_) && <Plot  data={gainChart} 
-            layout={{ width: 650, height: 350, title: title, staticPlot: true, yaxis: {fixedrange: false}  }}
+            layout={{ width: 500, height: 350, title: title, staticPlot: true, yaxis: {fixedrange: false},
+             margin: { l: 35, r: 10, t: 35, b: 35, pad: 0 },  }}
              config={{staticPlot: true, 'modeBarButtonsToRemove': ['zoom','zoomOut','zoomIn','pan']}} />}
+
           {! (props.isMobile || static_) && <Plot  data={gainChart} 
-            layout={{ width: 650, height: 500, title: title, yaxis: {autorange: true, }, xaxis:{tickformat: '%Y-%b-%d'} }}
+            layout={{ width: 500, height: 500, title: title, yaxis: {autorange: true, }, xaxis:{tickformat: '%Y-%b-%d'},
+            margin: { l: 35, r: 10, t: 35, b: 35, pad: 0 }, }}
              config={{'modeBarButtonsToRemove': []}} />}
         </div>
 
