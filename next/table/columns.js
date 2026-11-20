@@ -293,8 +293,8 @@ export const GROUPED_COLUMNS = [
     ]
   },
   {
-    Header: 'gain: (factor, yearPercent)',
-    Footer: 'gain: (factor, yearPercent)',
+    Header: 'gain-factor',
+    Footer: 'gain-factor',
     accessor: 'gain',
     disableSortBy: true,       
     columns: [
