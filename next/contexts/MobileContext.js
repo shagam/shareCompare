@@ -6,9 +6,9 @@ import  { useState, useEffect } from 'react'
 export const MobileContext = () => {
   const [userAgent, setUserAgent] = useState("");
   const [userAgentMobile, setUserAgentMobile] = useState(false);
-  const [isAndroid, setIsAndroid] = useState("");
-  const [isIPhone, setIsIphone] = useState("");
-  const [isMobile, setIsMobile] = useState("");
+  const [isAndroid, setIsAndroid] = useState(false);
+  const [isIPhone, setIsIphone] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
     const LOG = false;
   

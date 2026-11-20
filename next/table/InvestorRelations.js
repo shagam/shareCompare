@@ -124,8 +124,6 @@ const investorRelationsArray = [
 
 function InvestorRelations () {
     const {eliHome} = IpContext();
-    const {isMobile} = MobileContext();
-    const [mobile, setMobile]  = useState(isMobile);
     const [searchText, setSearchText] = useState('');
     // https://www.w3schools.com/cssref/pr_class_display.php
 

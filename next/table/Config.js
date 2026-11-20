@@ -144,6 +144,7 @@ const  Config = (props) => {
           <p>Platform:  {navigator.platform} </p> 
           <p>Browser CodeName: { navigator.appCodeName}</p>
           <p>Browser Language: {navigator.language} </p> 
+          <p>isMobile: {isMobile? 'true' : 'false'}</p>
           {/* <p> User-agent header:  {navigator.userAgent} </p> */}
         </div>}   {/* end of service info  */}
         </div>
