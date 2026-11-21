@@ -47,7 +47,7 @@ const StockInfo = (props) => {
   }
 
   function colorAttribute (attribute) {
-    if (attribute === 'ForwardPE') {
+    if (attribute === 'ForwardPE' || attribute === 'PERatio' || attribute === 'PEGRatio') {
       return 'magenta';
     }
     return 'ForestGreen';
