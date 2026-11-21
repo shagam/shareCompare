@@ -3,29 +3,25 @@ import Client from "./client";   // adjust path if needed
 
 // tutorials
 export const metadata = {
-  title: "Stock Trading Tutorials & Guides | Stock Analytics Platform",
-  description:
-    "Learn stock investing, technical analysis, trading strategies, portfolio management, and platform features with step-by-step tutorials.",
-  keywords: [
-    "stock tutorials",
-    "trading guides",
-    "technical analysis tutorial",
-    "investing education",
-    "stock market learning"
-  ],
-
+  metadataBase: new URL("https://sharecompare.net"),
+  title: "Learn Stock Trading: Tutorials, Guides & How-To Videos",
+  description: "Learn stock investing, technical analysis and trading strategies with step-by-step tutorials. Beginner to advanced guides on portfolio management and using ShareCompare.",
   alternates: {
-    canonical: "https://shareCompare.org/tutorials",
+    canonical: "/tutorials",
   },
-
   openGraph: {
-    title: "Stock Trading Tutorials & Guides | Stock Analytics Platform",
-    description: "Learn stock investing, trading strategies, portfolio management, and platform features.",
-    url: "https://shareCompare.org/tutorials",
-    siteName: "Stock Analytics Platform",
-    type: "article",
+    title: "Learn Stock Trading: Tutorials, Guides & How-To Videos",
+    description: "Learn stock investing, technical analysis and trading strategies with step-by-step tutorials for beginners and advanced traders.",
+    url: "https://sharecompare.net/tutorials",
+    siteName: "ShareCompare",
+    type: "website",
   },
-
+  twitter: {
+    card: "summary_large_image",
+    title: "Learn Stock Trading: Tutorials, Guides & How-To Videos",
+    description: "Learn stock investing, technical analysis and trading strategies with step-by-step tutorials.",
+  },
+  keywords: ["learn stock trading", "stock trading tutorials", "how to trade stocks", "technical analysis tutorial", "stock investing for beginners", "trading strategies guide"],
   category: "Education",
 };
 

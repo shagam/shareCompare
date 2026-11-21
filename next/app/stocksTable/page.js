@@ -1,10 +1,24 @@
 // stocksTable
 export const metadata = {
-  title: "Table view of selected stocks for analysis.  Stock Analytics Platform",
-  description: "Gain compare columns: [1mon, 3mom, 6mon, 1year, p/e, dividend yield, market cap, price/high... ]" +
-  " column-select, sort-on a column, filter.  Compare stocks and ETFs with ease.",
-  keywords: ["1month returns", "6 month returns", "stock gains",  "investment analysis"],
-  url: "https://shareCompare.org/stocksTable",
+  metadataBase: new URL("https://sharecompare.net"),
+  title: "Compare Stocks Side by Side: Returns, P/E, Dividend & Market Cap",
+  description: "Compare stocks and ETFs side by side. Sort and filter by 1-month, 3-month, 6-month and 1-year gain, P/E, dividend yield, market cap and price vs high.",
+  alternates: {
+    canonical: "/stocksTable",
+  },
+  openGraph: {
+    title: "Compare Stocks Side by Side: Returns, P/E, Dividend & Market Cap",
+    description: "Compare stocks and ETFs side by side. Sort by 1-month, 3-month, 6-month and 1-year gain, P/E, dividend yield and market cap.",
+    url: "https://sharecompare.net/stocksTable",
+    siteName: "ShareCompare",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Compare Stocks Side by Side: Returns, P/E, Dividend & Market Cap",
+    description: "Compare stocks and ETFs side by side. Sort by 1-month, 3-month, 6-month and 1-year gain, P/E, dividend yield and market cap.",
+  },
+  keywords: ["compare stocks", "compare stocks side by side", "stock comparison table", "stock returns comparison", "compare ETFs", "stock screener by P/E dividend"],
 };
 
 export default function StocksTablePage() {

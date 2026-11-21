@@ -4,14 +4,25 @@ import Client from "./client";   // adjust path if needed
 
 // options
 export const metadata = {
-  title: "Options Trading Analytics | Stock Analytics Platform",
-  description: "Analyze options contracts. Evaluate potential gain based on expected yearly gain and the drop from higest price." +
-   "implied volatility, Greeks.",
-  keywords: ["options trading", "stock options", "implied volatility", "options analytics", "Greeks", "potential gain", "leverage factor",
-     "options contracts", "financial analysis", "investment strategies", "options market trends", "stock market insights"],
-  url: "https://sharecompare.org/options",
-  siteName: "ShareCompare",
-  type: "website"
+  metadataBase: new URL("https://sharecompare.net"),
+  title: "Options Calculator: Potential Gain, IV & Greeks | Options Analytics",
+  description: "Analyze options contracts expected gain, using expected yearly gain and drop from highest price. Check implied volatility, Greeks, leverage factor and potential gain before you trade.",
+  alternates: {
+    canonical: "/options",
+  },
+  openGraph: {
+    title: "Options Calculator: Potential Gain, IV & Greeks | Options Analytics",
+    description: "Analyze options contracts by expected yearly gain and drop from highest price. Check implied volatility, Greeks and leverage.",
+    url: "https://sharecompare.net/options",
+    siteName: "ShareCompare",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Options Calculator: Potential Gain, IV & Greeks | Options Analytics",
+    description: "Analyze options contracts by expected yearly gain and drop from highest price. Check implied volatility, Greeks and leverage.",
+  },
+  keywords: ["options calculator", "options trading analytics", "options potential gain", "implied volatility", "options Greeks", "options leverage factor", "stock options analysis", "options contracts"],
 };
 
 export default function OptionsPage() {

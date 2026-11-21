@@ -1,12 +1,27 @@
 import Client from "./client";
 
 
-// infoRaw
+
 export const metadata = {
-  title: "Raw Stock historical prices | Stock Analytics Platform",
-  description: "View detailed stock information including pricing, company data, and market statistics.",
-  keywords: ["stock information", "market data", "company details", "stock fundamentals"],
-  url: "https://shareCompare.org/infoRaw",
+  metadataBase: new URL("https://sharecompare.net"),
+  title: "Investor Relations Links: Apple, Microsoft, Nvidia & More",
+  description: "Direct links to investor relations pages for major tech companies. Find earnings, SEC filings, quarterly reports, dividends and shareholder info for Apple, Microsoft, Nvidia, Google and more.",
+  alternates: {
+    canonical: "/investorRelations",
+  },
+  openGraph: {
+    title: "Investor Relations Links: Apple, Microsoft, Nvidia & More",
+    description: "Direct links to investor relations pages for major tech companies. Find earnings, SEC filings, quarterly reports and dividends.",
+    url: "https://sharecompare.net/investorRelations",
+    siteName: "ShareCompare",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Investor Relations Links: Apple, Microsoft, Nvidia & More",
+    description: "Direct links to investor relations pages for major tech companies. Find earnings, SEC filings and quarterly reports.",
+  },
+  keywords: ["investor relations", "investor relations links", "Apple investor relations", "Microsoft investor relations", "Nvidia investor relations", "tech company earnings", "SEC filings tech stocks"],
 };
 
 
