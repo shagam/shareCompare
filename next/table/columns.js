@@ -295,6 +295,7 @@ export const GROUPED_COLUMNS = [
   {
     Header: 'gain-factor',
     Footer: 'gain-factor',
+    _comment_: 'updated at run time, to gain-yearly-percent',
     accessor: 'gain',
     disableSortBy: true,       
     columns: [
