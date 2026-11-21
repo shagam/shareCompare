@@ -165,6 +165,7 @@ const {chartSymbol, setChartSymbol,
   const [monthGainData, setMonthGainData] = useState ({});
 
   const [columnHideFlag, setColumnHideFlag] = useState(false);
+  const [cfgShow, setCfgShow] = useState(false);
   // const [searchDeepDate, setSearchDeepDate] = useState()
 
   //** default start date for drop recovery  Mon 0-11 */
@@ -934,8 +935,7 @@ const {chartSymbol, setChartSymbol,
           <strong style={{color:'#b3be18'}}>Compare</strong> 
           <div style={{fontSize: '20px', paddingTop: '4px', color: '#45b389'}}>.net  </div> 
           <div style={{fontSize: '15px', paddingTop: '10px'}}>{pathname}</div> &nbsp;&nbsp;
-          <div style={{fontSize: '18px', paddingTop: '8px'}}> (new)</div>
-          
+          <div style={{fontSize: '18px', paddingTop: '8px'}}> (new)</div>         
         </h2> 
         {/* <div>(new version for ShareCompare.org)</div> */}
         {/* <div style={{color: '#bb8899', fontWeight: "bold", fontSize: "1.4em"}}>backend server problem; use test backEnd (slow)</div> */}
@@ -955,19 +955,33 @@ const {chartSymbol, setChartSymbol,
         <div id="buttons_id" style={{display:'flex'}}> 
         </div>
         {/* {eliHome && <ServerSelect />} */}
+            
+        <div style={{display: 'flex'}}>
+          <input  type="checkbox" checked={cfgShow}  onChange={()=> setCfgShow(! cfgShow)}  title='daily vs weekly' />cfg &nbsp;&nbsp; 
+          {cfgShow && <div style={{display: 'flex'}}>
+            <ComboBoxSelect serv={tablHight} nameList={tblHightOPtions} setSelect={setTablHight} title='Table:_height' options={tblHightOPtions} defaultValue={tablHight} localStore = "tblHight"/> &nbsp;
+            <ComboBoxSelect serv={tablWidth} nameList={tblWidthOPtions} setSelect={setTablWidth} title='width' options={tblWidthOPtions} defaultValue={tablWidth} localStore = "tblWidth"/>
+
+            <ComboBoxSelect serv={daily} nameList={['weekly','daily',]} setSelect={setDaily} title='' TITLE='data resultion. weekly or daily ' options={[false,true]} defaultValue={false} /> &nbsp;
+            {stockChartYValues.length > 0 && isDailyXArray(stockChartXValues) !== daily && <div style={{color:'red'}}>mode missmatch, press gain</div>}
+            
+            <ComboBoxSelect serv={yearlyPercent} nameList={['gain_factor','year_percent',]} setSelect={setYearlyPercent_wrapper} 
+              TITLE={'table entries: yearly-percent gain vs gain-factor (1.5 means 50% gain)'} options={[false,true]} defaultValue={false} /> &nbsp; &nbsp;
+          </div>}
+        </div>
+
         <div style={{display:'flex'}}>
           <div style={{display:'flex'}}>
             <ComboBoxSelect serv={servSelect} nameList={servNameList} setSelect={setServSelect} title='backEnd' options={servList} defaultValue={servSelect}/> &nbsp;&nbsp; 
           </div> 
           {eliHome && !showUrl && <div style={{display:'flex'}}> <ComboBoxSelect serv={PORT} nameList={portArray} setSelect={setPORT} title='' options={portArray} defaultValue={PORT}/> &nbsp;&nbsp;</div>} &nbsp; &nbsp;
-          <ComboBoxSelect serv={tablHight} nameList={tblHightOPtions} setSelect={setTablHight} title='Table:_height' options={tblHightOPtions} defaultValue={tablHight} localStore = "tblHight"/> &nbsp;
-          <ComboBoxSelect serv={tablWidth} nameList={tblWidthOPtions} setSelect={setTablWidth} title='width' options={tblWidthOPtions} defaultValue={tablWidth} localStore = "tblWidth"/>
-        </div>
-
-        {chartSymbol && <LatestPrice symbol = {chartSymbol} rows={rows} logFlags={logFlags} servSelect={servSelect} ssl={ssl} PORT={PORT}  eliHome={eliHome} 
+          {chartSymbol && <LatestPrice symbol = {chartSymbol} rows={rows} logFlags={logFlags} servSelect={servSelect} ssl={ssl} PORT={PORT}  eliHome={eliHome} 
                 errorAdd={errorAdd} stockChartYValues = {stockChartYValues} refreshByToggleColumns = {refreshByToggleColumns} setErr={setErr} allColumns={allColumns} 
                 price={price} setPrice={setPrice} setPriceDivHigh={setPriceDivHigh}/>} 
 
+        </div>
+
+  
         <div id="buttons_id" style={{display:'flex', padding:'5px'}}>
           {/* {admin && <div> <input  type="checkbox" checked={splitsCalcFlag}  onChange={calcChange} /> calc_splits &nbsp;</div>}      */}
 
@@ -977,13 +991,6 @@ const {chartSymbol, setChartSymbol,
           {/* {columnHideFlag && <div style={{display:'flex'}}> <CheckBox {...getToggleHideAllColumnsProps()} /> ToggleAll </div>} &nbsp; */}
 
           {/* {<div>&nbsp;<input  type="checkbox" checked={daily}  onChange={()=> setDaily(! daily)}  title='daily vs weekly' /> daily&nbsp;&nbsp;</div>} */}
-
-          <ComboBoxSelect serv={daily} nameList={['weekly','daily',]} setSelect={setDaily} title='' TITLE='data resultion. weekly or daily ' options={[false,true]} defaultValue={false} /> &nbsp;
-          {stockChartYValues.length > 0 && isDailyXArray(stockChartXValues) !== daily && <div style={{color:'red'}}>mode missmatch, press gain</div>}
-          
-          <ComboBoxSelect serv={yearlyPercent} nameList={['gain_factor','year_percent',]} setSelect={setYearlyPercent_wrapper} 
-            TITLE={'table entries: yearly-percent gain vs gain-factor (1.5 means 50% gain)'} options={[false,true]} defaultValue={false} /> &nbsp; &nbsp;
-
           {/* <div style={{display:'flex'}}> <input type="checkbox" checked={columnHideFlag}  onChange={ columnHideFlagChange} 
               title='select which columns are visible and which are hidden'/> &nbsp;column_select  </div>&nbsp; */}
           <div></div>
