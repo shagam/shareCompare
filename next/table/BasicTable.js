@@ -99,9 +99,6 @@ const BasicTable = (children) => {
   const tblHightList = ['25vh', '35vh', '45vh', '55vh'];
   const [tblHight, setTblHight] = useState(tblHightList[2]);
 
-
-
-  const [showUrl, setShowUrl] = useState();
   const [pageForAi, setPageForAi] = useState();
   const [pageForAiText, setPageForAiText] = useState();
 
@@ -952,13 +949,15 @@ const {chartSymbol, setChartSymbol,
         {errors.length > 0 && <ErrorList errorList={errors} setErrors={setErrors}/> }
         <div style={{color: 'red'}}>{error}</div>
         {/* <div>&nbsp;</div> */}
-        <div id="buttons_id" style={{display:'flex'}}> 
-        </div>
-        {/* {eliHome && <ServerSelect />} */}
-            
+
+        {/* {eliHome && <ServerSelect />} */}            
         <div style={{display: 'flex'}}>
-          <input  type="checkbox" checked={cfgShow}  onChange={()=> setCfgShow(! cfgShow)}  title='daily vs weekly' />cfg &nbsp;&nbsp; 
-          {cfgShow && <div style={{display: 'flex'}}>
+          <input style={{padding: '0px'}} type="checkbox" checked={cfgShow}  onChange={()=> setCfgShow(! cfgShow)}  title='daily vs weekly' />cfg &nbsp; &nbsp; 
+          {cfgShow && <div style={{display: 'flex'}}> &nbsp;
+            
+            <ComboBoxSelect serv={servSelect} nameList={servNameList} setSelect={setServSelect} title='BackEnd' options={servList} defaultValue={servSelect}/> &nbsp;&nbsp; 
+            {eliHome &&  <div style={{display:'flex'}}> <ComboBoxSelect serv={PORT} nameList={portArray} setSelect={setPORT} title='' options={portArray} defaultValue={PORT}/> &nbsp;&nbsp;</div>} &nbsp; &nbsp;
+
             <ComboBoxSelect serv={tablHight} nameList={tblHightOPtions} setSelect={setTablHight} title='Table:_height' options={tblHightOPtions} defaultValue={tablHight} localStore = "tblHight"/> &nbsp;
             <ComboBoxSelect serv={tablWidth} nameList={tblWidthOPtions} setSelect={setTablWidth} title='width' options={tblWidthOPtions} defaultValue={tablWidth} localStore = "tblWidth"/>
 
@@ -969,18 +968,6 @@ const {chartSymbol, setChartSymbol,
               TITLE={'table entries: yearly-percent gain vs gain-factor (1.5 means 50% gain)'} options={[false,true]} defaultValue={false} /> &nbsp; &nbsp;
           </div>}
         </div>
-
-        <div style={{display:'flex'}}>
-          <div style={{display:'flex'}}>
-            <ComboBoxSelect serv={servSelect} nameList={servNameList} setSelect={setServSelect} title='backEnd' options={servList} defaultValue={servSelect}/> &nbsp;&nbsp; 
-          </div> 
-          {eliHome && !showUrl && <div style={{display:'flex'}}> <ComboBoxSelect serv={PORT} nameList={portArray} setSelect={setPORT} title='' options={portArray} defaultValue={PORT}/> &nbsp;&nbsp;</div>} &nbsp; &nbsp;
-          {chartSymbol && <LatestPrice symbol = {chartSymbol} rows={rows} logFlags={logFlags} servSelect={servSelect} ssl={ssl} PORT={PORT}  eliHome={eliHome} 
-                errorAdd={errorAdd} stockChartYValues = {stockChartYValues} refreshByToggleColumns = {refreshByToggleColumns} setErr={setErr} allColumns={allColumns} 
-                price={price} setPrice={setPrice} setPriceDivHigh={setPriceDivHigh}/>} 
-
-        </div>
-
   
         <div id="buttons_id" style={{display:'flex', padding:'5px'}}>
           {/* {admin && <div> <input  type="checkbox" checked={splitsCalcFlag}  onChange={calcChange} /> calc_splits &nbsp;</div>}      */}
@@ -994,7 +981,12 @@ const {chartSymbol, setChartSymbol,
           {/* <div style={{display:'flex'}}> <input type="checkbox" checked={columnHideFlag}  onChange={ columnHideFlagChange} 
               title='select which columns are visible and which are hidden'/> &nbsp;column_select  </div>&nbsp; */}
           <div></div>
-         </div>
+            {chartSymbol && <LatestPrice symbol = {chartSymbol} rows={rows} logFlags={logFlags} servSelect={servSelect} ssl={ssl} PORT={PORT}  eliHome={eliHome} 
+                errorAdd={errorAdd} stockChartYValues = {stockChartYValues} refreshByToggleColumns = {refreshByToggleColumns} setErr={setErr} allColumns={allColumns} 
+                price={price} setPrice={setPrice} setPriceDivHigh={setPriceDivHigh}/>} 
+
+
+        </div>
 
       {/* insert sym, filter column_select   */}
     <div id="add_stock_id" style={{display:'flex',alignItems:'center',gap:'5px'}}>
