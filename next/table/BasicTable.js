@@ -932,9 +932,9 @@ const {chartSymbol, setChartSymbol,
         <h2  style={{display:'flex', fontStyle: "italic", margin: '10px'}}>
           <strong style={{color:'#2caa2c'}}>Share</strong>
           <strong style={{color:'#b3be18'}}>Compare</strong> 
-          <div style={{fontSize: '15px', paddingTop: '10px'}}>.net  </div> 
-          <div style={{fontSize: '15px', paddingTop: '10px'}}>{pathname}</div> &nbsp;
-          <div style={{fontSize: '18px', paddingTop: '10px'}}> (new)</div>
+          <div style={{fontSize: '20px', paddingTop: '4px', color: '#45b389'}}>.net  </div> 
+          <div style={{fontSize: '15px', paddingTop: '10px'}}>{pathname}</div> &nbsp;&nbsp;
+          <div style={{fontSize: '18px', paddingTop: '8px'}}> (new)</div>
           
         </h2> 
         {/* <div>(new version for ShareCompare.org)</div> */}
