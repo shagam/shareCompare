@@ -94,9 +94,11 @@ const BasicTable = (children) => {
   const [bubbleLine, setBubbleLine] = useState();
 
   //   'localhost', process.env.NEXT_PUBLIC_SERV_EXT, process.env.NEXT_PUBLIC_ELI_HOME_IP];
+  const portArray = [5000, 5001]
 
+  const tblHightList = ['25vh', '35vh', '45vh', '55vh'];
+  const [tblHight, setTblHight] = useState(tblHightList[2]);
 
-  
 
 
   const [showUrl, setShowUrl] = useState();
@@ -168,6 +170,10 @@ const {chartSymbol, setChartSymbol,
   //** default start date for drop recovery  Mon 0-11 */
   const [deepStartDate, setDropStartDate] = useState(new Date(2024, 6, 1));  // 2024 jul 1  // new Date(2021, 8, 1 2021 sep 1  
 
+  const tblHightOPtions = ['20vh','30vh', '40vh', '50vh','60vh', '75vh'];
+  const [tablHight, setTablHight] = useState(() => localStorage.getItem("tblHight") || tblHightOPtions[2]);
+  const tblWidthOPtions = ['75vw', '100vw', '120vw', '140vw', '160vw'];
+  const [tablWidth, setTablWidth] = useState(() => localStorage.getItem("tblWidth") || tblWidthOPtions[1]);
 
   const useData = false;
 
@@ -213,7 +219,18 @@ const {chartSymbol, setChartSymbol,
   const [priceAlertTable, setPriceAlertTable] = useState([]);
 
 
- 
+  var  yearlyPercent_temp = useMemo(() => (localStorage.getItem('yearlyPercent')), []);
+  var yearlyPercent;
+  if (yearlyPercent_temp)
+    yearlyPercent = true
+  else
+    yearlyPercent = false
+
+  useEffect (() => { 
+    // setGainMap([]);
+    // setChartSymbol()
+  }, [daily]) 
+
 
 
 
@@ -252,6 +269,7 @@ const {chartSymbol, setChartSymbol,
   memoryStore.set('openMarketFlag', openMarketFlag);
   memoryStore.set('setOpenMarketFlag', setOpenMaretFlag);
 
+  memoryStore.set('yearlyPercent', yearlyPercent);
   memoryStore.set('QQQ_gain', QQQ_gain);
 
 
@@ -271,8 +289,6 @@ const {chartSymbol, setChartSymbol,
 
   memoryStore.set('stockInfo', stockInfo);
 
-  const tablHight= memoryStore.get('tablHight');
-  const tablWidth= memoryStore.get('tablWidth');
 
       // const cafeList = document.querySelector("#gain-history")
   function errorAdd (err, supressBeep) {
@@ -786,7 +802,6 @@ const {chartSymbol, setChartSymbol,
   function reloadPage() {
     window.location.reload(false);
   }
-  const yearlyPercent = memoryStore.get('yearlyPercent');
 
   function getColor(val, column, sym) {
     if (val === undefined || Number(val) === -1 || val === '-1.00')
@@ -864,7 +879,36 @@ const {chartSymbol, setChartSymbol,
     setNonSymTool(tool)
     // console.log(tool)
   }
+
+  function purgeRestoreStockTable () {
+    const keys = Object.keys(rows);
+    // empty table 
+    for (let i = keys.length -1; i >= 0; i--) {
+      delete rows[i].values.mon
+      delete rows[i].values.mon3
+      delete rows[i].values.mon6
+      delete rows[i].values.year
+      delete rows[i].values.year2
+      delete rows[i].values.year5
+      delete rows[i].values.year10
+      delete rows[i].values.year20
+    }
+    setGainMap([]);
+    setChartSymbol()
+    saveTable();
+    window.location.reload(false);
+  }
   
+  function setYearlyPercent_wrapper () {
+    // setYearlyPercent(! yearlyPercent)
+    yearlyPercent = ! yearlyPercent
+    purgeRestoreStockTable ()
+    if (yearlyPercent)
+      localStorage.setItem('yearlyPercent',yearlyPercent)
+    else
+      localStorage.removeItem('yearlyPercent')
+  }
+
   function color_diff (diff) {
     if (diff < 0)
       return 'red'
@@ -888,7 +932,7 @@ const {chartSymbol, setChartSymbol,
         <h2  style={{display:'flex', fontStyle: "italic", margin: '10px'}}>
           <strong style={{color:'#2caa2c'}}>Share</strong>
           <strong style={{color:'#b3be18'}}>Compare</strong> 
-          <div style={{fontSize: '15px', paddingTop: '10px', color:'#18a5be'}}>.net  </div> 
+          <div style={{fontSize: '15px', paddingTop: '10px'}}>.net  </div> 
           <div style={{fontSize: '15px', paddingTop: '10px'}}>{pathname}</div> &nbsp;
           <div style={{fontSize: '18px', paddingTop: '10px'}}> (new)</div>
           
@@ -911,7 +955,18 @@ const {chartSymbol, setChartSymbol,
         <div id="buttons_id" style={{display:'flex'}}> 
         </div>
         {/* {eliHome && <ServerSelect />} */}
+        <div style={{display:'flex'}}>
+          <div style={{display:'flex'}}>
+            <ComboBoxSelect serv={servSelect} nameList={servNameList} setSelect={setServSelect} title='backEnd' options={servList} defaultValue={servSelect}/> &nbsp;&nbsp; 
+          </div> 
+          {eliHome && !showUrl && <div style={{display:'flex'}}> <ComboBoxSelect serv={PORT} nameList={portArray} setSelect={setPORT} title='' options={portArray} defaultValue={PORT}/> &nbsp;&nbsp;</div>} &nbsp; &nbsp;
+          <ComboBoxSelect serv={tablHight} nameList={tblHightOPtions} setSelect={setTablHight} title='Table:_height' options={tblHightOPtions} defaultValue={tablHight} localStore = "tblHight"/> &nbsp;
+          <ComboBoxSelect serv={tablWidth} nameList={tblWidthOPtions} setSelect={setTablWidth} title='width' options={tblWidthOPtions} defaultValue={tablWidth} localStore = "tblWidth"/>
+        </div>
 
+        {chartSymbol && <LatestPrice symbol = {chartSymbol} rows={rows} logFlags={logFlags} servSelect={servSelect} ssl={ssl} PORT={PORT}  eliHome={eliHome} 
+                errorAdd={errorAdd} stockChartYValues = {stockChartYValues} refreshByToggleColumns = {refreshByToggleColumns} setErr={setErr} allColumns={allColumns} 
+                price={price} setPrice={setPrice} setPriceDivHigh={setPriceDivHigh}/>} 
 
         <div id="buttons_id" style={{display:'flex', padding:'5px'}}>
           {/* {admin && <div> <input  type="checkbox" checked={splitsCalcFlag}  onChange={calcChange} /> calc_splits &nbsp;</div>}      */}
@@ -923,22 +978,22 @@ const {chartSymbol, setChartSymbol,
 
           {/* {<div>&nbsp;<input  type="checkbox" checked={daily}  onChange={()=> setDaily(! daily)}  title='daily vs weekly' /> daily&nbsp;&nbsp;</div>} */}
 
+          <ComboBoxSelect serv={daily} nameList={['weekly','daily',]} setSelect={setDaily} title='' TITLE='data resultion. weekly or daily ' options={[false,true]} defaultValue={false} /> &nbsp;
+          {stockChartYValues.length > 0 && isDailyXArray(stockChartXValues) !== daily && <div style={{color:'red'}}>mode missmatch, press gain</div>}
+          
+          <ComboBoxSelect serv={yearlyPercent} nameList={['gain_factor','year_percent',]} setSelect={setYearlyPercent_wrapper} 
+            TITLE={'table entries: yearly-percent gain vs gain-factor (1.5 means 50% gain)'} options={[false,true]} defaultValue={false} /> &nbsp; &nbsp;
+
           {/* <div style={{display:'flex'}}> <input type="checkbox" checked={columnHideFlag}  onChange={ columnHideFlagChange} 
               title='select which columns are visible and which are hidden'/> &nbsp;column_select  </div>&nbsp; */}
-          {chartSymbol && <LatestPrice symbol = {chartSymbol} rows={rows} logFlags={logFlags} servSelect={servSelect} ssl={ssl} PORT={PORT}  eliHome={eliHome} 
-                errorAdd={errorAdd} stockChartYValues = {stockChartYValues} refreshByToggleColumns = {refreshByToggleColumns} setErr={setErr} allColumns={allColumns} 
-                price={price} setPrice={setPrice} setPriceDivHigh={setPriceDivHigh}/>} 
-
           <div></div>
-
          </div>
-      {/* <div>&nbsp;</div> */}
 
       {/* insert sym, filter column_select   */}
     <div id="add_stock_id" style={{display:'flex',alignItems:'center',gap:'5px'}}>
 
-      <form className="w-00 text-left mt-2 d-flex" onSubmit={handleAddFormSubmit} style={{display:'flex',alignItems:'center',gap:'4px', marginTop: '8px'}}>
-        <input type="text" name="symbol" required placeholder="stock symbol" onChange={handleAddFormChange} style={{width:'85px',height:'22px'}} />
+      <form className="w-00 text-left mt-2 d-flex" onSubmit={handleAddFormSubmit} style={{display:'flex',alignItems:'center',gap:'4px'}}>
+        <input type="text" name="symbol" required placeholder="stock symbol" onChange={handleAddFormChange} style={{width:'85px',height:'27px'}} />
         <button type="submit" style={{backgroundColor:'rgba(85,255,227,0.27)',whiteSpace:'nowrap',height:'27px'}}>Add ({rows.length})</button>
       </form>
 
