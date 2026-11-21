@@ -7,6 +7,7 @@ import {getDate} from '../utils/Date'
 import {IpContext} from '../contexts/IpContext';
 import {useAuth} from '../contexts/AuthContext';
 import { pageHeader } from './StockInfo'
+import { useShared, SharedContext } from '../contexts/SharedContext';
 
 // https://62.0.92.49:5000/splits?stock=MSFT
 // https://dinagold.org:5000/splits?stock=MSFT
@@ -15,8 +16,8 @@ import { pageHeader } from './StockInfo'
 function Splits (props) {
   const { eliHome} = IpContext();
   const { currentUser, admin, logout } = useAuth();
-  const [ignoreSaved, setIgnoreSaved] = useState ();
-  const [logBackEnd, setLogBackEnd] = useState ();
+  const [ignoreSaved, setIgnoreSaved] = useState (false);
+  const [logBackEnd, setLogBackEnd] = useState (false);
   const [splitInfo, setSplitInfo] = useState ([]);
   const [url, setUrl] = useState ();
   const [err, setErr] = useState ();
@@ -25,6 +26,15 @@ function Splits (props) {
 
   const LOG_FLAG = props.logFlags && props.logFlags.includes('splits');
 
+const {
+      symbol,
+      servSelect, setServSelect,
+      ssl, setSsl,
+      PORT, setPORT,
+
+
+    } = useShared();
+
   useEffect(() => {
     setSplitInfo()
     setUrl()
@@ -32,9 +42,9 @@ function Splits (props) {
     setErr()
     setUpdateDate()
     setUpdateDate()
-    setLogBackEnd()
-    setIgnoreSaved()
-  },[props.symbol]) 
+    setLogBackEnd(false)
+    setIgnoreSaved(false)
+  },[symbol]) 
 
 
 
@@ -57,18 +67,18 @@ function Splits (props) {
 
 
   function splitsGet () {
-    if (! props.symbol) {
+    if (! symbol) {
       alert ("Missing symbol, press gain for a symbol")
       return;
     }
     setErr('Request sent to server')
     setSplitInfo()
     setUpdateDate()
-    setCorsUrl ("https://" + props.servSelect + ":" + props.PORT + "/splits?stock=" + props.symbol)
-    setUrl ("https://www.stocksplithistory.com/?symbol=" + props.symbol)
+    setCorsUrl ("https://" + props.servSelect + ":" + props.PORT + "/splits?stock=" + symbol)
+    setUrl ("https://www.stocksplithistory.com/?symbol=" + symbol)
 
-    StockSplitsGet(props.symbol, props.rows, props.errorAdd, props.servSelect,
-       props.PORT, props.ssl, props.logFlags, setSplitInfo, setErr, ignoreSaved)
+    StockSplitsGet(symbol, props.rows, props.errorAdd, servSelect,
+       PORT, ssl, props.logFlags, setSplitInfo, setErr, ignoreSaved)
        if (LOG_FLAG)
         console.log (splitInfo)
   }
@@ -184,9 +194,9 @@ function Splits (props) {
 return (
   <div>
     {/* <h5>Stock splits</h5>
-    <h6  style={{color:'#33ee33', fontWeight: 'bold', fontStyle: "italic"}}>  &nbsp; {props.symbol}:  &nbsp; Stock split history  &nbsp; </h6>
+    <h6  style={{color:'#33ee33', fontWeight: 'bold', fontStyle: "italic"}}>  &nbsp; {symbol}:  &nbsp; Stock split history  &nbsp; </h6>
     {err && <div style={{color: 'red'}}> {err} </div>} */}
-    {pageHeader (props.symbol, 'stockSplits', 'Stock split history', err )}
+    {pageHeader (symbol, 'stockSplits', 'Stock split history', err )}
 
     {LOG_FLAG && <div>{corsUrl}</div>}
     {LOG_FLAG && <div>{url}</div>}
