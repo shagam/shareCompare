@@ -163,6 +163,7 @@ const {chartSymbol, setChartSymbol,
 
   const [columnHideFlag, setColumnHideFlag] = useState(false);
   const [cfgShow, setCfgShow] = useState(false);
+  const [generalRoutesShow, setGeneralRoutes] = useState(false);
   // const [searchDeepDate, setSearchDeepDate] = useState()
 
   //** default start date for drop recovery  Mon 0-11 */
@@ -1137,30 +1138,35 @@ const {chartSymbol, setChartSymbol,
 
               <hr/>
               <div>
-                <div>General routes </div>
-                <Link style={{background: routeColor('/config'), color: '#9932CC'}} href="/config">config </Link> &nbsp;
-                <Link style={{background: routeColor('/commonDatabase'), color: '#9932CC'}} href="/commonDatabase">commonDatabase </Link> &nbsp; 
-                <Link style={{background: routeColor('/stockLists'), color: '#9932CC'}} href="/stockLists">stockLists </Link> &nbsp;
-                <Link style={{background: routeColor('/symSearch'), color: '#9932CC'}} href="/symSearch">symSearch </Link> &nbsp;
-                <Link style={{background: routeColor('/contactUs'), fontWeight: "bold", color: '#32cc84'}} href="/contactUs">contactUs </Link> &nbsp;
-           
-                <Link style={{background: routeColor('/tutorials'), fontWeight: "bold"}} href="/tutorials">Tutorials</Link> &nbsp; 
-                {/* <Link style={{background: routeColor('/about')}} href="/about">About</Link>&nbsp;  */}
-                {/* <Link href="/manual">Manual</Link> &nbsp; &nbsp; */}
-                <Link style={{background: routeColor('/investorRelations'), color: '#9932CC'}} href="/investorRelations">Investor-Relations </Link> &nbsp;
-                <Link style={{background: routeColor('/auxilaryLinks'), color: '#9932CC'}} href="/auxilaryLinks">Auxilary-links</Link> &nbsp;
-              </div>
-                
+                <div>General routes 
+                  <input style={{padding: '0px'}} type="checkbox" checked={generalRoutesShow}  onChange={()=> setGeneralRoutes(! generalRoutesShow)}  title='daily vs weekly' /> &nbsp; &nbsp; 
+                </div>
+                {generalRoutesShow && <div>
+                  <Link style={{background: routeColor('/config'), color: '#9932CC'}} href="/config">config </Link> &nbsp;
+                  <Link style={{background: routeColor('/commonDatabase'), color: '#9932CC'}} href="/commonDatabase">commonDatabase </Link> &nbsp; 
+                  <Link style={{background: routeColor('/stockLists'), color: '#9932CC'}} href="/stockLists">stockLists </Link> &nbsp;
+                  <Link style={{background: routeColor('/symSearch'), color: '#9932CC'}} href="/symSearch">symSearch </Link> &nbsp;
+                  <Link style={{background: routeColor('/contactUs'), fontWeight: "bold", color: '#32cc84'}} href="/contactUs">contactUs </Link> &nbsp;
+            
+                  <Link style={{background: routeColor('/tutorials'), fontWeight: "bold"}} href="/tutorials">Tutorials</Link> &nbsp; 
+                  {/* <Link style={{background: routeColor('/about')}} href="/about">About</Link>&nbsp;  */}
+                  {/* <Link href="/manual">Manual</Link> &nbsp; &nbsp; */}
+                  <Link style={{background: routeColor('/investorRelations'), color: '#9932CC'}} href="/investorRelations">Investor-Relations </Link> &nbsp;
+                  <Link style={{background: routeColor('/auxilaryLinks'), color: '#9932CC'}} href="/auxilaryLinks">Auxilary-links</Link> &nbsp;
+
+                  {eliHome && <Link style={{background: routeColor('/logFlags'), color: '#9932CC'}} href="/logFlags">console-log-flags</Link>} &nbsp;
+
+                  {eliHome && <Link style={{background: routeColor('/futures'), color: '#9932CC'}} href="/futures">futures </Link>} &nbsp;
+                  {eliHome && <Link style={{background: routeColor('/polymarket'), color: '#9932CC'}} href="/polymarket">polymarket </Link>} &nbsp;
+      
+                  {/* test links for empty page */}
+                  {eliHome && <Link style={{background: routeColor('/chart'), color: '#9932CC'}} href="/chart">chart </Link>} &nbsp;
+                  {eliHome && <Link style={{background: routeColor('/stocksTable'), color: '#9932CC'}} href="/stocksTable">stocksTable </Link>} &nbsp;
+
+                </div>}
+              </div>  
               <div>
-                {eliHome && <Link style={{background: routeColor('/logFlags'), color: '#9932CC'}} href="/logFlags">console-log-flags</Link>} &nbsp;
-
-                {eliHome && <Link style={{background: routeColor('/futures'), color: '#9932CC'}} href="/futures">futures </Link>} &nbsp;
-                {eliHome && <Link style={{background: routeColor('/polymarket'), color: '#9932CC'}} href="/polymarket">polymarket </Link>} &nbsp;
-    
-                {/* test links for empty page */}
-                {eliHome && <Link style={{background: routeColor('/chart'), color: '#9932CC'}} href="/chart">chart </Link>} &nbsp;
-                {eliHome && <Link style={{background: routeColor('/stocksTable'), color: '#9932CC'}} href="/stocksTable">stocksTable </Link>} &nbsp;
-
+     
                 
               </div>
               <hr/>
