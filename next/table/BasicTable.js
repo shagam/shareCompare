@@ -201,7 +201,20 @@ const {chartSymbol, setChartSymbol,
     window.location.reload();
   }
 
+  var  yearlyPercent_temp = useMemo(() => (localStorage.getItem('yearlyPercent')), []);
+  var yearlyPercent = false;
+  if (yearlyPercent_temp)
+    yearlyPercent = true
+  else
+    yearlyPercent = false
+
+
   const columns = useMemo(() => GROUPED_COLUMNS, []);
+  // 'gain_factor','year_percent'
+  if (yearlyPercent) {
+
+    columns[1].Header = 'gain-yearly-percent'
+  }
   var  data;// = useMemo(() => MOCK_DATA, []);
   var stocksFromLocalStorage = localStorage.getItem("stocks");
   var mmmmm = useMemo; 
@@ -217,13 +230,6 @@ const {chartSymbol, setChartSymbol,
   
   const [priceAlertTable, setPriceAlertTable] = useState([]);
 
-
-  var  yearlyPercent_temp = useMemo(() => (localStorage.getItem('yearlyPercent')), []);
-  var yearlyPercent;
-  if (yearlyPercent_temp)
-    yearlyPercent = true
-  else
-    yearlyPercent = false
 
   useEffect (() => { 
     // setGainMap([]);
