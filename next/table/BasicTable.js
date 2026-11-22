@@ -1114,7 +1114,7 @@ const {chartSymbol, setChartSymbol,
               <Link style ={{fontWeight: "bold", color: 'red', fontSize: '23px'}} href="/">route-clear </Link> 
               {chartSymbol && (
                 <div style={{display: 'flex' }}>
-                  <div style={{color: 'magenta' }}> {chartSymbol} </div> &nbsp; Analyze routes: 
+                  <div style={{color: 'magenta' }}> {chartSymbol} </div> &nbsp; <strong>Analyze routes: </strong>
                 </div>
               )}
             </div> 
@@ -1144,7 +1144,7 @@ const {chartSymbol, setChartSymbol,
 
               <hr/>
               <div>
-                <div>General routes 
+                <div><strong>General routes: </strong>
                   <input style={{padding: '0px'}} type="checkbox" checked={generalRoutesShow}  onChange={()=> setGeneralRoutes(! generalRoutesShow)}  title='daily vs weekly' /> &nbsp; &nbsp; 
                 </div>
                 {generalRoutesShow && <div>
