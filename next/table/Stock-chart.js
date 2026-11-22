@@ -476,15 +476,14 @@ const StockChart = (props) => {
         {/* Buttonf second */}
         <div style={{display:'flex'}}>
           <div style={{display:'flex'}}> <input type="checkbox" checked={multi}  onChange={() => setMulti (! multi)} />  multi </div>
-          <div style={{display:'flex'}}> &nbsp;&nbsp;&nbsp; <input style={{display:'flex'}} type="checkbox" checked={logarithmic}  onChange={() => setLogarithmic (! logarithmic)} />  Logarithemic &nbsp;&nbsp;  </div>
-          {gainChart.length > 1 && <div>  <input type="checkbox" checked={scaleFlag}  onChange={() => setScaleFlag (! scaleFlag)} /> scale &nbsp; </div>}  &nbsp; 
-          <div style={{display:'flex'}}><input type="checkbox" checked={static_}  onChange={() => setStatic (! static_)} />&nbsp;frozen  </div> &nbsp;&nbsp;
+          <div style={{display:'flex'}}> &nbsp;&nbsp;&nbsp; <input style={{display:'flex'}} type="checkbox" checked={logarithmic}  onChange={() => setLogarithmic (! logarithmic)} />  Logarithemic &nbsp;</div>
+          {gainChart.length > 1 && <div>  <input type="checkbox" checked={scaleFlag}  onChange={() => setScaleFlag (! scaleFlag)} />scale </div>}  &nbsp; 
+          <div style={{display:'flex'}}><input type="checkbox" checked={static_}  onChange={() => setStatic (! static_)} />frozen  </div> &nbsp;&nbsp;
         </div>
 
         <div style={{display:'flex'}}>
-
-          <div style={{display:'flex'}}><input type="checkbox" checked={totalGain}  onChange={() => setTotalGain (! totalGain)} />&nbsp;totalGain </div>&nbsp;&nbsp;
-          <div style={{display:'flex'}}><input  type="checkbox" checked={showRanges}  onChange={() => setShowRanges (! showRanges)} /> &nbsp;ranges </div> &nbsp;
+          <div style={{display:'flex'}}><input type="checkbox" checked={totalGain}  onChange={() => setTotalGain (! totalGain)} />totalGain </div>&nbsp;&nbsp;
+          <div style={{display:'flex'}}><input  type="checkbox" checked={showRanges}  onChange={() => setShowRanges (! showRanges)} />ranges </div> &nbsp;
           {/* <button onClick={() => adjustStart()    }> adjustStart</button>&nbsp; */}
         </div>
           {showRanges && <div>
