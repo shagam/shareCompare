@@ -39,6 +39,7 @@ function StockOptions (props) {
   const [logExtra, setLogExtra] = useState (false);
   const [ignoreSaved, setIgnoreSaved] = useState (false);
   const [hideNegativeYield, setHideNegativeYield] = useState (false);
+  const [optionsMineShow, setOptionsMineShow] = useState (false);
 
   const [expirationsArray, setExpirationsArray] = useState([]); 
   const [expirationSelected, setExpirationSelected] = useState(-1) // for display only
@@ -1656,8 +1657,9 @@ const {
             </table>
           </div>}
 
-        {eliHome && premiumSelected !== -1 && <div>  
-          <hr style={{ border: '3px solid #000000'}}/>             
+        <hr style={{ border: '3px solid #000000'}}/>  
+        <div style = {{display: 'flex'}}> <input type="checkbox" checked={optionsMineShow}  onChange={()=>setOptionsMineShow (! optionsMineShow)}  />&nbsp;options-mine &nbsp; &nbsp; </div>   
+        {eliHome && optionsMineShow && <div>  
           <button style={{background: 'aqua'}} type="button" onClick={()=>optionsMine.add (optionQuote, premiumSelected)}>
             optionMineAdd </button> &nbsp; &nbsp; 
           <button style={{background: 'aqua'}} type="button" onClick={()=>optionsMine.clear()}>

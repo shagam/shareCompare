@@ -62,30 +62,33 @@ function useStockOptionsMine () {
     //  top, right, bottom, left 
     const ROW_SPACING = {padding: "0px 7px 0px 7px", margin: 0}
     return (
-         <div>
-            {selectedSymbol != null && <div> selected={selectedSymbol} </div>}
-          &nbsp; <button style={{background: 'aqua'}} type="button" onClick={()=> del(selectedSymbol)}>del-selected </button>
-        <table style={{ borderCollapse: 'collapse', width: '100%' }}>
-            <thead>
-                <tr>
-                    {columns.map((key) => (
-                        <th key={key} style={{...ROW_SPACING, border: '1px solid #ccc', textAlign: 'left' }}>{formatLabel(key)}</th>
-                    ))}
-                </tr>
-            </thead>
-            <tbody>
-                {rows.map((option) => (
-                    <tr key={option.optionSymbol}
-                     onClick={() => setSelectedSymbol(option.optionSymbol)}
-                         style={{ cursor: 'pointer', background: selectedSymbol === option.optionSymbol ? '#e0f0ff' : 'transparent' }}>
+        <div>
+            {selectedSymbol != null && <div style = {{display: 'flex'}}>
+                selected={selectedSymbol} &nbsp;
+                <button style={{background: 'aqua'}} type="button" onClick={()=> del(selectedSymbol)}>del-selected </button>   
+            </div>}  
+
+            <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+                <thead>
+                    <tr>
                         {columns.map((key) => (
-                            <td  key={key} style={{...ROW_SPACING, border: '1px solid #ccc', }}>{option[key]}</td>
+                            <th key={key} style={{...ROW_SPACING, border: '1px solid #ccc', textAlign: 'left' }}>{formatLabel(key)}</th>
                         ))}
                     </tr>
-                ))}
-            </tbody>
-        </table>
-        {/* <pre> {JSON.stringify(optionArray, null, 2)}</pre> */}
+                </thead>
+                <tbody>
+                    {rows.map((option) => (
+                        <tr key={option.optionSymbol}
+                        onClick={() => setSelectedSymbol(option.optionSymbol)}
+                            style={{ cursor: 'pointer', background: selectedSymbol === option.optionSymbol ? '#e0f0ff' : 'transparent' }}>
+                            {columns.map((key) => (
+                                <td  key={key} style={{...ROW_SPACING, border: '1px solid #ccc', }}>{option[key]}</td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            {/* <pre> {JSON.stringify(optionArray, null, 2)}</pre> */}
 
         </div>
     );
