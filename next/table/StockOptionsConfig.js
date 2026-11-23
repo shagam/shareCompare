@@ -76,9 +76,9 @@ function StockOptionsConfig (props) {
         {/* <div style={{border:'2px solid blue'}}></div> */}
         {/* <div>&nbsp;</div> */}
         <h3  style={{color:'#3336ee', fontWeight: 'bold', fontStyle: "italic"}}>StockOptions config: </h3>
-        <div style={{display: 'flex'}}>Please adjust to your estimate, <strong style={{backgroundColor: '#e5d333ff'}}> &nbsp;  fields with this background  </strong>  </div>
+        <div style={{display: 'flex', fontWeight: 'bold', fontSize: '20px'}}>Please adjust to your estimate  &nbsp;  <strong style={{backgroundColor: '#e5d333ff'}}> &nbsp;  fields with this background  </strong>  </div>
 
-        <form onSubmit = {formSubmit}>
+        <form onSubmit = {formSubmit}> 
 
           <div style = {{display: 'flex'}}>
             <ComboBoxSelect serv={expirationMode} nameList={expirationModeList} setSelect={setExpirationMode} title='expiration mode=' options={expirationModeList} defaultValue={expirationMode}/> &nbsp; &nbsp;  &nbsp; 
