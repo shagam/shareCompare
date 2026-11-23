@@ -96,7 +96,7 @@ function StockOptions (props) {
     "askSize","last","openInterest","volume","inTheMoney","intrinsicValue","extrinsicValue",
     "underlyingPrice","iv","delta","gamma","theta","vega"]
   const columnsDefault = [
-    "expiration","side","strike","mid","yield_", "yearlyYield", "expectedPrice",'mid/price', "breakEven"]
+    "expiration","side","strike","mid","yield_", "yearlyYield",'mid/price']
 
 const {
       errorAdd,
