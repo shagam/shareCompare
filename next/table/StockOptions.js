@@ -1481,9 +1481,9 @@ const {
           {/* select columns */}
           {optionKeys.length > 0 && <div> 
             <div  style = {{display: 'flex'}}>
-            <input type="checkbox" checked={columnHideFlag} 
-                onChange={()=>setColumnHideFlag (! columnHideFlag)}  />&nbsp;<strong>column-select</strong>  &nbsp; &nbsp; &nbsp; &nbsp; 
-            <button type="button" onClick={()=>columnsSetDefault ()}>default-columns </button>  &nbsp; &nbsp; selected-row={premiumSelected} 
+              <input type="checkbox" checked={columnHideFlag} 
+                  onChange={()=>setColumnHideFlag (! columnHideFlag)}  />&nbsp;<strong>columnSelct</strong>  &nbsp; 
+              <button type="button" onClick={()=>columnsSetDefault ()}>default_cols </button>&nbsp; selected_row={premiumSelected} 
             </div>
 
             {/* checkboxes columnSelect */}
