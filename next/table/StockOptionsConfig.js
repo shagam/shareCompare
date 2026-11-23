@@ -72,9 +72,12 @@ function StockOptionsConfig (props) {
 
     return (
       <div style={{border:'2px solid magenta', background: '#f0e0f0'}} className = 'alpha'>
+
         {/* <div style={{border:'2px solid blue'}}></div> */}
         {/* <div>&nbsp;</div> */}
-        <h5  style={{color:'#33ee33', fontWeight: 'bold', fontStyle: "italic"}}>StockOptions config: </h5>
+        <h3  style={{color:'#3336ee', fontWeight: 'bold', fontStyle: "italic"}}>StockOptions config: </h3>
+        <div style={{display: 'flex'}}>Please adjust to your estimate, <strong style={{backgroundColor: '#e5d333ff'}}> &nbsp;  fields with this background  </strong>  </div>
+
         <form onSubmit = {formSubmit}>
 
           <div style = {{display: 'flex'}}>
@@ -112,7 +115,7 @@ function StockOptionsConfig (props) {
         </div>
         <br/> 
         <label style={{margin: '0px', padding: '0px'}}> &nbsp; &nbsp; adjust expected price (price/High) &nbsp;
-          <input style={{width: '70px'}} type="number" step="0.01" name="priceDivHighFactor" // required="required"
+          <input style={{width: '70px', backgroundColor: '#e5d333ff'}} type="number" step="0.01" name="priceDivHighFactor" // required="required"
             placeholder={priceDivHighFactor} 
               onChange={(e) => setPriceDivHighFactor (e.target.value)} value={priceDivHighFactor}  />
               &nbsp; 0 (No compensation), &nbsp; 1 (Full compensation) 
@@ -130,7 +133,6 @@ function StockOptionsConfig (props) {
         <div>YearlyGain % &nbsp;
           <input style={{width: '80px', backgroundColor: '#e5d333ff'}} type="number" name="YearlyGain" // required="required"
             placeholder="YearlyGain" step="any" onChange={(e) =>  props.setEstimatedYearlyGain(e.target.value)} value={props.estimatedYearlyGain} />
-            &nbsp;&nbsp; <strong style={{color: 'magenta'}}>Please adjust to your future estimate </strong>  
         </div>
         <div>yearlyGain_source={props.yearlyGainSource}</div>
 
