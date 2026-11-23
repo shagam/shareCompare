@@ -80,7 +80,7 @@ const StockInfo = (props) => {
                   return (
                       <tr  key={i}>
                         <td  style={{padding: '2px', margin: '2px'}}>{i}</td>
-                        <td style={{padding: '2px', margin: '2px', color: colorAttribute(infoName), minWidth: '16rem', border: `none` }} > {infoName}: &nbsp;&nbsp; </td>
+                        <td style={{padding: '2px', margin: '2px', color: colorAttribute(infoName),  border: `none` }} > {infoName}: &nbsp;&nbsp; </td>
                         <td style={{padding: '2px', margin: '2px', border: `none`}} > 
                             <div>{numberWithCommas(stockInfo[infoName])} </div>
                           </td> 
