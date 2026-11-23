@@ -1299,9 +1299,9 @@ const {
     <div>
         {pageHeader (symbol, 'options', 'Calc expected option gain, based on average yearly gain, and expected stock price',
            err, 'https://youtube.com/shorts/YnNDCs4sUyA' )}
-        <strong style={{color: 'purple'}}>(Please consult other sources, before taking a decision) </strong> 
+        <strong style={{color: 'purple'}}>(Pls consult other sources, before taking decisions) </strong> 
 
-        <div style = {{display: 'flex', fontWeight: 'bold'}}> stockPrice={price} &nbsp; &nbsp; price/High={priceDivHigh}  &nbsp; &nbsp; {! isNaN(belowBubble) &&<div>price/bubblePrice={belowBubble.toFixed(3)}</div>}  </div>
+        <div style = {{fontWeight: 'bold'}}> stockPrice={price}&nbsp; price/High={priceDivHigh}&nbsp;{! isNaN(belowBubble) &&<div>price/bubblePrice={belowBubble.toFixed(3)}</div>}  </div>
 
         {config.action === 'sell' && <h6  style={{color: '#c760ff'}}>  &nbsp;  Zero sum game. <strong style={{color: 'red'}}>Selling options</strong>, has unlimited potitial loss </h6>}
         {config.side === 'put' && <h6  style={{color: '#c760ff'}}>  &nbsp;  <strong style={{color: 'red'}}>put options, not supported. and never tested</strong> </h6>}
@@ -1317,18 +1317,18 @@ const {
         {/* {config.action === 'sell' && <div  style={{color: 'red'}}> 'yield not defined, for selling options bacause of unlimited risk' </div>} */}
         {props.eliHome && logExtra && compareStatus && <div style={{color: 'orange'}}> compareStatus={compareStatus} </div>}
 
-        <div>&nbsp;</div>
+        {/* <div>&nbsp;</div> */}
 
 
         {/* <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> */}
        <div style = {{display: 'flex'}}> <input type="checkbox" checked={configShow}  onChange={()=>setConfigShow (! configShow)} 
-        />&nbsp;<strong> <FaCog style={{ fontSize: '24px', color: '#0078D4' }} /> config </strong> &nbsp; &nbsp; </div>
+        />&nbsp;<strong> <FaCog style={{ fontSize: '24px', color: '#0078D4' }} /> config </strong> </div>
         {configShow && 
         <StockOptionsConfig config={config} setConfig={setConfig} logExtra={logExtra} estimatedYearlyGain={estimatedYearlyGain}
            setEstimatedYearlyGain={setEstimatedYearlyGain} yearlyGainSource={yearlyGainSource} setConfigShow={setConfigShow}
             //  expirationLast={expirationLast} expirationOneBeforeLast={expirationOneBeforeLast}
                 />}
-        <div>&nbsp;</div>
+        {/* <div>&nbsp;</div> */}
         {/* <hr/> */}
 
 
