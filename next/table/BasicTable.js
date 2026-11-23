@@ -990,20 +990,17 @@ const {chartSymbol, setChartSymbol,
           <div></div>
             {chartSymbol && <LatestPrice symbol = {chartSymbol} rows={rows} logFlags={logFlags} servSelect={servSelect} ssl={ssl} PORT={PORT}  eliHome={eliHome} 
                 errorAdd={errorAdd} stockChartYValues = {stockChartYValues} refreshByToggleColumns = {refreshByToggleColumns} setErr={setErr} allColumns={allColumns} 
-                price={price} setPrice={setPrice} setPriceDivHigh={setPriceDivHigh}/>} 
-
-
+                price={price} setPrice={setPrice} setPriceDivHigh={setPriceDivHigh}/>}
         </div>
 
       {/* insert sym, filter column_select   */}
-    <div id="add_stock_id" style={{display:'flex',alignItems:'center',gap:'5px'}}>
-
-      <form className="w-00 text-left mt-2 d-flex" onSubmit={handleAddFormSubmit} style={{display:'flex',alignItems:'center',gap:'4px'}}>
+    <div id="add_stock_id" style={{display:'flex',alignItems:'center', margin:'2px'}}>
+      <form  onSubmit={handleAddFormSubmit} style={{display:'flex',alignItems:'center',}}>
         <input type="text" name="symbol" required placeholder="stock symbol" onChange={handleAddFormChange} style={{width:'85px',height:'27px'}} />
         <button type="submit" style={{backgroundColor:'rgba(85,255,227,0.27)',whiteSpace:'nowrap',height:'27px'}}>Add ({rows.length})</button>
       </form>
 
-      <div style={{display:'flex',alignItems:'center',gap:'4px'}}>
+      <div style={{display:'flex',alignItems:'center',gap:'4px'}}> 
         <input type="checkbox" checked={columnHideFlag} onChange={columnHideFlagChange} title="select which columns are visible and which are hidden" />
         <span>column_select</span>
       </div>
