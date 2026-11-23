@@ -1440,30 +1440,6 @@ const {
           </div>}
 
 
-      
-          {columnHideFlag && <div >    
-            {/* <hr style={{ border: '3px solid #000000'}}/>  */}
-            {/* columnShow  */}
-            {/* <div style={{hight: '400px', color:'#119933', fontWeight: 'bold', fontStyle: "italic"}}> column-select  </div> */}
-
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', maxWidth: '700px'}}>
-              {optionKeys.map((item) => (
-                  <div key={item}>
-                      <input style = {{'accentColor':'pink'}}
-                        type="checkbox" title={titleGet(item)}
-                        checked={columnShow.includes(item)}
-                        onChange={() => handleColumnCheckboxChange(item)}
-                      />
-                      &nbsp;{item}
-                  </div>
-                ))}
-            </div>
-            <button style={{background: 'aqua'}} type="button" onClick={()=>saveColumnChecked()}>  save    </button> &nbsp;&nbsp;
-
-            {/* {log && <p>Selected: {columnShow.join(", ")}</p>}   */}
-             {/* {log && <p>Selected: {optionKeys.join(", ")}</p>}   */}
-            </div>}
-
           {/* <hr style={{ border: '3px solid #000000'}}/>  */}
 
           {optionQuote && optionQuote.expiration && <div>
@@ -1503,12 +1479,29 @@ const {
           {optionKeys.length > 0 && <h3 style={{color: 'blue'}}> Option Premium Table (click row to select to focus) </h3>}
 
           {/* select columns */}
-          {optionKeys.length > 0 && <div style = {{display: 'flex'}}> 
+          {optionKeys.length > 0 && <div> 
+            <div  style = {{display: 'flex'}}>
             <input type="checkbox" checked={columnHideFlag} 
                 onChange={()=>setColumnHideFlag (! columnHideFlag)}  />&nbsp;<strong>column-select</strong>  &nbsp; &nbsp; &nbsp; &nbsp; 
             <button type="button" onClick={()=>columnsSetDefault ()}>default-columns </button>  &nbsp; &nbsp; selected-row={premiumSelected} 
-          </div>}  
+            </div>
+            {columnHideFlag && <div >    
 
+            <div style={{display: 'flex', flexWrap: 'wrap', gap: '10px'}}>
+              {optionKeys.map((item) => (
+                  <div key={item}>
+                      <input style = {{'accentColor':'pink'}}
+                        type="checkbox" title={titleGet(item)}
+                        checked={columnShow.includes(item)}
+                        onChange={() => handleColumnCheckboxChange(item)}
+                      />
+                      {item}
+                  </div>
+                ))}
+            </div>
+            <button style={{background: 'aqua'}} type="button" onClick={()=>saveColumnChecked()}>  save    </button> &nbsp;&nbsp;
+            </div>}
+          </div>}  
 
           {optionKeys.length > 0 && <div style={{maxHeight:'500px', maxWidth: '1400px', overflow:'auto'}}>
             <table>
