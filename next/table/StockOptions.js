@@ -1485,19 +1485,21 @@ const {
                 onChange={()=>setColumnHideFlag (! columnHideFlag)}  />&nbsp;<strong>column-select</strong>  &nbsp; &nbsp; &nbsp; &nbsp; 
             <button type="button" onClick={()=>columnsSetDefault ()}>default-columns </button>  &nbsp; &nbsp; selected-row={premiumSelected} 
             </div>
-            {columnHideFlag && <div >    
 
-            <div style={{display: 'flex', flexWrap: 'wrap', gap: '10px'}}>
+            {/* checkboxes columnSelect */}
+            {columnHideFlag && <div >    
+            <div style={{display: 'flex', flexWrap: 'wrap', rowGap: '2px'}}>
               {optionKeys.map((item) => (
-                  <div key={item}>
-                      <input style = {{'accentColor':'pink'}}
-                        type="checkbox" title={titleGet(item)}
-                        checked={columnShow.includes(item)}
-                        onChange={() => handleColumnCheckboxChange(item)}
-                      />
-                      {item}
-                  </div>
-                ))}
+                <div key={item}>
+                    <input style = {{'accentColor':'pink'}}
+                      type="checkbox" title={titleGet(item)}
+                      checked={columnShow.includes(item)}
+                      onChange={() => handleColumnCheckboxChange(item)}
+                    />
+                    {item} &nbsp;
+                </div>
+              ))}
+
             </div>
             <button style={{background: 'aqua'}} type="button" onClick={()=>saveColumnChecked()}>  save    </button> &nbsp;&nbsp;
             </div>}
