@@ -928,7 +928,9 @@ const {chartSymbol, setChartSymbol,
     }
     return 'white'
   }
-
+  const ROW_SPACING = {padding: "0px 2px 0px 2px", margin: '0px'}
+  //** top, right, bottom, left*/
+  
   return (
 
       <SharedContext.Provider value={{errorAdd, error, setErr, refreshByToggleColumns}}>
@@ -1067,7 +1069,7 @@ const {chartSymbol, setChartSymbol,
           const { key: rowKey, ...rowRest } = row.getRowProps();
           return (
             <tr id='stock_row_id' key={rowKey} {...rowRest}>
-              <td style={{margin: '1px', padding: '1px'}}>{i}</td>
+              <td style={{...ROW_SPACING}}>{i}</td>
               {row.cells.map((cell) => {
                 const { key: cellKey, ...cellRest } = cell.getCellProps({
                   style: {
@@ -1082,9 +1084,9 @@ const {chartSymbol, setChartSymbol,
                   </td> 
                 );
               })}
-              <td style={{margin: '1px', padding: '1px'}}> <button style={{background:'#ddcccc'}} type="button" 
+              <td style={{...ROW_SPACING}}> <button style={{background:'#ddcccc'}} type="button" 
                   onClick={()=>handleDeleteClick(row.values.symbol)}>del</button></td>
-              <td style={{margin: '1px', padding: '1px'}}> <button style={gainButtonColor(row.values.symbol)} type="button" 
+              <td style={{...ROW_SPACING}}> <button style={gainButtonColor(row.values.symbol)} type="button" 
                   onClick={()=>handleGainClick(row.values.symbol, true, -1, 0)}>Gain</button></td> 
             </tr>
           );
