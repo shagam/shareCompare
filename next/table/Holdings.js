@@ -373,48 +373,52 @@ function Holdings (props) {
       {/* ====== Display filtered held list */} 
       {Object.keys(heldMasterObj).length > 0 && <div  style={{...hieght, overflowY: 'scroll', }}>
      <div style={{ overflowX: 'auto', display: 'flex', justifyContent: 'flex-start' }}>
-          <table style={{
-            width: 'auto',
-            marginLeft: 0,
-            marginRight: 'auto',
-            borderCollapse: 'collapse',
-            textAlign: 'left',
-            tableLayout: 'auto',
-          }}>
-            <thead>
-              <tr>
-                <th style={{ textAlign: 'left', padding: '2px 6px', whiteSpace: 'nowrap' }}>N</th>
-                {/* <th style={{ textAlign: 'left', padding: '2px 6px', whiteSpace: 'nowrap' }}></th> */}
-                {etfArr_ && etfArr_.length > 1 && etfArr_.map((e, index) => {
+      <table style={{
+        width: 'auto',
+        marginRight: 'auto',
+        borderCollapse: 'collapse',
+        tableLayout: 'auto',
+      }}>
+        <thead>
+          <tr>
+            <th style={{ textAlign: 'left', padding: '2px 6px', whiteSpace: 'nowrap' }}>N</th>
+            {/* <th style={{ textAlign: 'left', padding: '2px 6px', whiteSpace: 'nowrap' }}>Symbol</th> */}
+            {etfArr_ && etfArr_.length > 1 && etfArr_.map((e, index) => {
+              return (
+                <th key={index} scope="col" style={{ textAlign: 'right', padding: '2px 12px', whiteSpace: 'nowrap' }}>
+                  {e}
+                </th>
+              )
+            })}
+          </tr>
+        </thead>
+
+        <tbody>
+          {Object.keys(heldMasterObj).map((s, s1) => {
+            return (
+              <tr key={s1}>
+                <td style={{ padding: '2px 6px', textAlign: 'left', whiteSpace: 'nowrap' }}>{s1}</td>
+                <td style={{ padding: '2px 6px', textAlign: 'left', whiteSpace: 'nowrap' }}>{s}</td>
+                {etfArr.map((k, n) => {
                   return (
-                    <th key={index} scope="col" style={{ textAlign: 'left', padding: '2px 10px', whiteSpace: 'nowrap' }}>
-                      {e}
-                    </th>
+                    <td key={n} style={{
+                      padding: '2px 6px',
+                      textAlign: 'right',
+                      whiteSpace: 'nowrap',
+                      fontVariantNumeric: 'tabular-nums',
+                    }}>
+                      {heldMasterObj[s][k]}
+                    </td>
                   )
                 })}
               </tr>
-            </thead>
-
-            <tbody>
-              {Object.keys(heldMasterObj).map((s, s1) => {
-                return (
-                  <tr key={s1}>
-                    <td style={{ padding: '2px 6px', textAlign: 'left', whiteSpace: 'nowrap' }}>{s1}</td>
-                    <td style={{ padding: '2px 6px', textAlign: 'left', whiteSpace: 'nowrap' }}>{s}</td>
-                    {etfArr.map((k, n) => {
-                      return (
-                        <td key={n} style={{ padding: '2px 6px', textAlign: 'left', whiteSpace: 'nowrap' }}>
-                          {heldMasterObj[s][k]}
-                        </td>
-                      )
-                    })}
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
-        </div>
+            )
+          })}
+        </tbody>
+      </table>
+      </div>
       </div> }
+
 
       <div>&nbsp;</div> 
       
