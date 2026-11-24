@@ -24,3 +24,33 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* --- Restore native button/input frames lost to Tailwind Preflight --- */
+/* Un-layered CSS wins over Tailwind's layered Preflight, so this goes last */
+
+button,
+input,
+select,
+textarea {
+  border: 1px solid #999;
+  border-radius: 4px;
+  background: #fff;
+  color: #000;
+  padding: 2px 6px;
+}
+
+button {
+  cursor: pointer;
+  background: #f0f0f0;
+  padding: 2px 10px;
+}
+
+button:hover {
+  background: #e0e0e0;
+}
+
+input:focus,
+button:focus {
+  border-color: #333;
+  outline: none;
+}
