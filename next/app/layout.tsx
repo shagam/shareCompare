@@ -1,11 +1,12 @@
 // "use client";
 
 import type { ReactNode } from "react";
+import { BasicTable } from "../table/BasicTable";
+import { AuthProvider } from "../contexts/AuthContext";
+import { SharedProvider } from "../contexts/SharedContext";
 
 import type { Metadata } from "next";
 import "./globals.css";
-import { Providers } from "./Providers";
-
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sharecompare.net"),
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     template: "%s | ShareCompare",
   },
   description:
-    "Get essential share info to trade with confidence. prices, charts,  fundamentals, dividends and comparisons for US stocks, shares and ETFs.",
+    "Get essential share info to trade with confidence. prices, charts, fundamentals, dividends and comparisons for US stocks, shares and ETFs.",
   keywords: [
     "sharecompare",
     "share prices",
@@ -71,13 +72,24 @@ export const metadata: Metadata = {
   },
 };
 
-
-
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+        <AuthProvider>
+          <SharedProvider>
+            <BasicTable />
+            <div
+              style={{
+                border: "2px solid blue",
+                background: "#f0f0e0",
+                paddingTop: "6px",
+              }}
+            >
+              {children}
+            </div>
+          </SharedProvider>
+        </AuthProvider>
       </body>
     </html>
   );
