@@ -44,27 +44,6 @@ const {chartSymbol, setChartSymbol,
     } = useShared();
 
 
-  const flags0 = []
-  const flags1 = []
-  const flags2 = []
-
-  var cnt = 0;
-  // React.useEffect (() => {
- 
-  // }, [props.checkList])
-  // const setLogFlags = memoryStore.get('setLogFlags')
-
-  props.checkList.forEach((f) => {
-    if (cnt < (props.checkList.length)/3)
-      flags0.push(f)
-    else if (cnt < (props.checkList.length + 2) * 2 / 3)
-      flags1.push(f)
-    else
-      flags2.push(f)
-    cnt++;
-  })
-
-
    // State with list of all checked item
    var logFlagsRaw = localStorage.getItem('logFlags')
     // setLogFlags(logFlagsRaw)
@@ -115,34 +94,29 @@ const {chartSymbol, setChartSymbol,
         <hr/> 
         
         <div>
-          <div style={{display:'flex'}}>
-            {flags0.map((item, index) => (
-              <div style={{display:'flex'}} key={index}>
-                <input value={item} type="checkbox" checked={checked.includes(item)} onChange={handleCheck} />
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 8px' }}>
+            {props.checkList.map((item, index) => (
+              <div
+                key={index}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  whiteSpace: 'nowrap', // keeps box + text together
+                  flexShrink: 0, // don't squash it
+                }}
+              >
+                <input
+                  value={item}
+                  type="checkbox"
+                  checked={checked.includes(item)}
+                  onChange={handleCheck}
+                  style={{ margin: 0, cursor: 'pointer' }}
+                />
                 <span>&nbsp;{item}&nbsp;&nbsp;</span>
               </div>
             ))}
           </div>
           <br></br>
-          <div style={{display:'flex'}}>
-            {flags1.map((item, index) => (
-              <div style={{display:'flex'}} key={index}>
-                <input value={item} type="checkbox" checked={checked.includes(item)} onChange={handleCheck} />
-                <span>&nbsp;{item}&nbsp;&nbsp;</span>
-              </div>
-            ))}
-          </div>
-          <br></br>
-          <div style={{display:'flex'}}>
-            {flags2.map((item, index) => (
-              <div style={{display:'flex'}} key={index}>
-                <input value={item} type="checkbox" checked={checked.includes(item)} onChange={handleCheck} />
-                <span>&nbsp;{item}&nbsp;&nbsp;</span>
-              </div>
-            ))}
-          </div>
-          <br></br>
-          {/* <div className="title"> {checkedItems}</div> */}
         </div>
       </div>
     );
