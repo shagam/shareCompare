@@ -54,3 +54,9 @@ button:focus {
   border-color: #333;
   outline: none;
 }
+
+a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: blue
+}
