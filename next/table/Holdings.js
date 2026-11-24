@@ -372,51 +372,73 @@ function Holdings (props) {
 
       {/* ====== Display filtered held list */} 
       {Object.keys(heldMasterObj).length > 0 && <div  style={{...hieght, overflowY: 'scroll', }}>
-     <div style={{ overflowX: 'auto', display: 'flex', justifyContent: 'flex-start' }}>
-      <table style={{
-        width: 'auto',
-        marginRight: 'auto',
-        borderCollapse: 'collapse',
-        tableLayout: 'auto',
-      }}>
-        <thead>
-          <tr>
-            <th style={{ textAlign: 'left', padding: '2px 6px', whiteSpace: 'nowrap' }}>N</th>
-            {/* <th style={{ textAlign: 'left', padding: '2px 6px', whiteSpace: 'nowrap' }}>Symbol</th> */}
-            {etfArr_ && etfArr_.length > 1 && etfArr_.map((e, index) => {
-              return (
-                <th key={index} scope="col" style={{ textAlign: 'right', padding: '2px 12px', whiteSpace: 'nowrap' }}>
-                  {e}
-                </th>
-              )
-            })}
-          </tr>
-        </thead>
+        {/* 1. OUTER: does the scrolling, stays left */}
+        <div style={{
+          maxHeight: '400px',
+          overflowY: 'auto',
+          overflowX: 'auto',
+          display: 'flex',
+          justifyContent: 'flex-start',
+          alignItems: 'flex-start',
+        }}>
+          {/* 2. INNER: hugs the table, does NOT scroll */}
+          <div style={{ width: 'fit-content' }}>
+            <table style={{
+              width: 'max-content',
+              borderCollapse: 'separate', // <-- sticky breaks with collapse
+              borderSpacing: 0,
+            }}>
+              <thead>
+                <tr>
+                  <th style={{
+                    position: 'sticky', top: 0, zIndex: 2,
+                    background: '#fff',
+                    color: '#000', // <-- explicit, so it can't be white-on-white
+                    borderBottom: '1px solid #999',
+                    textAlign: 'left', padding: '2px 6px', whiteSpace: 'nowrap',
+                  }}>N</th>
+                    {etfArr_ && etfArr_.length > 1 && etfArr_.map((e, index) => {
+                    return (
+                      <th key={index} scope="col" style={{
+                        position: 'sticky', top: 0, zIndex: 2,
+                        background: '#fff',
+                        color: '#000',
+                        backgroundColor: 'lightGreen',
+                        borderBottom: '1px solid #999',
+                        textAlign: 'right', padding: '2px 6px', whiteSpace: 'nowrap',
+                      }}>
+                        {e}
+                      </th>
+                    )
+                  })}
+                </tr>
+              </thead>
 
-        <tbody>
-          {Object.keys(heldMasterObj).map((s, s1) => {
-            return (
-              <tr key={s1}>
-                <td style={{ padding: '2px 6px', textAlign: 'left', whiteSpace: 'nowrap' }}>{s1}</td>
-                <td style={{ padding: '2px 6px', textAlign: 'left', whiteSpace: 'nowrap' }}>{s}</td>
-                {etfArr.map((k, n) => {
+              <tbody>
+                {Object.keys(heldMasterObj).map((s, s1) => {
                   return (
-                    <td key={n} style={{
-                      padding: '2px 6px',
-                      textAlign: 'right',
-                      whiteSpace: 'nowrap',
-                      fontVariantNumeric: 'tabular-nums',
-                    }}>
-                      {heldMasterObj[s][k]}
-                    </td>
+                    <tr key={s1}>
+                      <td style={{ padding: '2px 6px', textAlign: 'left', whiteSpace: 'nowrap' }}>{s1}</td>
+                      <td style={{ padding: '2px 6px', textAlign: 'left', whiteSpace: 'nowrap' }}>{s}</td>
+                      {etfArr.map((k, n) => {
+                        return (
+                          <td key={n} style={{
+                            padding: '2px 14px',
+                            textAlign: 'right',
+                            whiteSpace: 'nowrap',
+                            fontVariantNumeric: 'tabular-nums',
+                          }}>
+                            {heldMasterObj[s][k]}
+                          </td>
+                        )
+                      })}
+                    </tr>
                   )
                 })}
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
-      </div>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div> }
 
 
