@@ -70,7 +70,7 @@ const CandlestickChart = (props) => {
   // const period = ['TIME_SERIES_INTRADAY', 'TIME_SERIES_DAILY_ADJUSTED']
   const [periodIndex, setPeriodIndex] = useState('2') // default daily
   
-  const intervalOptionsNames = ['Monthly', 'Weekly', 'Daily', '60min', '30min', '15min', '5min', '1min']  // adjusted=true
+  const intervalOptionsNames = ['Monthly', 'Weekly', 'Daily']//, '60min', '30min', '15min', '5min', '1min']  // adjusted=true
   const indexOptions = ['0','1','2','3','4','5','6','7']
   // const intervalStamp = ["Time Series (Daily)", "Time Series (15min)"]
   
@@ -97,6 +97,9 @@ const CandlestickChart = (props) => {
     if (periodIndex === '0') {
       periodTag = 'Monthly Adjusted Time Series'
       funct = 'TIME_SERIES_MONTHLY_ADJUSTED'
+      setErr('Monthly not supported')
+      beep2()
+      return;
     }
 
 
@@ -107,7 +110,7 @@ const CandlestickChart = (props) => {
     // if (periodIndex !== '0')
     //   API_Call += '&interval=' + intervalOptionsNames[periodIndex]
     var dates = [], high = [], low = [], open = [], close = [];
-    var API_Call =`/api/alpha?symbol=${symbol}&weekly=${! daily}&function=TIME_SERIES`;
+    var API_Call =`/api/alpha?symbol=${symbol}&weekly=${periodIndex === '1'}&function=TIME_SERIES`;
     if(log)
       console.log ('API_Call', API_Call)
 
@@ -426,8 +429,8 @@ const CandlestickChart = (props) => {
           </div>
 
           <div style={{display:'flex'}}>
-             {/* <ComboBoxSelect serv={periodIndex} nameList={intervalOptionsNames} setSelect={setPeriodIndex}
-                                        title='resolution' options={indexOptions} defaultValue={periodIndex}/> &nbsp; &nbsp;  */}
+             <ComboBoxSelect serv={periodIndex} nameList={intervalOptionsNames} setSelect={setPeriodIndex}
+                                        title='resolution' options={indexOptions} defaultValue={periodIndex}/> &nbsp; &nbsp; 
 
             {data && <div><input  type="checkbox" checked={frozen}  onChange={() => setFrozen (! frozen)} /> &nbsp;frozen &nbsp;&nbsp;</div>}
             {props.eliHome && <div><input type="checkbox" checked={log}  onChange={()=> setLog( ! log)}  />  &nbsp;Log &nbsp; &nbsp; </div>}
