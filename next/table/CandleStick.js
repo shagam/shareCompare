@@ -34,6 +34,18 @@ import { useShared } from '../contexts/SharedContext';
 //* chatgpt 3
 
 const CandlestickChart = (props) => {
+
+   const {
+        chartSymbol, setChartSymbol,
+        symbol,
+        infoSymbol, setInfoSymbol,
+        gainMap, setGainMap,
+        chartData, setChartData,
+        stockInfo, setStockInfo,
+        daily,
+      } = useShared();
+  
+  
   const [log, setLog] = useState(false)
   const [log_1, setLog_1] = useState(false)
   const [data, setData] = useState()
@@ -88,13 +100,14 @@ const CandlestickChart = (props) => {
     }
 
 
-    var API_Call = 'https://www.alphavantage.co/query'
-    API_Call += '?function=' + funct;
-    API_Call += '&symbol=' + props.symbol + '&apikey=' + props.API_KEY
-    API_Call += '&outputsize=full' 
-    if (periodIndex !== '0')
-      API_Call += '&interval=' + intervalOptionsNames[periodIndex]
+    // var API_Call = 'https://www.alphavantage.co/query'
+    // API_Call += '?function=' + funct;
+    // API_Call += '&symbol=' + props.symbol + '&apikey=' + props.API_KEY
+    // API_Call += '&outputsize=full' 
+    // if (periodIndex !== '0')
+    //   API_Call += '&interval=' + intervalOptionsNames[periodIndex]
     var dates = [], high = [], low = [], open = [], close = [];
+    var API_Call =`/api/alpha?symbol=${symbol}&weekly=${! daily}&function=TIME_SERIES`;
     if(log)
       console.log ('API_Call', API_Call)
 
@@ -127,11 +140,12 @@ const CandlestickChart = (props) => {
             if (i >= histLength) break;
             // const period_ = chartData[`${periodTag}`][key]
             // console.log (key, chartData[`${periodTag}`][key])
+            const factor = chartData[periodTag][key]['5. adjusted close'] / chartData[periodTag][key]['4. close']
             const candle = {
-              open: chartData[periodTag][key]['1. open'],
-              high: chartData[periodTag][key]['2. high'],
-              low: chartData[periodTag][key]['3. low'],
-              close: chartData[periodTag][key]['4. close'],
+              open: chartData[periodTag][key]['1. open'] * factor,
+              high: chartData[periodTag][key]['2. high'] * factor,
+              low: chartData[periodTag][key]['3. low'] * factor,
+              close: chartData[periodTag][key]['5. adjusted close'], //['4. close'],
               date: key
             }
             high.push(candle.high)
@@ -412,8 +426,8 @@ const CandlestickChart = (props) => {
           </div>
 
           <div style={{display:'flex'}}>
-             <ComboBoxSelect serv={periodIndex} nameList={intervalOptionsNames} setSelect={setPeriodIndex}
-                                        title='resolution' options={indexOptions} defaultValue={periodIndex}/> &nbsp; &nbsp; 
+             {/* <ComboBoxSelect serv={periodIndex} nameList={intervalOptionsNames} setSelect={setPeriodIndex}
+                                        title='resolution' options={indexOptions} defaultValue={periodIndex}/> &nbsp; &nbsp;  */}
 
             {data && <div><input  type="checkbox" checked={frozen}  onChange={() => setFrozen (! frozen)} /> &nbsp;frozen &nbsp;&nbsp;</div>}
             {props.eliHome && <div><input type="checkbox" checked={log}  onChange={()=> setLog( ! log)}  />  &nbsp;Log &nbsp; &nbsp; </div>}
