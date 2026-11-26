@@ -397,35 +397,36 @@ const CandlestickChart = (props) => {
       dat.push(signSell)
     }
     setData(dat)
+    console.log(dat)
   }
 
 
   return (
     <div>
-        <div>  &nbsp; 
+        <div>
           <div style={{display:'flex'}}>
             <GetInt init={histLength} callBack={setHistLength} title='historySize' type='Number' pattern="[0-9]+" width = '20%'/>
-            {maxHistLength && <div style={{paddingTop:'9px'}}>&nbsp; &nbsp; length={maxHistLength} </div>}
+            {maxHistLength && <div style={{paddingTop:'9px'}}> length={maxHistLength} </div>}
           </div>
-
+          <div>
+            <ComboBoxSelect serv={periodIndex} nameList={intervalOptionsNames} setSelect={setPeriodIndex}
+                                        title='resolution' options={indexOptions} defaultValue={periodIndex}/>
+          </div>
+          {/* <div>&nbsp;</div> */}
           <div style={{display:'flex'}}>
-             <ComboBoxSelect serv={periodIndex} nameList={intervalOptionsNames} setSelect={setPeriodIndex}
-                                        title='resolution' options={indexOptions} defaultValue={periodIndex}/> &nbsp; &nbsp; 
-
-            {eliHome && <input  type="checkbox" checked={signals}  onChange={() => setSignals (! signals)} />} &nbsp;signals &nbsp;&nbsp;
-            {data && <div><input  type="checkbox" checked={frozen}  onChange={() => setFrozen (! frozen)} /> &nbsp;frozen &nbsp;&nbsp;</div>}
-            {eliHome && <div><input type="checkbox" checked={log}  onChange={()=> setLog( ! log)}  />  &nbsp;Log &nbsp; &nbsp; </div>}
-            {eliHome && <div><input type="checkbox" checked={log_1}  onChange={()=> setLog_1( ! log_1)}  />  &nbsp;Log_extra &nbsp; &nbsp; </div>} &nbsp;&nbsp;&nbsp;
+            {eliHome && <input  type="checkbox" checked={signals}  onChange={() => setSignals (! signals)} />} signals &nbsp;&nbsp;
+            {<div><input  type="checkbox" checked={frozen}  onChange={() => setFrozen (! frozen)} /> frozen &nbsp;&nbsp;</div>}
+            {eliHome && <div><input type="checkbox" checked={log}  onChange={()=> setLog( ! log)}  />  Log &nbsp; &nbsp; </div>}
+            {eliHome && <div><input type="checkbox" checked={log_1}  onChange={()=> setLog_1( ! log_1)}  /> Log_extra &nbsp; &nbsp; </div>} &nbsp;&nbsp;&nbsp;
           </div>
           <div>&nbsp;</div>
 
           <button  style={{background: 'aqua'}} onClick={() => get()}> CandleStick get</button>&nbsp;
 
-        </div>          
+        </div>
+        {/* {data && console.log('RENDER chart for:', symbol, 'data len:', data?.length)}           */}
         {data && <Plot  data={data} layout={{ width: 450, height: 600, title:  'Candlestick Chart ' + symbol,
-                   xaxis:{title: 'Date'}, yaxis: {title: 'Price'}}} config={{staticPlot: frozen, 'modeBarButtonsToRemove': []}}  />}
-                   {/* xaxis-rangeslider-visible=false */}
-                   {/* {isMobile && <div>mobile</div>} */}
+                   xaxis:{title: 'Date', rangeslider: { visible: false },}, yaxis: {title: 'Price'}}} config={{staticPlot: frozen, 'modeBarButtonsToRemove': []}}  />}
     </div>
   );
 };
