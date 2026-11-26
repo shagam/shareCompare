@@ -15,6 +15,7 @@ import { ComboBoxSelect } from '../utils/ComboBoxSelect'
 import {pageHeader } from './StockInfo'
 import { useShared } from '../contexts/SharedContext';
 import {IpContext} from '../contexts/IpContext';
+import {createSignals} from './CandleStickSignals'
 // import yfinance from 'yahoo-finance2'
 // const df = yfinance.download('AAPL', '2021-01-01', '2021-12-31')
 // console.log (df)
@@ -364,40 +365,44 @@ const CandlestickChart = (props) => {
         // name: 'xxx'
       },      
     ];
+    
 
-      const signBuy = {
-      x: buyDates,
-      y: max_y_array,
-      mode: 'markers',
-      marker: {
-        color: 'green',
-        size: 10,
-        symbol: 'triangle-up'
-      },
-      name: 'Buy'
-    }
-    if (signals) {
-      dat.push(signBuy)
-    }    
+    const trace = dat[0];
 
-    // Sell markers
-    const signSell =
-    {
-      x: sellDates,
-      y:  max_y_array,
-      mode: 'markers',
-      marker: {
-        color: 'red',
-        size: 10,
-        symbol: 'triangle-down'
+    const signals = createSignals(dat[0]);
+    console.log(signals);
+
+    // Show on chart:
+    const buySignals = signals.filter(s => s.direction === 'BUY');
+    const sellSignals = signals.filter(s => s.direction === 'SELL');
+
+    const signalTraces = [
+      {
+        x: buySignals.map(s => s.date),
+        y: buySignals.map(s => s.price),
+        mode: 'markers+text',
+        type: 'scatter',
+        name: 'BUY',
+        marker: { color: 'green', size: 14, symbol: 'triangle-up' },
+        text: buySignals.map(s => s.type),
+        textposition: 'bottom center',
       },
-      name: 'Sell'
-    }
-    if (signals) {
-      dat.push(signSell)
-    }
-    setData(dat)
-    console.log(dat)
+      {
+        x: sellSignals.map(s => s.date),
+        y: sellSignals.map(s => s.price),
+        mode: 'markers+text',
+        type: 'scatter',
+        name: 'SELL',
+        marker: { color: 'red', size: 14, symbol: 'triangle-down' },
+        text: sellSignals.map(s => s.type),
+        textposition: 'top center',
+      }
+    ];
+
+    const dat1 = [dat[0], ...signalTraces]
+
+     setData(dat1)
+    console.log('dat1', dat1)
   }
 
 
