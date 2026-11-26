@@ -70,7 +70,7 @@ const CandlestickChart = (props) => {
   const intervalOptionsNames = ['Monthly', 'Weekly', 'Daily']//, '60min', '30min', '15min', '5min', '1min']  // adjusted=true
   const indexOptions = ['0','1','2','3','4','5','6','7']
   // const intervalStamp = ["Time Series (Daily)", "Time Series (15min)"]
-  const [signals, setSignals] = useState(false)
+  const [signals_, setSignals] = useState(false)
 
 
   // const [periodTag, setPeriodTag] = useState('Time Series (Daily)')
@@ -398,9 +398,13 @@ const CandlestickChart = (props) => {
         hovertemplate: '<b>%{customdata}</b><br>%{x}<br>$%{y:.2f}<extra></extra>',
       }
     ];
-    const dat1 = [dat[0], ...signalTraces]
+    var dat1= []
+    if (signals_)
+      dat1 = [dat[0], ...signalTraces]
+    else
+      dat1 = [dat[0]]
 
-     setData(dat1)
+    setData(dat1)
     console.log('dat1', dat1)
   }
 
@@ -418,7 +422,7 @@ const CandlestickChart = (props) => {
           </div>
           {/* <div>&nbsp;</div> */}
           <div style={{display:'flex'}}>
-            {eliHome && <input  type="checkbox" checked={signals}  onChange={() => setSignals (! signals)} />} signals &nbsp;&nbsp;
+            {eliHome && <input  type="checkbox" checked={signals_}  onChange={() => setSignals (! signals_)} />} signals &nbsp;&nbsp;
             {<div><input  type="checkbox" checked={frozen}  onChange={() => setFrozen (! frozen)} /> frozen &nbsp;&nbsp;</div>}
             {eliHome && <div><input type="checkbox" checked={log}  onChange={()=> setLog( ! log)}  />  Log &nbsp; &nbsp; </div>}
             {eliHome && <div><input type="checkbox" checked={log_1}  onChange={()=> setLog_1( ! log_1)}  /> Log_extra &nbsp; &nbsp; </div>} &nbsp;&nbsp;&nbsp;
