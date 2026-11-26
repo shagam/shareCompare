@@ -376,29 +376,28 @@ const CandlestickChart = (props) => {
     const buySignals = signals.filter(s => s.direction === 'BUY');
     const sellSignals = signals.filter(s => s.direction === 'SELL');
 
-    const signalTraces = [
+   const signalTraces = [
       {
         x: buySignals.map(s => s.date),
         y: buySignals.map(s => s.price),
-        mode: 'markers+text',
+        mode: 'markers',
         type: 'scatter',
         name: 'BUY',
         marker: { color: 'green', size: 14, symbol: 'triangle-up' },
-        text: buySignals.map(s => s.type),
-        textposition: 'bottom center',
+        customdata: buySignals.map(s => s.type), // <-- type lives here
+        hovertemplate: '<b>%{customdata}</b><br>%{x}<br>$%{y:.2f}<extra></extra>',
       },
       {
         x: sellSignals.map(s => s.date),
         y: sellSignals.map(s => s.price),
-        mode: 'markers+text',
+        mode: 'markers',
         type: 'scatter',
         name: 'SELL',
         marker: { color: 'red', size: 14, symbol: 'triangle-down' },
-        text: sellSignals.map(s => s.type),
-        textposition: 'top center',
+        customdata: sellSignals.map(s => s.type),
+        hovertemplate: '<b>%{customdata}</b><br>%{x}<br>$%{y:.2f}<extra></extra>',
       }
     ];
-
     const dat1 = [dat[0], ...signalTraces]
 
      setData(dat1)

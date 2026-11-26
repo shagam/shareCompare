@@ -39,14 +39,14 @@ export function createSignals(trace) {
     // --- 1. BULLISH ENGULFING ---
     if (isBear(prev) && isBull(curr) &&
         curr.open <= prev.close && curr.close >= prev.open) {
-      signals.push({ index: originalIndex, date: curr.date, type1: 'BULLISH_ENGULFING', direction: 'BUY', price: curr.close, strength: 3 });
+      signals.push({ index: originalIndex, date: curr.date, type: 'BULLISH_ENGULFING', direction: 'BUY', price: curr.close, strength: 3 });
       continue;
     }
 
     // --- 2. BEARISH ENGULFING ---
     if (isBull(prev) && isBear(curr) &&
         curr.open >= prev.close && curr.close <= prev.open) {
-      signals.push({ index: originalIndex, date: curr.date, type1: 'BEARISH_ENGULFING', direction: 'SELL', price: curr.close, strength: 3 });
+      signals.push({ index: originalIndex, date: curr.date, type: 'BEARISH_ENGULFING', direction: 'SELL', price: curr.close, strength: 3 });
       continue;
     }
 
@@ -54,19 +54,19 @@ export function createSignals(trace) {
     const lowerWick = Math.min(curr.open, curr.close) - curr.low;
     const upperWick = curr.high - Math.max(curr.open, curr.close);
     if (range(curr) > 0 && lowerWick > body(curr) * 2 && upperWick < body(curr) * 0.5) {
-      signals.push({ index: originalIndex, date: curr.date, type1: 'HAMMER', direction: 'BUY', price: curr.close, strength: 2 });
+      signals.push({ index: originalIndex, date: curr.date, type: 'HAMMER', direction: 'BUY', price: curr.close, strength: 2 });
       continue;
     }
 
     // --- 4. SHOOTING STAR ---
     if (range(curr) > 0 && upperWick > body(curr) * 2 && lowerWick < body(curr) * 0.5) {
-      signals.push({ index: originalIndex, date: curr.date, type1: 'SHOOTING_STAR', direction: 'SELL', price: curr.close, strength: 2 });
+      signals.push({ index: originalIndex, date: curr.date, type: 'SHOOTING_STAR', direction: 'SELL', price: curr.close, strength: 2 });
       continue;
     }
 
     // --- 5. DOJI ---
     if (range(curr) > 0 && body(curr) < range(curr) * 0.1) {
-      signals.push({ index: originalIndex, date: curr.date, type1: 'DOJI', direction: 'NEUTRAL', price: curr.close, strength: 1 });
+      signals.push({ index: originalIndex, date: curr.date, type: 'DOJI', direction: 'NEUTRAL', price: curr.close, strength: 1 });
       continue;
     }
 
@@ -77,9 +77,9 @@ export function createSignals(trace) {
     const sma20Prev = sma(closes, 20, i - 1);
     if (sma5 && sma5Prev && sma20 && sma20Prev) {
       if (sma5Prev <= sma20Prev && sma5 > sma20) {
-        signals.push({ index: originalIndex, date: curr.date, type1: 'BULLISH_SMA_CROSS', direction: 'BUY', price: curr.close, strength: 2 });
+        signals.push({ index: originalIndex, date: curr.date, type: 'BULLISH_SMA_CROSS', direction: 'BUY', price: curr.close, strength: 2 });
       } else if (sma5Prev >= sma20Prev && sma5 < sma20) {
-        signals.push({ index: originalIndex, date: curr.date, type1: 'BEARISH_SMA_CROSS', direction: 'SELL', price: curr.close, strength: 2 });
+        signals.push({ index: originalIndex, date: curr.date, type: 'BEARISH_SMA_CROSS', direction: 'SELL', price: curr.close, strength: 2 });
       }
     }
   }
