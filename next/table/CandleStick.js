@@ -49,8 +49,6 @@ const CandlestickChart = (props) => {
   const [log, setLog] = useState(false)
   const [log_1, setLog_1] = useState(false)
   const [data, setData] = useState()
-  const [signalsBuy, setSignalsBuy] = useState()
-  const [signalsSell, setSignalsSell] = useState()
 
   const [histLength, setHistLength] = useState(35)
   const [maxHistLength, setMaxHistLength] = useState()
@@ -64,8 +62,6 @@ const CandlestickChart = (props) => {
   const [sellDates, setSellDates] = useState([])
   // const [yBuy, setYBuy] = useState([])
   const [chartMarkers, setChartMarkers] = useState(false)
-
-  // const [chartData, setChartData] = useState({});  //needed for dropREcovery
   
   // const period = ['TIME_SERIES_INTRADAY', 'TIME_SERIES_DAILY_ADJUSTED']
   const [periodIndex, setPeriodIndex] = useState('2') // default daily
@@ -348,7 +344,7 @@ const CandlestickChart = (props) => {
     for (let i = 0; i < close.length; i++) 
       if (high[i] > max_y) max_y = high[i]
 
-    const MARKER_FACTOR = 1
+    const MARKER_FACTOR = 1.01
     var max_y_array = []
     for (let j = 0; j < high.length; j++)
         max_y_array[j] = max_y * MARKER_FACTOR
@@ -357,9 +353,9 @@ const CandlestickChart = (props) => {
         {
         x: xClipped,
         close: close,
-        decreasing: { line: { color: 'red' } },
+        decreasing: { line: { color: 'pink' } },
         high: high,
-        increasing: { line: { color: 'green' } },
+        increasing: { line: { color: 'lightGreen' } },
         low: low,
         open: open,
         type: 'candlestick',
@@ -380,7 +376,9 @@ const CandlestickChart = (props) => {
       },
       name: 'Buy'
     }
-    
+    if (signals) {
+      dat.push(signBuy)
+    }    
 
     // Sell markers
     const signSell =
@@ -396,7 +394,6 @@ const CandlestickChart = (props) => {
       name: 'Sell'
     }
     if (signals) {
-      dat.push(signBuy)
       dat.push(signSell)
     }
     setData(dat)
@@ -425,7 +422,7 @@ const CandlestickChart = (props) => {
           <button  style={{background: 'aqua'}} onClick={() => get()}> CandleStick get</button>&nbsp;
 
         </div>          
-        {data && <Plot  data={data} layout={{ width: 650, height: 600, title:  'Candlestick Chart ' + symbol,
+        {data && <Plot  data={data} layout={{ width: 450, height: 600, title:  'Candlestick Chart ' + symbol,
                    xaxis:{title: 'Date'}, yaxis: {title: 'Price'}}} config={{staticPlot: frozen, 'modeBarButtonsToRemove': []}}  />}
                    {/* xaxis-rangeslider-visible=false */}
                    {/* {isMobile && <div>mobile</div>} */}
