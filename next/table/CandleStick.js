@@ -14,7 +14,7 @@ import MobileContext from '../contexts/MobileContext'
 import { ComboBoxSelect } from '../utils/ComboBoxSelect'
 import {pageHeader } from './StockInfo'
 import { useShared } from '../contexts/SharedContext';
-
+import {IpContext} from '../contexts/IpContext';
 // import yfinance from 'yahoo-finance2'
 // const df = yfinance.download('AAPL', '2021-01-01', '2021-12-31')
 // console.log (df)
@@ -45,7 +45,7 @@ const CandlestickChart = (props) => {
         daily,
       } = useShared();
   
-  
+  const {eliHome} = IpContext();
   const [log, setLog] = useState(false)
   const [log_1, setLog_1] = useState(false)
   const [data, setData] = useState()
@@ -73,7 +73,7 @@ const CandlestickChart = (props) => {
   const intervalOptionsNames = ['Monthly', 'Weekly', 'Daily']//, '60min', '30min', '15min', '5min', '1min']  // adjusted=true
   const indexOptions = ['0','1','2','3','4','5','6','7']
   // const intervalStamp = ["Time Series (Daily)", "Time Series (15min)"]
-  
+  const [signals, setSignals] = useState(false)
 
 
   // const [periodTag, setPeriodTag] = useState('Time Series (Daily)')
@@ -127,7 +127,7 @@ const CandlestickChart = (props) => {
         (chartData) => {
           const dataStr = JSON.stringify(chartData);
           if (dataStr === "{}") {
-            props.errorAdd([props.symbol, 'Invalid symbol, or fail to fetch historical data'])
+            props.errorAdd([symbol, 'Invalid symbol, or fail to fetch historical data'])
             // alert (`Invalid symbol: (${sym})`)
             return;
           }
@@ -346,7 +346,7 @@ const CandlestickChart = (props) => {
     //** find max y for markers */
     var max_y = 0;  // for markers
     for (let i = 0; i < close.length; i++) 
-      if (close[i] > max_y) max_y = close[i]
+      if (high[i] > max_y) max_y = high[i]
 
     const MARKER_FACTOR = 1
     var max_y_array = []
@@ -364,10 +364,10 @@ const CandlestickChart = (props) => {
         open: open,
         type: 'candlestick',
         xaxis: 'x',
-        yaxis: 'y'
+        yaxis: 'y',
+        // name: 'xxx'
       },      
     ];
-    setData(dat)
 
       const signBuy = {
       x: buyDates,
@@ -375,12 +375,11 @@ const CandlestickChart = (props) => {
       mode: 'markers',
       marker: {
         color: 'green',
-        size: 7,
+        size: 10,
         symbol: 'triangle-up'
       },
       name: 'Buy'
     }
-    setSignalsBuy(signBuy)
     
 
     // Sell markers
@@ -391,59 +390,42 @@ const CandlestickChart = (props) => {
       mode: 'markers',
       marker: {
         color: 'red',
-        size: 7,
+        size: 10,
         symbol: 'triangle-down'
       },
       name: 'Sell'
     }
-    setSignalsSell(signSell)
-
-  }
-
-  // aatach siunals to display
-  function attackBuySell () { 
-    if (data.length === 1) {
-      data.push(signalsBuy)
-      data.push(signalsSell)
-      props.refreshByToggleColumns()
-      console.log (data)
+    if (signals) {
+      dat.push(signBuy)
+      dat.push(signSell)
     }
+    setData(dat)
   }
-
 
 
   return (
     <div>
-        {/* <h6 style={{color: 'blue'}}>candleStick  &nbsp;  </h6>
-        <h6  style={{color:'#33ee33', fontWeight: 'bold', fontStyle: "italic"}}> &nbsp; Under development (Experimental) &nbsp; </h6>
-        <div  style={{color: 'magenta' }}>  {props.symbol} </div> 
-        {err && <div style={{color:'red'}}>{err}</div>} */}
-
-        {pageHeader (props.symbol, 'candleStick', 'triggers still missing', err, 'https://youtube.com/shorts/jSlOyfLPMZc' )}
-
-
         <div>  &nbsp; 
           <div style={{display:'flex'}}>
             <GetInt init={histLength} callBack={setHistLength} title='historySize' type='Number' pattern="[0-9]+" width = '20%'/>
-            {maxHistLength && <div style={{paddingTop:'9px'}}>&nbsp; &nbsp; max={maxHistLength} </div>}
+            {maxHistLength && <div style={{paddingTop:'9px'}}>&nbsp; &nbsp; length={maxHistLength} </div>}
           </div>
 
           <div style={{display:'flex'}}>
              <ComboBoxSelect serv={periodIndex} nameList={intervalOptionsNames} setSelect={setPeriodIndex}
                                         title='resolution' options={indexOptions} defaultValue={periodIndex}/> &nbsp; &nbsp; 
 
+            {eliHome && <input  type="checkbox" checked={signals}  onChange={() => setSignals (! signals)} />} &nbsp;signals &nbsp;&nbsp;
             {data && <div><input  type="checkbox" checked={frozen}  onChange={() => setFrozen (! frozen)} /> &nbsp;frozen &nbsp;&nbsp;</div>}
-            {props.eliHome && <div><input type="checkbox" checked={log}  onChange={()=> setLog( ! log)}  />  &nbsp;Log &nbsp; &nbsp; </div>}
-            {props.eliHome && <div><input type="checkbox" checked={log_1}  onChange={()=> setLog_1( ! log_1)}  />  &nbsp;Log_extra &nbsp; &nbsp; </div>} &nbsp;&nbsp;&nbsp;
-
-            {props.eliHome && <button onClick={() => attackBuySell()}> signals </button>}
+            {eliHome && <div><input type="checkbox" checked={log}  onChange={()=> setLog( ! log)}  />  &nbsp;Log &nbsp; &nbsp; </div>}
+            {eliHome && <div><input type="checkbox" checked={log_1}  onChange={()=> setLog_1( ! log_1)}  />  &nbsp;Log_extra &nbsp; &nbsp; </div>} &nbsp;&nbsp;&nbsp;
           </div>
           <div>&nbsp;</div>
 
-            <button  style={{background: 'aqua'}} onClick={() => get()}> CandleStick get</button>&nbsp;
+          <button  style={{background: 'aqua'}} onClick={() => get()}> CandleStick get</button>&nbsp;
 
-          </div>          
-          {data && <Plot  data={data} layout={{ width: 650, height: 600, title:  'Candlestick Chart ' + props.symbol,
+        </div>          
+        {data && <Plot  data={data} layout={{ width: 650, height: 600, title:  'Candlestick Chart ' + symbol,
                    xaxis:{title: 'Date'}, yaxis: {title: 'Price'}}} config={{staticPlot: frozen, 'modeBarButtonsToRemove': []}}  />}
                    {/* xaxis-rangeslider-visible=false */}
                    {/* {isMobile && <div>mobile</div>} */}
