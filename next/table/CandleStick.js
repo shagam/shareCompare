@@ -369,7 +369,7 @@ const CandlestickChart = (props) => {
 
     const trace = dat[0];
 
-    const signals = createSignals(dat[0]);
+    const signals = createSignals(dat[0], true);
     console.log(signals);
 
     // Show on chart:
