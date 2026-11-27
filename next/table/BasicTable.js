@@ -928,6 +928,14 @@ const {chartSymbol, setChartSymbol,
     }
     return 'white'
   }
+
+  const CELL_STYLE = {
+    padding: '1px 4px', // top/bottom 1px = tight rows
+    lineHeight: '1.1',
+    fontSize: '15px',
+    border: 'none',
+  };
+
   const ROW_SPACING = {padding: "0px 2px 0px 2px", margin: '0px'}
   //** top, right, bottom, left*/
   
@@ -1063,36 +1071,38 @@ const {chartSymbol, setChartSymbol,
       </thead>  
 
 
-      <tbody id="tableBodyId" {...getTableBodyProps()}>
+       <tbody id="tableBodyId" {...getTableBodyProps()}>
         {rows.map((row, i) => {
           prepareRow(row);
           const { key: rowKey, ...rowRest } = row.getRowProps();
           return (
-            <tr id='stock_row_id' key={rowKey} {...rowRest}>
-              <td style={{...ROW_SPACING}}>{i}</td>
+            <tr id='stock_row_id' key={rowKey} {...rowRest} style={{ height: '22px' }}>
+              <td style={CELL_STYLE}>{i}</td>
               {row.cells.map((cell) => {
                 const { key: cellKey, ...cellRest } = cell.getCellProps({
                   style: {
-                    margin: '1px',
-                    padding: '1px',
+                    ...CELL_STYLE, // <-- keep CELL_STYLE first, then color
                     color: getColor(cell.value, cell.column, row.values.symbol)
                   }
                 });
                 return (
                   <td key={cellKey} {...cellRest}>
                     {cell.render('Cell')}
-                  </td> 
+                  </td>
                 );
               })}
-              <td style={{...ROW_SPACING}}> <button style={{background:'#ddcccc'}} type="button" 
-                  onClick={()=>handleDeleteClick(row.values.symbol)}>del</button></td>
-              <td style={{...ROW_SPACING}}> <button style={gainButtonColor(row.values.symbol)} type="button" 
-                  onClick={()=>handleGainClick(row.values.symbol, true, -1, 0)}>Gain</button></td> 
+              <td style={CELL_STYLE}>
+                <button style={{ background: '#ddcccc', padding: '0px 4px', lineHeight: '1.1', fontSize: '12px' }} type="button"
+                  onClick={() => handleDeleteClick(row.values.symbol)}>del</button>
+              </td>
+              <td style={CELL_STYLE}>
+                <button style={{ ...gainButtonColor(row.values.symbol), padding: '0px 4px', lineHeight: '1.1', fontSize: '12px' }} type="button"
+                  onClick={() => handleGainClick(row.values.symbol, true, -1, 0)}>Gain</button>
+              </td>
             </tr>
           );
         })}
       </tbody>
-
     </table>
 
     {/* Machanizms not for spacific sym */}
