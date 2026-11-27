@@ -933,7 +933,7 @@ const {chartSymbol, setChartSymbol,
     padding: '1px 4px', // top/bottom 1px = tight rows
     lineHeight: '1.1',
     fontSize: '15px',
-    border: 'none',
+    border: '1px solid #ccc', 
   };
 
   const ROW_SPACING = {padding: "0px 2px 0px 2px", margin: '0px'}
